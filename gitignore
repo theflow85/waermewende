@@ -1,0 +1,33 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+.directory
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Lokale Backups / Arbeitsdateien
+*.bak
+*.tmp
+*_old.*
+*-copy.*
+
+# Node (falls später mal ein Build-Tool dazukommt)
+node_modules/
+npm-debug.log*
+
+# Env-Dateien (falls je API-Keys o. ä. reinkommen)
+.env
+.env.local
