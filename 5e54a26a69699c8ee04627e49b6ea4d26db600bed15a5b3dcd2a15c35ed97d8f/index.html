@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wärmepumpen in Deutschland — Kostenproblem, Reformhebel und der Systemvergleich mit der Fernwärme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+ --font-display:'Fraunces','Playfair Display',Georgia,serif;
+ --font-body:'Source Serif 4','Charter',Georgia,'Times New Roman',serif;
+ --font-ui:'IBM Plex Sans',-apple-system,'Segoe UI',sans-serif;
+ --font-mono:'JetBrains Mono','SF Mono','Consolas',monospace;
+ --paper:#F7F5EF; --paper-alt:#EFEBE1; --ink:#1A1A17; --ink-soft:#56534B;
+ --rule:#C9C3B4; --belegt:#0F5257; --setzung:#9A5B12; --warn:#7A2E2E;
+ --accent:#1F5673; --chip-green:#28633B; --chip-green-bg:#E4EEE3;
+ --chip-yellow:#8A6A16; --chip-yellow-bg:#F4EBD3; --chip-red:#8A2E2E; --chip-red-bg:#F5E4E0;
+ --measure:34em;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-hyphens:auto;-ms-hyphens:auto;hyphens:auto}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);
+ font-size:19px;line-height:1.62;font-variant-numeric:tabular-nums}
+.wrap{display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem;max-width:1560px;margin:0 auto;padding:0 2rem}
+nav{position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;padding:2.5rem 0;
+ font-family:var(--font-ui);font-size:12.5px;line-height:1.45}
+nav a{display:block;color:var(--ink-soft);text-decoration:none;padding:.28rem .5rem .28rem 0;border-left:2px solid transparent}
+nav a:hover{color:var(--ink)}
+nav a.t1{font-weight:600;color:var(--ink);margin-top:.9rem;letter-spacing:.02em}
+nav a.t2{padding-left:.7rem}
+nav a.on{border-left-color:var(--belegt);color:var(--belegt)}
+.dswitch{font-family:var(--font-ui);font-size:11.5px;margin:0 0 1.4rem;padding:.7rem .5rem .7rem 0;border-bottom:1px solid var(--rule)}
+.dswitch label{display:flex;align-items:center;gap:.45rem;cursor:pointer;color:var(--ink-soft)}
+.dswitch input{accent-color:var(--belegt)}
+main{padding:2.5rem 0 6rem;max-width:calc(var(--measure) + 48px + 240px)}
+@media(min-width:1300px){
+ main{max-width:calc(var(--measure) + 48px + 260px)}
+}
+.blk{position:relative}
+.blk p{margin:0 0 1.15em 48px;max-width:var(--measure)}
+.mg{font-family:var(--font-ui);font-size:10.5px;letter-spacing:.05em;
+ text-transform:uppercase;text-align:right;padding-top:.45em;line-height:1.3}
+.mg.belegt{color:var(--belegt)} .mg.setzung{color:var(--setzung)}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.18;margin:2.4em 0 .7em;
+ max-width:var(--measure);margin-left:48px;position:relative}
+h1{font-size:2.05rem;font-variation-settings:'SOFT' 30,'opsz' 90;letter-spacing:-.015em}
+h1.part{margin-top:3.4em;padding-top:1.6rem;border-top:3px double var(--rule)}
+h2{font-size:1.42rem} h3{font-size:1.12rem} h4{font-size:1rem}
+h1:first-of-type{margin-top:0}
+.anch{opacity:0;margin-left:.4em;color:var(--rule);text-decoration:none;font-size:.7em}
+h1:hover .anch,h2:hover .anch,h3:hover .anch{opacity:1}
+ul,ol{max-width:var(--measure);margin-left:48px;padding-left:1.15rem}
+li{margin:.42em 0}
+hr{border:0;border-top:1px solid var(--rule);margin:2.6em 0 2.6em 48px;max-width:var(--measure)}
+a{color:var(--belegt)}
+a.src{font-family:var(--font-ui);font-size:.76em;text-decoration:none;color:var(--belegt);
+ border-bottom:1px dotted var(--belegt);white-space:nowrap}
+code{font-family:var(--font-mono);font-size:.86em;background:var(--paper-alt);padding:.1em .32em;border-radius:2px}
+.tw{margin:1.6em 0 2em 48px;max-width:100%;overflow-x:auto;overflow-y:hidden}
+table{border-collapse:collapse;font-size:.83rem;font-family:var(--font-ui);width:100%}
+th{text-align:left;font-weight:600;border-bottom:2px solid var(--ink);padding:.55rem .8rem .45rem;vertical-align:bottom}
+td{border-bottom:1px solid var(--rule);padding:.5rem .8rem;vertical-align:top}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.grp td{background:var(--paper-alt);font-weight:600;border-bottom:1px solid var(--ink)}
+tbody tr:last-child td{border-bottom:1px solid var(--ink)}
+em.src-italic{font-style:italic}
+.gl{border-bottom:1px dashed var(--ink-soft);cursor:help;position:relative;outline:none}
+.gl-pop{position:absolute;left:0;top:1.6em;z-index:40;width:min(320px,72vw);background:var(--ink);
+ color:var(--paper);font-family:var(--font-ui);font-size:12.5px;line-height:1.5;padding:.75rem .9rem;
+ border-radius:3px;opacity:0;pointer-events:none;transition:opacity .13s;box-shadow:0 6px 22px rgba(0,0,0,.22);
+ text-transform:none;letter-spacing:0;font-weight:400}
+.gl:hover .gl-pop,.gl:focus .gl-pop{opacity:1}
+.lead{background:var(--paper-alt);margin:2em 0 2em 48px;max-width:var(--measure);padding:1.5rem 1.7rem;border-radius:2px}
+.lead h2{margin:0 0 .6em;font-size:1.2rem;margin-left:0}
+.note{margin:2em 0 2em 48px;max-width:var(--measure);padding:1.1rem 1.4rem;border-left:3px solid var(--warn);background:#FBF9F4}
+.note h3{margin:0 0 .5em;font-size:1rem;font-family:var(--font-ui);font-weight:600;letter-spacing:.01em;margin-left:0}
+.note p{margin:0 0 .8em;font-size:.93rem}
+.note p:last-child{margin:0}
+.mast{margin-left:48px;max-width:var(--measure);padding-bottom:1.4rem;border-bottom:3px double var(--rule);margin-bottom:2.4rem}
+.mast .kicker{font-family:var(--font-ui);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--setzung)}
+.mast h1{margin:.5rem 0 .6rem;font-size:2.35rem;margin-left:0}
+.mast .meta{font-family:var(--font-ui);font-size:13px;color:var(--ink-soft);line-height:1.6}
+figure{margin:1.8em 0 2em 48px;max-width:100%}
+figcaption{font-family:var(--font-ui);font-size:12px;color:var(--ink-soft);margin-top:.6rem;line-height:1.5}
+.readline{font-family:var(--font-ui);font-size:.85rem;color:var(--ink-soft);margin:1.4em 0 .5em 48px;max-width:var(--measure)}
+.readexample{font-family:var(--font-ui);font-size:.85rem;color:var(--ink-soft);margin:.5em 0 1.6em 48px;
+ max-width:var(--measure);padding-left:.9rem;border-left:2px solid var(--rule)}
+figure.tblfig{break-inside:avoid}
+figure .tw,figure .readline,figure .readexample{margin-left:0}
+.codewrap{margin-left:48px;max-width:100%}
+details>summary{font-family:var(--font-ui);font-size:13.5px;cursor:pointer;padding:.6rem .9rem;
+ background:var(--paper-alt);border:1px solid var(--rule);border-radius:2px}
+pre{font-family:var(--font-mono);font-size:11.5px;line-height:1.55;overflow-x:auto;background:#FBFAF6;
+ border:1px solid var(--rule);border-top:0;padding:1rem;margin:0;white-space:pre;font-variant-numeric:normal}
+.btns{display:flex;gap:.6rem;margin:.8rem 0 0}
+button{font-family:var(--font-ui);font-size:12.5px;padding:.5rem .95rem;background:var(--ink);color:var(--paper);
+ border:0;border-radius:2px;cursor:pointer}
+button:hover{background:var(--belegt)}
+
+/* ---------- Didaktiklayer ---------- */
+
+/* Erklärkasten */
+.explainbox{background:var(--paper-alt);border-left:3px solid var(--accent);padding:.95rem 1.15rem;
+ margin:1.4rem 0 1.6rem 48px;max-width:var(--measure);font-family:var(--font-ui);font-size:.86rem;line-height:1.55}
+.explainbox .et{font-variant:small-caps;font-weight:600;letter-spacing:.03em;display:block;margin:0 0 .5rem;
+ color:var(--ink);font-size:.78rem;text-transform:uppercase}
+.explainbox p{margin:0;font-family:var(--font-ui)}
+@media(min-width:1300px){
+ .explainbox.side{float:right;clear:right;width:180px;margin:.15rem 0 1rem 1.6rem;
+  max-width:none;padding:0 0 0 .8rem;border-left:2px solid var(--accent);background:none;font-size:.74rem;line-height:1.44}
+ .explainbox.side .et{font-size:.7rem;margin-bottom:.35rem}
+}
+.jj{border-bottom:1px dotted var(--ink-soft);cursor:help;position:relative;outline:none;text-decoration:none;color:inherit}
+.jj.anh{color:var(--belegt);border-bottom:1px dotted var(--belegt)}
+.jj-pop{position:absolute;left:0;top:1.5em;z-index:45;width:min(300px,72vw);background:var(--ink);
+ color:var(--paper);font-family:var(--font-ui);font-size:12.5px;line-height:1.5;padding:.75rem .9rem;
+ border-radius:3px;opacity:0;pointer-events:none;transition:opacity .13s;box-shadow:0 6px 22px rgba(0,0,0,.22)}
+.jj:hover .jj-pop,.jj:focus .jj-pop{opacity:1}
+body.hide-didaktik .explainbox,body.hide-didaktik .jj-anchor-mark{display:none}
+body.hide-didaktik .jj:not(.anh){border-bottom:0;cursor:text}
+
+/* Rechenstrecke */
+.rstrecke{margin:1.8em 0 2em 48px;max-width:var(--measure);border-left:2px solid var(--rule);padding-left:0}
+.rstep{position:relative;padding:0 0 1.5rem 1.6rem;margin-left:-2px;border-left:2px solid var(--rule)}
+.rstep:last-child{padding-bottom:.2rem}
+.rstep .marker{position:absolute;left:-.62rem;top:.15rem;width:1.05rem;height:1.05rem;border-radius:50%;
+ background:var(--paper);border:2px solid var(--accent);color:var(--accent);font-family:var(--font-ui);
+ font-size:.62rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+.rstep h4{font-family:var(--font-ui);font-size:.92rem;font-weight:600;margin:0 0 .55rem;max-width:none;margin-left:0}
+.rstep .rl{font-family:var(--font-ui);font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);
+ display:block;margin-bottom:.2rem}
+.rstep .rechnung{font-family:var(--font-mono);font-size:.82rem;line-height:1.65;color:var(--ink);margin:0 0 .7rem;
+ font-variant-numeric:tabular-nums}
+.rstep .rechnung .herk{color:var(--ink-soft);font-size:.88em}
+.rstep .ergebnis{font-family:var(--font-ui);font-size:.9rem;margin:0}
+.chipval{background:#E7E2D3;border-radius:3px;padding:.05em .35em;font-weight:600;color:var(--ink)}
+
+/* Grafiken */
+figure.graf{max-width:min(720px,calc(100vw - 300px))}
+figure.graf svg{width:100%;height:auto;display:block}
+
+/* Ampel-Chips */
+.chip{display:inline-block;font-family:var(--font-ui);font-size:.68rem;font-weight:600;padding:.18em .55em;
+ border-radius:9px;margin:.12em .25em .12em 0;white-space:nowrap;letter-spacing:.01em}
+.chip.g{background:var(--chip-green-bg);color:var(--chip-green)}
+.chip.y{background:var(--chip-yellow-bg);color:var(--chip-yellow)}
+.chip.r{background:var(--chip-red-bg);color:var(--chip-red)}
+.chip-col{white-space:normal}
+.chip-col .chip{display:block;width:-moz-fit-content;width:fit-content;margin:0 0 .2rem}
+.chip-col .chip:last-child{margin-bottom:0}
+.legend{font-family:var(--font-ui);font-size:.82rem;margin:1.2em 0 1.4em 48px;max-width:var(--measure);
+ display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;align-items:center;padding:.85rem 1rem;background:var(--paper-alt);
+ border-radius:2px}
+.legend .li{display:flex;align-items:center;gap:.4rem;cursor:pointer;background:none;border:0;padding:0;
+ font-family:var(--font-ui);font-size:.82rem;color:var(--ink)}
+.legend .li.active{outline:2px solid var(--accent);outline-offset:2px;border-radius:9px}
+.legend .liall{font-weight:600;cursor:pointer;color:var(--ink-soft);background:none;border:0;padding:0;font-family:var(--font-ui);font-size:.82rem}
+.legend .liall.active{color:var(--ink);text-decoration:underline}
+tr.filtered-out{display:none}
+
+@media(max-width:1180px){
+ /* minmax(0,1fr) statt 1fr: sonst kann ein einzelnes breites Kind (Tabelle, SVG,
+    langes Kompositum) die Grid-Spalte ueber die Viewportbreite hinaus aufziehen */
+ .wrap{grid-template-columns:minmax(0,1fr);gap:0;padding:0 1.4rem}
+ main,nav{min-width:0}
+ main{padding:1rem 0 4rem;max-width:100%}
+ h1,h2,h3,h4,ul,ol,hr,.lead,.note,.mast,.tw,figure,.codewrap,.explainbox,.rstrecke,.legend,.readline,.readexample{margin-left:0;max-width:100%}
+ .tw,figure,figure.graf,.codewrap{max-width:100%}
+ .blk p{margin-left:0;max-width:100%}
+ /* Inhaltsverzeichnis: kein verschachtelter Scroll-Container mehr, sondern ein
+    normal fliessendes TOC am Dokumentanfang */
+ nav{position:static;max-height:none;overflow:visible;columns:1;font-size:12.5px;
+  margin:0 0 1.6rem;padding:.6rem 0 .4rem;border-bottom:3px double var(--rule)}
+ nav a{padding:.42rem .6rem;border-left:2px solid var(--rule);line-height:1.3}
+ nav a.t1{margin-top:.7rem;border-left-color:var(--ink-soft)}
+ nav a.t2{padding-left:1.5rem}
+ nav a.on{border-left-color:var(--belegt)}
+ .dswitch{margin:0 0 .9rem;padding:.2rem 0 .8rem}
+ .dswitch label{padding:.35rem 0;font-size:12.5px}
+ .dswitch input{width:1.05em;height:1.05em}
+}
+@media(max-width:700px){
+ body{font-size:17px;line-height:1.58}
+ .wrap{padding:0 1rem}
+ h1,h2,h3,h4{text-wrap:balance}
+ h1{font-size:1.6rem} .mast h1{font-size:1.72rem} h2{font-size:1.25rem} h3{font-size:1.05rem}
+ .mast .meta{font-size:12px}
+ code{overflow-wrap:anywhere}
+ nav a{padding:.5rem .6rem}
+ table{font-size:.78rem}
+ th,td{padding:.42rem .5rem;overflow-wrap:break-word}
+ .tw{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+ .rstep .rechnung{font-size:.76rem;word-break:break-word}
+ .rstep{padding-left:1.1rem}
+ .explainbox{padding:.8rem .9rem;font-size:.84rem}
+ .legend{gap:.45rem .7rem;padding:.7rem .8rem;font-size:.78rem}
+ .legend .li,.legend .liall{min-height:32px}
+ pre{font-size:10.5px}
+ .btns{flex-wrap:wrap}
+ button{padding:.65rem 1.05rem;font-size:13px}
+ figcaption{font-size:11.5px}
+}
+/* Nur Bildschirm: darf den Druck (Satzspiegel ~640px) nicht treffen */
+@media screen and (max-width:1180px){
+ html,body{overflow-x:clip}
+ /* Trennguete nur im schmalen Satz: keine Zwei-Zeichen-Trennungen */
+ html{-webkit-hyphenate-limit-before:4;-webkit-hyphenate-limit-after:3;
+  hyphenate-limit-chars:7 4 3}
+ /* Notbremse fuer Woerter, die auch getrennt nicht in die Zeile passen */
+ body{overflow-wrap:break-word}
+ /* Popover bleibt im Viewport und zieht die Seite nicht in die Breite */
+ .jj-pop,.gl-pop{position:fixed;top:auto;left:1rem;right:1rem;width:auto;max-width:none;margin-top:1.35em}
+}
+@media screen and (max-width:700px){
+ /* Grafiken: statt auf Briefmarkengroesse geschrumpft lieber in Lesegroesse
+    und seitlich scrollbar - dieselbe Mechanik wie bei den Tabellen */
+ figure.graf{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+ figure.graf svg{width:660px;max-width:none}
+ figure.graf figcaption{position:sticky;left:0;width:calc(100vw - 2rem)}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{
+ nav,.btns,.anch,.dswitch,.legend{display:none}
+ body{background:#fff;color:#000;font-size:10.5pt}
+ body.hide-didaktik .explainbox{display:block!important}
+ .wrap{display:block;padding:0;max-width:none}
+ h1,h2,h3,h4,ul,ol,hr,.lead,.note,.mast,.tw,figure,.codewrap,.blk p,.explainbox,.rstrecke,.readline,.readexample{margin-left:0;max-width:none}
+ .blk{display:block} .mg{display:inline;font-size:8pt;color:#555;text-align:left}
+ .mg::after{content:" · "}
+ .explainbox.side{position:static;width:auto;border-left:3px solid #000;background:#f2f2f2;padding:.6rem .8rem;margin:.8rem 0}
+ table{font-size:8.5pt} .tw{overflow:visible}
+ tr.filtered-out{display:table-row!important}
+ details{display:block} summary{display:none} pre{font-size:7pt;border:1px solid #999}
+ h1,h2,h3{break-after:avoid} table,.note,.lead,figure,.rstep,figure.tblfig{break-inside:avoid}
+ .jj-pop,.gl-pop{display:none} .jj,.gl{border:0}
+ html,body{overflow:visible}
+ figure.graf{overflow:visible;max-width:100%}
+ figure.graf svg{width:100%;max-width:100%}
+ figure.graf figcaption{position:static;width:auto}
+ a{color:#000;text-decoration:none}
+ @page{margin:2cm}
+}
+</style></head><body>
+<div class="wrap">
+<nav aria-label="Inhalt">
+<div class="dswitch"><label><input type="checkbox" id="didaktik-toggle" checked> Erklärkästen ausblenden</label></div>
+<a class="t1" href="#top">Wärmepumpen in Deutschland: Kostenproblem, Reformhebel und der Systemvergleich mit der Fernwärme</a>
+<a class="t2" href="#kurzfassung">Kurzfassung</a>
+<a class="t2" href="#entstehung">Zur Entstehung dieses Papiers</a>
+<a class="t1" href="#teil-i">Teil I — Warum Wärmepumpen in Deutschland doppelt so teuer sind, und was die Politik dagegen tun kann</a>
+<a class="t2" href="#ausgangslage">Ausgangslage</a>
+<a class="t2" href="#diagnose">Diagnose: Vier Kostentreiber im Zusammenspiel</a>
+<a class="t2" href="#reformhebel">Fünf Reformhebel</a>
+<a class="t2" href="#systemlogik">Die zugrundeliegende Systemlogik</a>
+<a class="t1" href="#teil-ii">Teil II — Systemkostenvergleich Wärmepumpe vs. Fernwärme-Netzausbau</a>
+<a class="t2" href="#s1">1 Analyserahmen und Methode</a>
+<a class="t2" href="#s2">2 Kostenkomponenten Fernwärme</a>
+<a class="t2" href="#s3">3 Kostenkomponenten Wärmepumpe</a>
+<a class="t2" href="#s4">4 Modellrechnung: Vollkosten je kWh Nutzwärme</a>
+<a class="t2" href="#s5">5 Die endogene Wärmeliniendichte-Schwelle</a>
+<a class="t2" href="#s6">6 Opportunitätskostenrechnung öffentlicher Mittel</a>
+<a class="t2" href="#s7">7 Robustheit: Halten die Aussagen überhaupt?</a>
+<a class="t2" href="#s8">8 Was die Kostenrechnung nicht erfasst</a>
+<a class="t2" href="#s9">9 Schlussfolgerungen und bundespolitische Instrumente</a>
+<a class="t2" href="#s10">10 Was an dieser Rechnung neu ist — und was sie braucht</a>
+<a class="t1" href="#anhang">Anhang</a>
+<a class="t2" href="#a1">A.1 Annuitätsfaktoren</a>
+<a class="t2" href="#a2">A.2 Eine Rechnung vollständig durchgerechnet</a>
+<a class="t2" href="#a3">A.3 Der Robustheitstest: welche 36 Kombinationen</a>
+<a class="t2" href="#a4">A.4 Was aus den AGFW-Punktwolken abgelesen wurde</a>
+<a class="t2" href="#a5">A.5 Umsatzsteuer: Rechtslage und Behandlung im Modell</a>
+<a class="t2" href="#a6">A.6 Sensitivität der Hausanschlusskosten</a>
+<a class="t2" href="#a7">A.7 Gas-KWK: Woher die Zahl kommt — und warum die Nachfolgequelle entscheidet</a>
+<a class="t2" href="#a8">A.8 Herleitung des anteiligen Erzeuger-CAPEX</a>
+<a class="t2" href="#a9">A.9 Gegenprobe am dänischen Technologiekatalog</a>
+<a class="t1" href="#quellen">Quellenverzeichnis</a>
+<a class="t2" href="#q-teil-i">Teil I</a>
+<a class="t2" href="#q-teil-ii">Teil II (mit Kennzeichnung der Interessenlage)</a>
+<a class="t2" href="#herkunft">Herkunft der Modellannahmen</a>
+<a class="t1" href="#skript">Das Simulationsskript</a>
+</nav>
+<main>
+<div class="mast" id="top">
+<span class="kicker">Diskussionspapier</span>
+<h1 style="margin-left:0">Wärmepumpen in Deutschland: Kostenproblem, Reformhebel und der Systemvergleich mit der Fernwärme</h1>
+<div class="meta"><strong>Version 2.7, August 2026</strong> (V2.6–V2.5–V2.4–V2.1 August 2026, V1 Juli 2026, Erstfassung Mai 2026)<br>
+Florian Schulte, Gießen<br>
+Für die BAG Energie (Bündnis 90/Die Grünen); zugleich als Fachbeitrag zur anstehenden AVBFernwärmeV-Novelle, zur Praxis der kommunalen Wärmeplanung und für die energiepolitische Fachöffentlichkeit.<br>
+Alle Modellrechnungen sind als solche gekennzeichnet, im beiliegenden Python-Skript <code>simulation_wp_fernwaerme_v2-7.py</code> (MIT) reproduzierbar und ersetzen keine projektspezifische Machbarkeitsstudie.</div>
+</div>
+
+<h2 id="kurzfassung">Kurzfassung<a class="anch" href="#kurzfassung">§</a></h2>
+<div class="blk"><p>Deutschland zahlt für dieselbe Wärmepumpe das 2- bis 2,5-fache des europäischen Preises: rund 30.000 € komplett installiert gegenüber Bandbreiten von 10.000–20.000 € in Großbritannien, Frankreich, den Niederlanden und Österreich — bei gleicher Technik und vergleichbarem Gebäudebestand. <strong>Teil I</strong> identifiziert vier strukturelle Ursachen: eine Normen-Haftungskaskade, die formal freiwillige VDI-Richtlinien faktisch verbindlich macht; prozentuale Förderung, die als Moral Hazard jeden Preisdruck aus dem Markt nimmt; überdimensionierte Heizstäbe mit 400V-Folgekosten; und § 14a-Hardware-Bürokratie. Dem stehen fünf Reformhebel gegenüber.</p></div>
+<div class="blk"><p><strong>Teil II</strong> fragt, was das auf der Systemebene bedeutet: Wenn WP-Preise auf europäisches Niveau fallen — was ist dann der gesellschaftlich günstigere Pfad, dezentrale Wärmepumpe oder Fernwärme-Netzausbau? Die Vollkostenrechnung (Annuitätenmethode nach VDI 2067, ohne Förderung, Ersatzinvestitionen eingepreist, Trassenkosten aus der AGFW-Praxishilfe mit amtlicher Baupreisfortschreibung) ergibt vier Kernbefunde:</p></div>
+<ol>
+<li><strong>Die Wärmequelle entscheidet, nicht die Bebauungsdichte.</strong> Echte Abwärme trägt ein Netz robust — in keiner von 36 geprüften Parameterkombinationen kippt das Ergebnis. „Fernwärme rechnet sich in Hochdichtequartieren“ ist als Pauschalaussage falsch.</li>
+<li><strong>Ein Gasvorlauf trägt kein Netz — er verschiebt die Entscheidung auf das, was 2045 folgt.</strong> Eine heute gebaute Gasanlage hat nach dem Wärmeplanungsgesetz rund 19 Jahre Perspektive, das Verteilnetz fünfzig; barwertgewichtet wird ein solches Netz zu 44 % von seiner Nachfolgequelle getragen. Der Vorlauf kostet dabei stets 56 % der Differenz zwischen dem Gassockel und dem der Nachfolgequelle — vor der Großwärmepumpe 2,3 ct, vor der Abwärme 5,7 ct. Er verbessert keinen Pfad, sondern verbraucht dessen Reserve. Die Nachfolge hat genau zwei Formen: eine andere Quelle — dann gilt Befund 3 — oder derselbe Brennstoff in grün, der dann ab 2045 Wärme für 6,4 ct/kWh erzeugen müsste und damit für weniger, als fossiles Erdgas einschließlich CO₂-Kosten heute kostet. Beide Ausgänge sind offen; für keinen existiert eine belastbare Wirtschaftlichkeitsgrundlage.</li>
+<li><strong>Für Großwärmepumpen- und Geothermienetze liefert das Modell keine Entscheidung.</strong> Die Vollkosten beider Pfade liegen innerhalb weniger Zehntelcent beieinander; das Vorzeichen wechselt in einem Sechstel der Kombinationen. Für die am häufigsten vorgeschlagene klimaneutrale Netzquelle ist der ökonomische Vorteil damit <em>nicht nachweisbar</em> — wer darauf fünfzigjährige Infrastruktur gründet, tut das ohne belastbare Grundlage.</li>
+<li><strong>Das deutsche WP-Preisniveau subventioniert indirekt die Fernwärme-Wirtschaftlichkeit.</strong> Der Wechsel des Vergleichsmaßstabs verschiebt alle Schwellen um Faktor 2 bis 5; Wärmepläne, die gegen deutsche Vollkosten rechnen, weisen systematisch zu große Netzgebiete aus. Und 1 Mrd. € stellt per Festbetragsförderung rund 111.000 Haushalte um, als Netzausbau im Ein-/Zweifamilienhausbestand rund 12.000.</li>
+</ol>
+<div class="blk"><p>Daraus folgen fünf bundespolitische Instrumente: WPG-§-18-Benchmark (Fernwärme-Eignungsgebiete nur gegen die europäisch normalisierte WP-Referenz), Kostentransparenz über AVBFernwärmeV-Novelle und Wärmenetzregister, quellenscharfe BEW-Steuerung, BEG-Festbetragsumstellung und der Normen-Safe-Harbour.</p></div>
+<div class="blk"><p>Alle Zahlen stammen aus einem offengelegten, frei lizenzierten Simulationsskript; jede Modellannahme ist mit ihrer Grundlage im Quellenverzeichnis aufgeführt, und der Anhang rechnet ein Beispiel vollständig von Hand durch. Widerspruch ist erwünscht — die Annahmen ebenso wie der Rechenweg.</p></div>
+<div class="blk"><p>Der methodische Kern — Vollkosten beider Pfade an derselben Systemgrenze, Wärmepumpenpreis auf europäisches Niveau normalisiert, die Dichteschwelle daraus endogen abgeleitet statt gesetzt — liegt nach Kenntnis des Autors in dieser Kombination bisher nicht durchgerechnet vor. Abschnitt 10 ordnet ein, was das wert ist und was es nicht ersetzt.</p></div>
+<hr>
+<h2 id="entstehung">Zur Entstehung dieses Papiers<a class="anch" href="#entstehung">§</a></h2>
+<div class="blk"><p>Dieses Papier ist im strukturierten Dialog mit einem KI-Sprachmodell (Claude, Anthropic) entstanden. Die Arbeitsteilung: Das Modell hat recherchiert, die Kostenmodelle konstruiert, die Simulation programmiert und durchgerechnet und die Texte formuliert. Der Autor hat die Fragestellungen gesetzt, die Analyserichtung bestimmt, Einwände und Korrekturen eingebracht, Zwischenergebnisse geprüft und lektoriert.</p></div>
+<div class="blk"><p>Was diese Prüfung leisten kann und was nicht: Der Autor ist Arzt mit wissenschaftlicher Methodenausbildung und prüft Argumentationslogik, innere Konsistenz und Plausibilität der Ergebnisse mit derselben Sorgfalt wie bei eigenen wissenschaftlichen Arbeiten. Er ist aber energiewirtschaftlicher Fachfremder und kein Informatiker — er kann weder die Eingangsannahmen fachlich einordnen, wie es eine Fachperson könnte, noch den Simulationscode Zeile für Zeile verifizieren. Daraus folgt die Bauweise des Papiers: Jede Modellannahme ist gekennzeichnet und im Abschnitt „Herkunft der Modellannahmen“ mit ihrer Grundlage aufgeführt, jede Quelle mit ihrer Interessenlage versehen, die vollständige Simulation liegt als kommentiertes, MIT-lizenziertes Skript bei, und der Anhang rechnet ein Beispiel von Hand durch. Wer fachlich mitlesen kann, ist ausdrücklich gebeten, beides anzugreifen: die Eingangswerte ebenso wie den Rechenweg. Abschnitt 10 benennt, wo das am dringendsten nötig ist.</p></div>
+<hr>
+<h1 id="teil-i" class="part">Teil I — Warum Wärmepumpen in Deutschland doppelt so teuer sind, und was die Politik dagegen tun kann<a class="anch" href="#teil-i">§</a></h1>
+<h2 id="ausgangslage">Ausgangslage<a class="anch" href="#ausgangslage">§</a></h2>
+<div class="blk"><p>Eine Luft-Wasser-Wärmepumpe kostet in Deutschland im Durchschnitt rund 30.000 Euro (Verbraucherzentrale RLP 2025: Spanne 20.000–63.000 €, Median 35.000 €). Im europäischen Vergleich ist das das höchste Preisniveau: Großbritannien zahlt 10.000–14.000 €, Frankreich 12.000–20.000 €, Österreich 13.500–20.000 € [<a class="src" href="#q-hug">HuG</a>, <a class="src" href="#q-octopusrwth">Octopus-RWTH</a>] — bei vergleichbarer Technik und ähnlichem Gebäudebestand. Der Abstand beträgt das 2- bis 2,5-fache. Die Ländervergleichswerte stammen aus zwei Erhebungen mit unterschiedlicher Methodik und sind als Bandbreiten zu lesen; wo dieses Papier mit einem einzelnen europäischen Referenzpreis rechnet, verwendet es 14.000 € — die Mitte des britisch-österreichischen Korridors und den am besten dokumentierten Einzelwert.</p></div>
+<div class="blk"><p>Dieser Preisunterschied ist kein Naturgesetz. Er hat identifizierbare Ursachen — und politisch adressierbare Lösungen.</p></div>
+<h2 id="diagnose">Diagnose: Vier Kostentreiber im Zusammenspiel<a class="anch" href="#diagnose">§</a></h2>
+<div class="blk"><p>Rund 70 % der Preisdifferenz lassen sich quantifizieren (Gerätepreise, Fundament, Elektroanschluss, Lohn, Mehrwertsteuer). Die verbleibenden 30 % entstehen durch schwerer greifbare Faktoren, die sich gegenseitig verstärken:</p></div>
+<figure class="tblfig"><div class="readline">Die folgende Tabelle zeigt die vier schwerer greifbaren Kostentreiber und den Förderstruktur-Multiplikator.</div>
+<div class="tw"><table><thead><tr><th>Faktor</th><th>Mehrkosten ggü. UK</th><th>Kern des Problems</th></tr></thead><tbody>
+<tr><td>Geräte &amp; Markt</td><td>+2.000–4.000 €</td><td>Premium-Bias; günstigere Varianten werden in DE nicht angeboten</td></tr>
+<tr><td>Fundament/Aufstellung</td><td>+1.000–2.200 €</td><td>VDI 4645: faktisch verbindlich, technisch oft übertrieben</td></tr>
+<tr><td>Elektroanschluss / § 14a</td><td>+1.500–2.500 €</td><td>400V durch überdimensionierte Heizstäbe; bürokratische DSR-Pflichten</td></tr>
+<tr><td>Lohn &amp; Arbeitszeit</td><td>+1.000–2.000 €</td><td>110 Monteurst. (DE) vs. ~40 (UK): Bürokratieoverhead</td></tr>
+<tr><td>Mehrwertsteuer</td><td>+5.700 € (vs. UK, 0 %)</td><td>Relevant ggü. UK; gering ggü. FR/NL/AT</td></tr>
+<tr><td><strong>Förderstruktur (prozentual)</strong></td><td><strong>multipliziert alle obigen</strong></td><td><strong>Moral Hazard: kein Preisdruck im Gesamtsystem</strong></td></tr>
+</tbody></table></div>
+<div class="readexample">Ablesebeispiel: Zeile <em>Fundament/Aufstellung</em> — allein die Aufstellung kostet in Deutschland 1.000 bis 2.200 € mehr als in Großbritannien, weil die VDI 4645 faktisch verbindlich ist.</div>
+</figure>
+<div class="blk"><p><strong>Entscheidender Befund:</strong> Nach allen Förderabzügen zahlt ein britischer Haushalt rund 3.200 € Eigenanteil — ein deutscher bei 50 % BEG-Förderung rund 14.900 €. Obwohl die deutsche Förderquote höher ist, bleibt die absolute Belastung fast fünfmal so hoch. Prozentuale Förderung bei hohen Ausgangspreisen versagt als Instrument zur Kostensenkung.</p></div>
+<h2 id="reformhebel">Fünf Reformhebel<a class="anch" href="#reformhebel">§</a></h2>
+<h3 id="hebel1">Hebel 1 ★★★ — BEG: Prozentuale Förderung auf Festbeträge umstellen<a class="anch" href="#hebel1">§</a></h3>
+<div class="blk"><p><em>Gesetzgebung · kurzfristig umsetzbar</em></p></div>
+<div class="blk"><p>Der wirksamste Einzelhebel — und der einzige, der alle anderen Kostentreiber gleichzeitig adressiert. Wer einen fixen Zuschuss erhält (z. B. 8.000–10.000 €, einkommensabhängig gestaffelt wie in Frankreich), hat als Endkunde ein Interesse daran, Angebote zu vergleichen; Handwerksbetriebe haben keinen Anreiz mehr, Angebote an die Förderobergrenze heranzuführen. Das britische Boiler Upgrade Scheme (Festbetrag 7.500 GBP) hat genau diesen Wettbewerbsdruck erfolgreich erzeugt.</p></div>
+<div class="blk"><p>Die Kombination mit einem einheitlich reduzierten Umsatzsteuersatz wäre sinnvoll und würde zugleich die BEG-Dokumentation auf Kundenseite vereinfachen. Teil II rechnet durchgehend mit dem Regelsatz von 19 %; zur EU-Rechtslage, zur Wirkung im Modell und zu den offenen Gleichbehandlungsfragen siehe <a class="jj anh" href="#a5" tabindex="0" data-jj="a5">Anhang A.5</a>.</p></div>
+<h3 id="hebel2">Hebel 2 ★★★ — Normenhaftung entkoppeln: Safe Harbour für Komfort-Normen<a class="anch" href="#hebel2">§</a></h3>
+<div class="blk"><p><em>Gesetzgebung · mittelfristig</em></p></div>
+<div class="blk"><p>VDI-Richtlinien und DIN-Normen sind formal freiwillig — aber über drei parallele Mechanismen faktisch verbindlich: zivilrechtliche Vermutungswirkung als „anerkannte Regel der Technik“, BAFA-Fördervoraussetzung (VDI-4645-Sachkundenachweis) und Versicherungspraxis (Berufshaftpflicht verlangt den Nachweis im Schadensfall). Kein Installateur weicht ab, weil er das Haftungsrisiko allein trägt. Das Ergebnis: überdimensionierte Fundamente und 400-V-Anschlüsse für Heizstäbe, die zu 98 % nie laufen.</p></div>
+<div class="blk"><p><strong>Das strukturelle Problem dahinter:</strong> DIN finanziert rund 59 % seiner Tätigkeit aus Normenverkauf — DIN Media GmbH gehört DIN e. V. und VDI selbst. Über-Standardisierung ist für den Normsetzer rational. Der Koalitionsvertrag 2025 kündigt an, „die Bindungswirkung von Normsetzungen durch Selbstverwaltungsorganisationen auf ein sicherheitsrelevantes Maß zurückzuführen“ — die Umsetzung steht aus.</p></div>
+<div class="blk"><p>Die Lösung ist zweistufig: <strong>(a)</strong> gesetzlicher Safe Harbour für Abweichungen von reinen Komfort- und Qualitätsnormen, analog zum Gebäudetyp-E-Ansatz; <strong>(b)</strong> Entkoppelung der BEG-Fördervoraussetzung von VDI-Zertifizierungen. Beide Schrauben müssen gleichzeitig gedreht werden.</p></div>
+<h3 id="hebel3">Hebel 3 ★★ — Heizstabgröße als Förderstandard begrenzen<a class="anch" href="#hebel3">§</a></h3>
+<div class="blk"><p><em>Verordnung / Förderrecht · kurzfristig</em></p></div>
+<div class="blk"><p>Der 400-V-Drehstromanschluss ist in vielen Installationen kein technisches Grunderfordernis, sondern Folge überdimensionierter Heizstäbe (6–9 kW Standard in DE; 3 kW optional in UK). Fraunhofer ISE zeigt: Bei korrekt ausgelegten Anlagen läuft der Heizstab in nur 1,9 % der Heizarbeit — und moderne R290-Wärmepumpen liefern bereits bei −10 °C ihre volle Nennleistung. Kleinere Heizstäbe (≤ 3 kW) erlauben eine deutlich einfachere elektrische Anbindung und unterschreiten die § 14a-Pflichtschwelle von 4,2 kW. Der Hausanschluss selbst muss dabei in aller Regel <em>nicht</em> erneuert werden — die Mehrkosten entstehen gebäudeintern durch Zählerschrankausbau, Leitungsführung und § 14a-Hardware.</p></div>
+<div class="blk"><p>Konsequenz: Geräte mit Heizstäben ≤ 3 kW als BEG-Standard definieren; Kaskaden aus zwei kleineren Geräten (je ~5–7 kW) als Option privilegieren. Sie takten feiner — bei geringem Bedarf läuft nur ein Gerät, was Anlaufstrom und Leistungsspitze halbiert; für den Netzbetreiber zählt die gleichzeitige Höchstlast, und genau die sinkt. Der höhere Anschaffungspreis spricht dafür, dies als Option und nicht als Vorgabe auszugestalten.</p></div>
+<h3 id="hebel4">Hebel 4 ★★ — § 14a EnWG: Demand Response über Tarifanreize statt Hardware-Pflichten<a class="anch" href="#hebel4">§</a></h3>
+<div class="blk"><p><em>EnWG-Novelle · mittelfristig</em></p></div>
+<div class="blk"><p>Das britische Modell (PAS 1878/1879, OpenADR) zeigt eine überlegene Alternative: Statt Hardware-Drosselung durch den Netzbetreiber (Steuerbox, Smart-Meter-Gateway, EEBus — je 1.500–2.500 € Mehrkosten) werden variable Tarife genutzt, die Anreize zur Lastverschiebung setzen. Kunden folgen dem Preissignal freiwillig; das System ist offen, skalierbar und verständlich. Auf Dauer sollte § 14a zu einem reinen Tarif-Instrument umgebaut werden; kurzfristig ist die Kostenübernahme für Pflicht-Hardware durch den Netzbetreiber gesetzlich zu verankern.</p></div>
+<h3 id="hebel5">Hebel 5 ★★ — EU-Ebene: Den Nullsatz für dezentrale Heiztechnik öffnen<a class="anch" href="#hebel5">§</a></h3>
+<div class="blk"><p><em>Ratsbeschluss, Einstimmigkeit erforderlich · langfristig</em></p></div>
+<div class="blk"><p>Die geltende Abgrenzung zwischen PV- und Wärmepumpeninstallationen ist klimapolitisch nicht begründbar. Ein Solarmodul auf dem Dach kann bisher vollständig von der Umsatzsteuer freigestellt werden, eine Wärmepumpe im selben Haus nicht — obwohl beide dieselbe Funktion erfüllen: eine haushaltsseitige Investition, die fossile Energie dauerhaft aus dem Gebäude verdrängt. Die Ungleichbehandlung ist ein Verhandlungsergebnis von 2022, kein Sachargument.</p></div>
+<div class="blk"><p>Der konkrete Vorschlag: Nummer 22 des Anhangs III — jedenfalls für haushaltsnahe Anlagen — in die Gruppe aufnehmen, für die der Nullsatz zulässig ist. Das erfordert eine Änderung der Mehrwertsteuer-Systemrichtlinie und nach Art. 113 AEUV Einstimmigkeit im Rat. Der Hebel wirkt deshalb erst mittel- bis langfristig und steht hier nachrangig — aber er ist der einzige, der die Ungleichbehandlung an der Wurzel behebt, statt sie national zu umschiffen.</p></div>
+<h2 id="systemlogik">Die zugrundeliegende Systemlogik<a class="anch" href="#systemlogik">§</a></h2>
+<div class="blk"><p>Die Hebel sind nicht unabhängig. Sie adressieren einen gemeinsamen strukturellen Defekt: Normenwesen, Haftungsrecht, Förderdesign und Netzregulierung erzeugen zusammen ein System, das Kostensenkung systematisch verhindert — nicht durch bösen Willen, sondern weil alle Anreize in dieselbe falsche Richtung zeigen. Prozentuale Förderung nimmt bei gleichzeitiger Normenverbindlichkeit jede Motivation zur Kostendisziplin: Der Endkunde zahlt 30–70 % weniger, der Rest kommt vom Staat — und der Handwerker haftet, wenn er die günstigere Lösung wählt. Das Ergebnis ist ein Markt ohne Wettbewerb auf Gesamtkosten.</p></div>
+<div class="blk"><p>Reformpolitik muss deshalb an drei Punkten gleichzeitig ansetzen: Haftungssystem (Safe Harbour), Förderdesign (Festbetrag) und Normenwesen (Entkoppelung von der Fördervoraussetzung). Einzelmaßnahmen verpuffen.</p></div>
+<hr>
+<h1 id="teil-ii" class="part">Teil II — Systemkostenvergleich Wärmepumpe vs. Fernwärme-Netzausbau<a class="anch" href="#teil-ii">§</a></h1>
+<div class="blk"><p>Das WP-Preisniveau ist der Vergleichsmaßstab jeder Wärmeentscheidung — auf beiden Ebenen: Wer als Haushalt über den Anschluss entscheidet, rechnet gegen die Wärmepumpe; wer als Kommune entscheidet, wo Netze gebaut werden, muss antizipieren, wie die Haushalte rechnen werden. Die zweite Entscheidung hängt von der ersten ab — das ist die Quelle des Planungsrisikos, auf das Abschnitt 9.7 zurückkommt.</p></div>
+<h2 id="s1">1 Analyserahmen und Methode<a class="anch" href="#s1">§</a></h2>
+<div class="blk"><p><strong>Fragestellung.</strong> Wenn die öffentliche Hand einen Euro in Fernwärme-Netzausbau lenkt (direkt über Zuschüsse, indirekt über gebühren- und arbeitspreisfinanzierte Refinanzierung kommunaler Stadtwerke): Wäre derselbe Euro als direkte Wärmepumpenförderung gesellschaftlich günstiger — und unter welchen Bedingungen ja, unter welchen nein?</p></div>
+<div class="blk"><p><strong>Perspektive.</strong> Betrachtet wird der <em>gesellschaftliche Gesamtaufwand je versorgtem Haushalt</em>, nicht die Haushalts- oder Kommunalperspektive isoliert. Bei kommunalen Stadtwerken ist die Trennung ohnehin fiktiv: Netzinvestitionen werden über Grundgebühren, Arbeitspreise und Baukostenzuschüsse von den Anschlussnehmer*innen zurückgezahlt — dieselben Euros mit unterschiedlichem Umweg. Förderungen werden deshalb <em>nicht</em> abgezogen; sie verschieben, wer zahlt, nicht was es kostet.</p></div>
+
+<div class="explainbox side" id="eb-vollkostenrechnung"><span class="et">Vollkostenrechnung</span>
+<p>Eine Vollkostenrechnung addiert alles, was ein Weg über seine Lebensdauer kostet — Anschaffung, Ersatz, Wartung, Energie — und teilt die Summe durch die gelieferte Wärmemenge. Verwendet wird sie, wenn der sichtbare Preis nicht der ganze Preis ist: Bei beiden Wegen verteilen sich die Kosten auf Förderung, Umlagen, Grundpreise und Eigenanteil. Erst die Vollkosten zeigen, was der Weg kostet, unabhängig davon, wer welchen Teil davon zahlt.</p></div>
+<div class="blk"><p><strong>Methode.</strong> <a class="jj" href="#eb-vollkostenrechnung" tabindex="0" data-jj="vollkostenrechnung">Annuitätenmethode</a> nach VDI 2067 Blatt 1 [<a class="src" href="#q-vdi2067">VDI-2067</a>], realer Kalkulationszins 3 % [<a class="src" href="#q-vdidim">VDI-Dim</a>], Nutzungsdauern: Wärmenetz 50 a, Hausanschluss/Übergabestation 30 a, Wärmepumpe 20 a, zentrale Erzeuger 20–25 a. Für das Netz nennt der AGFW für Kunststoffmantelrohre Erfahrungen über „deutlich mehr als fünf Jahrzehnte ohne systemspezifische systematische Schäden“ [<a class="src" href="#q-agfwph">AGFW-PH</a>]; 50 Jahre ist damit belegt und gegenüber der Fernwärme nicht ungünstig angesetzt. Alle Kosten real, Preisstand Mai 2026.</p></div>
+
+<div class="explainbox side" id="eb-annuitaet"><span class="et">Annuität</span>
+<p>Die Annuitätenrechnung legt die Investitionskosten auf die Nutzungsdauer um — aus einem einmaligen Betrag wird eine gleichbleibende Jahresrate für Kaufpreis und Zinsen, berechnet mit dem Annuitätsfaktor <code>i / (1 − (1+i)^−n)</code>. Sie ist das Standardverfahren beim Vergleich von Anlagen mit unterschiedlicher Lebensdauer und entspricht rechnerisch einer endlos fortgesetzten Ersatzkette zu konstanten Realpreisen, sodass Ersatzbeschaffungen eingepreist sind, ohne einzeln aufzutauchen.</p></div>
+<div class="blk"><p><strong>Umsatzsteuer.</strong> Gerechnet wird durchgehend brutto, aus Haushaltssicht. Für die Break-even-Schwellen ist das rechnerisch folgenlos — die Steuer skaliert beide Pfade proportional —, hält die Absolutwerte aber an dem, was auf der Rechnung steht. Nettopreise aus Quellen (etwa die AGFW-Verlegekosten) werden hochgestellt, Endkundenpreise bleiben unverändert. Zur Behandlung des ermäßigten Satzes siehe Teil I, Hebel 1, und <a class="jj anh" href="#a5" tabindex="0" data-jj="a5">Anhang A.5</a>.</p></div>
+
+<div class="blk"><p><strong>Referenzhaushalt: Bestandsgebäude mit 15.000 kWh/a Wärmebedarf</strong> (Heizung und Warmwasser) — ein unsaniertes bis teilsaniertes Ein- oder Reihenhaus, also genau der Gebäudetyp, um den die kommunale Wärmeplanung außerhalb der Kernstädte streitet. Ein Neubau läge darunter und benachteiligte die Fernwärme, weil sich der Hausanschluss auf weniger Kilowattstunden verteilt; ein großes Mehrfamilienhaus läge darüber. Zwischenergebnisse werden je Kilowattstunde Nutzwärme ausgewiesen.</p></div>
+<div class="blk"><p><strong>Ersatzinvestitionen sind eingepreist.</strong> Die Wärmepumpe wird implizit alle 20 Jahre ersetzt, die Übergabestation alle 30, das Netz — inklusive erneutem Straßenaufbruch — alle 50 Jahre. Der Vergleich ist damit über beliebige Zeithorizonte fair. Eine Ausnahme bildet die Gas-KWK: Ihre Ersatzkette endet rechtlich 2045 (<a class="jj anh" href="#a7" tabindex="0" data-jj="a7">Anhang A.7</a>). Zwei Asymmetrien bleiben unmodelliert: WP-Realpreise dürften über die Lernkurve sinken, Tiefbaukosten weiter steigen — der amtliche Baupreisindex für Ortskanäle stieg zwischen 2021 und Mai 2026 um 42 % und damit deutlich schneller als die Verbraucherpreise [<a class="src" href="#q-destatis61261">Destatis-61261</a>], die konstante Realpreisannahme ist also <em>fernwärmefreundlich</em>. Und beim Abwärme-Szenario fällt der Ersatz des Wärme<em>erzeugers</em> der Wärmeversorgung nicht zur Last, weil die Anlage aus anderem Grund ohnehin existiert; deshalb wird der Erzeuger-CAPEX in Abschnitt 2.3 nach Wärmequelle differenziert.</p></div>
+<div class="blk"><p><strong>Was diese Betrachtung nicht kann.</strong> Das Modell rechnet statisch. Es bildet nicht ab, wie sich Preise verändern, wenn viele Haushalte gleichzeitig dieselbe Entscheidung treffen: Ein breiter WP-Umstieg senkte Gerätepreise, verknappte aber Installationskapazitäten; ein breiter Fernwärmeausbau verknappte Tiefbaukapazitäten und triebe die Trassenkosten. Beide Rückkopplungen wirken gegenläufig zum jeweils gewählten Pfad.</p></div>
+<hr>
+<h2 id="s2">2 Kostenkomponenten Fernwärme<a class="anch" href="#s2">§</a></h2>
+<h3 id="s2-1">2.1 Trassenbau<a class="anch" href="#s2-1">§</a></h3>
+<div class="blk"><p>Die maßgebliche Datenquelle ist die AGFW-Praxishilfe „Fernwärmeleitungsbau – Verlegesysteme und Kosten“ [<a class="src" href="#q-agfwph">AGFW-PH</a>]. Sie wertet eine Umfrage unter Versorgungsunternehmen von Ende 2020/Anfang 2021 zu realisierten Bauprojekten aus, beschränkt auf Kunststoffmantelrohre der Dämmserie 1. Die Ergebnisse erscheinen dort ausschließlich als Punktwolken; <strong>Zahlenwerte, Mittelwerte oder Quantile weist die Praxishilfe nicht aus</strong>. Die folgenden Werte sind daher aus den Grafiken abgelesene Medianschätzungen für kleine Nennweiten (DN 25 bis DN 100), wie sie in Verteilnetzen im Wohngebiet vorkommen; die Ablesung ist in <a class="jj anh" href="#a4" tabindex="0" data-jj="a4">Anhang A.4</a> dokumentiert. Alle AGFW-Werte sind Nettopreise mit Preisstand 2021 und werden mit dem amtlichen Baupreisindex für Ortskanäle auf Mai 2026 hochgerechnet (Faktor 1,422) [<a class="src" href="#q-destatis61261">Destatis-61261</a>], anschließend mit der Umsatzsteuer belegt.</p></div>
+<figure class="tblfig"><div class="readline">Die folgende Tabelle zeigt die drei Bebauungstypen: links der aus den Punktwolken abgelesene Nettowert von 2021, rechts der daraus fortgeschriebene Modellwert.</div>
+<div class="tw"><table><thead><tr><th>Bebauungstyp</th><th class="num">AGFW-Median netto 2021</th><th>Kernbereich der Punktwolke</th><th class="num">Modellwert brutto 2026</th></tr></thead><tbody>
+<tr><td>Neubaugebiet / offenes Gelände (unbefestigt)</td><td class="num">~400 €/m</td><td>200–700 €/m</td><td class="num"><strong>677 €/m</strong></td></tr>
+<tr><td>Bestandsstraße / Gehweg (befestigt)</td><td class="num">~1.000 €/m</td><td>500–2.500 €/m</td><td class="num"><strong>1.692 €/m</strong></td></tr>
+<tr><td>Innenstadt / Hauptstraße (befestigt, oberes Drittel)</td><td class="num">~2.100 €/m</td><td>1.500–3.500 €/m</td><td class="num"><strong>3.554 €/m</strong></td></tr>
+</tbody></table></div>
+<div class="readexample">Ablesebeispiel: Zeile <em>Bestandsstraße</em> — aus rund 1.000 €/m netto (2021) wird nach Baupreisfortschreibung und Umsatzsteuer der Modellwert von 1.692 €/m brutto.</div>
+</figure>
+<div class="blk"><p>Drei unabhängige Quellen bestätigen die Größenordnung, jeweils auf Mai 2026 hochskaliert: die AGFW-Angabe von 2.000–4.000 €/m für den städtischen Ausbau (2023) ergibt 2.260–4.520 €/m [<a class="src" href="#q-agfwtaz">AGFW-taz</a>]; ein Planungsrechenbeispiel von rund 900 €/m ergibt etwa 1.280 €/m [<a class="src" href="#q-nprown">nPro-WN</a>]; die Angabe von 200–400 €/m für ländliche Nahwärme ergibt 284–569 €/m [<a class="src" href="#q-carmen">CARMEN</a>].</p></div>
+<div class="blk"><p>Kostentreibend ist dabei die Oberfläche, nicht die Rohrtechnik: Tiefbau und Oberflächenwiederherstellung machen laut Praxishilfe rund 60 % der Verlegekosten aus, Rohrbau und Muffenmontage rund 30 %. Deshalb liegt zwischen unbefestigter und befestigter Oberfläche ein Faktor von zwei bis drei — und deshalb ist die Bebauungssituation die härtere Kostengröße als die gewählte Rohrdimension. Der Innenstadtwert entspricht dem oberen Drittel der befestigten Punktwolke; Streuung und Begründung stehen in <a class="jj anh" href="#a4" tabindex="0" data-jj="a4">Anhang A.4</a>.</p></div>
+<div class="blk"><p><strong>Ein Transparenzbefund am Rande.</strong> Die Praxishilfe ist frei abrufbar — aber sie ist der einzige mir bekannte öffentliche Anhaltspunkt, fünf Jahre alt, nicht regionalisiert und ohne Kennwerte. Für eine milliardenschwer geförderte Infrastruktur existiert damit <strong>keine aktuelle, tabellierte, regional differenzierte Kostenbenchmark</strong>. Hinzu kommt eine Lücke in der Mengenerfassung: Der AGFW-Hauptbericht weist für die 196 beteiligten Unternehmen 21.482 km Trassenlänge aus, schließt aus den Absatzmengen der Rohrsystemanbieter aber auf rund 150.000 km tatsächliche Trassenlänge [<a class="src" href="#q-agfwph">AGFW-PH</a>] — erfasst nach Verbandsangabe also etwa ein Siebtel des Bestands. Daraus folgt die Forderung nach einem Wärmenetzregister in Abschnitt 9.2.</p></div>
+<div class="blk"><p>Zur Größenordnung je Gebäude: Das Prognos-Gutachten für den VKU rechnet mit durchschnittlich <strong>59 Trassenmetern je angeschlossenem Gebäude</strong> [<a class="src" href="#q-prognosvku">Prognos-VKU</a>]. Bei 1.692 €/m entspricht das rund 100.000 € Netzinvestition je Gebäude — im Mehrfamilienhaus auf viele Wohneinheiten verteilbar, im Ein- und Zweifamilienhausbestand nicht.</p></div>
+
+<h3 id="s2-2">2.2 Hausanschluss und Übergabestation<a class="anch" href="#s2-2">§</a></h3>
+<div class="blk"><p>Die Position zerfällt in zwei Teile, die sich in ihrer Belegbarkeit deutlich unterscheiden.</p></div>
+<div class="blk"><p><em>Netzseitig, bis zur Kellerwand.</em> Hier existieren veröffentlichte Preise. Die Stadtwerke Münster nennen als Beispiel rund 7.800 € für ein Einfamilienhaus mit 10 kW Anschlussleistung, Preisstand Januar 2025 — enthalten sind das Legen des Hausanschlusses, der Baukostenzuschuss und die Inbetriebsetzung [<a class="src" href="#q-swmfw">SWM-FW</a>].</p></div>
+<div class="blk"><p><em>Gebäudeseitig, von der Kellerwand bis zum Heizsystem.</em> Übergabestation, Verrohrung, Anbindung an den vorhandenen Heizkreis. Dieser Teil hängt an der Geometrie des einzelnen Gebäudes — Länge des Wegs zum Heizungsraum, vorhandene Durchbrüche, Zustand der Altinstallation — und wird in den Preisübersichten nirgends getrennt ausgewiesen. Eine Installateur-Kostenschätzung für ein Gießener Reihenhaus lag bei rund 8.000 €. Publizierte Gesamtkorridore für beide Teile zusammen reichen von 5.000–15.000 € [<a class="src" href="#q-42watt">42watt</a>] bis 7.500–20.000 € ohne Förderung [<a class="src" href="#q-heizungde">heizung.de</a>].</p></div>
+<div class="blk"><p><strong>Modellannahme: 10.000 € je Anschluss (EFH/RH), Nutzungsdauer 30 a.</strong> Der Wert deckt den netzseitigen Teil ab und lässt für den gebäudeseitigen nur rund 2.200 € — spürbar weniger, als die vorliegende Kostenschätzung erwarten ließe. Die Setzung ist damit bewusst konservativ, und konservativ heißt hier: <em>zugunsten</em> der Fernwärme. Sie bleibt trotzdem die am schwächsten belegte Einzelannahme der Rechnung, weshalb sie in <a class="jj anh" href="#a6" tabindex="0" data-jj="a6">Anhang A.6</a> über den gesamten publizierten Korridor durchgerechnet wird.</p></div>
+
+<h3 id="s2-3">2.3 Zentrale Erzeugung (Investition und Betrieb, anteilig)<a class="anch" href="#s2-3">§</a></h3>
+<div class="blk"><p>Der „anteilige Erzeuger-CAPEX“ ist der Teil der Baukosten der Erzeugungsanlage, der auf eine gelieferte Kilowattstunde entfällt. Er wird aus Anlagenpreis, Nutzungsdauer und Vollbenutzungsstunden hergeleitet; die Rechnung steht in <a class="jj anh" href="#a8" tabindex="0" data-jj="a8">Anhang A.8</a>.</p></div>
+<figure class="tblfig"><div class="tw"><table><thead><tr><th>Wärmequelle</th><th class="num">Modellwert</th><th>Grundlage</th></tr></thead><tbody>
+<tr><td><strong>Abwärme</strong></td><td class="num"><strong>0,3 ct/kWh</strong></td><td>Der Erzeuger existiert ohnehin und refinanziert sich aus anderem Grund; zuzurechnen ist nur die Einbindung</td></tr>
+<tr><td><strong>Großwärmepumpe / Geothermie</strong></td><td class="num"><strong>1,4 ct/kWh</strong></td><td>Luft-Wasser-Großwärmepumpe, 0,99 Mio. €/MW, 25 a, 4.000 Vollbenutzungsstunden. Tiefengeothermie liegt mit 2,2 ct deutlich höher (<a class="jj anh" href="#a8" tabindex="0" data-jj="a8">Anhang A.8</a>)</td></tr>
+<tr><td><strong>Gas-KWK</strong></td><td class="num"><strong>0,7 ct/kWh</strong></td><td>Gasmotor 1,0 Mio. €/MW, energetische Allokation zwischen Strom und Wärme, 25 a, 4.000 Stunden</td></tr>
+</tbody></table></div></figure>
+<div class="blk"><p>Ein Hinweis zur Gas-KWK, der über die Rechnung hinausweist: Die 0,7 ct unterstellen eine unbegrenzte Ersatzkette. Bleiben einer heute gebauten Gasanlage rechtlich nur rund 19 Jahre (<a class="jj anh" href="#a7" tabindex="0" data-jj="a7">Anhang A.7</a>), steigen die Kapitalkosten auf <strong>0,87 ct/kWh</strong>. Gerechnet wird konservativ mit 0,7 — der Befund gehört trotzdem benannt, weil das Emissionsende 2045 damit nicht nur eine ordnungsrechtliche Randbedingung ist, sondern die Wirtschaftlichkeit fossiler Wärmeerzeugung schon heute verschlechtert.</p></div>
+<figure class="tblfig"><div class="tw"><table><thead><tr><th>Wärmequelle</th><th>Erzeugungskosten (vor Netzverlusten)</th><th>Einordnung</th></tr></thead><tbody>
+<tr><td>Industrielle Abwärme / Müllverbrennung</td><td>3–4 ct/kWh</td><td>ifeu et al. nahmen 4 ct/kWh als „günstige Abwärme“ an; nur unter dieser Annahme kamen innovative Wärmenetze ohne hohe Förderung aus [<a class="src" href="#q-ifeuwn40">ifeu-WN4.0</a>]</td></tr>
+<tr><td>Großwärmepumpe / Tiefengeothermie</td><td>6–9 ct/kWh</td><td>stark projektabhängig (Bohrrisiko, Strompreis, COP)</td></tr>
+<tr><td>Gas-KWK (inkl. steigendem CO₂-Preis)</td><td>9–12 ct/kWh</td><td>Differenz aus Brennstoff plus CO₂ minus Stromgutschrift; gerechnet mit dem Mehrheitspfad steigender CO₂- und sinkender Großhandelsstrompreise (<a class="jj anh" href="#a7" tabindex="0" data-jj="a7">Anhang A.7</a>)</td></tr>
+</tbody></table></div></figure>
+
+<h3 id="s2-4">2.4 Netzverluste<a class="anch" href="#s2-4">§</a></h3>
+<div class="blk"><p>Der AGFW-Hauptbericht weist durchschnittlich <strong>~12 %</strong> Netzverluste aus [<a class="src" href="#q-agfwhb">AGFW-HB</a>] — Verbandsangabe auf Basis freiwilliger Mitgliederbefragung. Die Deutsche Umwelthilfe ermittelte aus Betreiber-Pflichtveröffentlichungen <strong>11,6 von 70 TWh/a (~17 %), Spannweite 1 % bis 42,8 %</strong> [<a class="src" href="#q-duh">DUH</a>]. Die Wahrheit liegt netzspezifisch dazwischen; Hochtemperatur- und dünn belegte Netze liegen am oberen Rand. <strong>Modellannahme: 15 %</strong>, d. h. Erzeugungskosten werden mit Faktor 1/0,85 beaufschlagt. Wichtig: Die Verluste sind weitgehend absolut konstant; sinkt die Wärmeabnahme durch Sanierung, steigt der <em>prozentuale</em> Verlust.</p></div>
+
+<h3 id="s2-5">2.5 Pumpenenergie und Netzwartung<a class="anch" href="#s2-5">§</a></h3>
+<div class="blk"><p>Hilfsstrom für Netzpumpen plus laufende Netzinstandhaltung: <strong>Modellannahme 0,5–1,0 ct/kWh</strong>; zusätzlich ist in der Annuisierung 1 %/a der Netzinvestition als Instandhaltung enthalten.</p></div>
+
+<h3 id="s2-6">2.6 Monopolprämie<a class="anch" href="#s2-6">§</a></h3>
+<div class="blk"><p>Fernwärmeversorger sind im Versorgungsgebiet konkurrenzlos; Kund*innen können nicht wechseln. Das Bundeskartellamt führt <strong>sieben Pilotverfahren</strong> wegen möglicherweise unzulässiger Preisanpassungsklauseln; bei vier von neun untersuchten Netzen hat sich der Verdacht rechtswidriger, verbraucherschädigender Klauseln nach bisherigem Ermittlungsstand erhärtet. Kartellamtspräsident Mundt hält eine echte Regulierung angesichts der Vielzahl und Unterschiedlichkeit der Netze für „de facto unmöglich“ und fordert Kostentransparenz [<a class="src" href="#q-bkarta2025">BKartA-2025</a>]. Bereits die Sektoruntersuchung 2012 fand Klauseln, die kostendämpfende Faktoren systematisch unberücksichtigt lassen [<a class="src" href="#q-bkarta2012">BKartA-2012</a>].</p></div>
+<div class="blk"><p>Für die Modellrechnung heißt das: Die hier berechneten <em>Vollkosten</em> sind eine Untergrenze dessen, was Verbraucher*innen tatsächlich zahlen. Real beobachtete Arbeitspreise von regional 12–20 ct/kWh plus Grundpreise von 50–150 €/kW·a [<a class="src" href="#q-heizungde">heizung.de</a>] liegen vielfach <em>über</em> den modellierten Vollkosten effizienter Netze — die Differenz ist Monopolprämie und/oder Ineffizienz. Die Wärmepumpe hat dagegen mit dem wettbewerblichen Strommarkt eine eingebaute Preisobergrenze.</p></div>
+
+<h3 id="s2-7">2.7 Refinanzierungsrisiko (Stranded-Asset-Risiko)<a class="anch" href="#s2-7">§</a></h3>
+<div class="blk"><p>Wärmenetze sind Fixkosteninfrastruktur über mehrere Jahrzehnte, deren Refinanzierung an der abgesetzten Wärmemenge hängt. Der Wärmebedarf des Gebäudebestands <em>soll</em> aber politisch gewollt sinken. Sinkt die Abnahme um 30 %, sinkt die Wärmeliniendichte um 30 %, und die Verteilkosten je kWh steigen um ~43 % — bei konstanten absoluten Netzverlusten steigt zugleich die Verlustquote. Die Fixkosten verschwinden nicht; sie werden auf weniger Kilowattstunden und letztlich auf die verbleibenden Anschlussnehmer*innen umgelegt (bei kommunalen Stadtwerken: auf die Bürger*innen). Die Wärmepumpe kennt dieses Risiko strukturell nicht — sie wird bei der nächsten Ersatzbeschaffung schlicht kleiner dimensioniert, und die Ersparnis kommt dem Haushalt zugute. <strong>Fernwärme setzt damit einen impliziten Fehlanreiz gegen Gebäudesanierung; die Wärmepumpe einen Anreiz dafür.</strong></p></div>
+
+<h3 id="s2-8">2.8 Anschlussquotenrisiko<a class="anch" href="#s2-8">§</a></h3>
+<div class="explainbox side" id="eb-anschlussquote"><span class="et">Anschlussquote</span>
+<p>Die Anschlussquote ist der Anteil der Gebäude an einer Trasse, die tatsächlich ans Netz gehen. In der Netzplanung ist sie die Auslastungsgröße: Dieselben Netzkosten verteilen sich auf entsprechend weniger Wärme, sodass die Verteilkosten je Kilowattstunde um den Kehrwert der Quote steigen — bei 60 % um 1/0,6 ≈ 1,67.</p></div>
+<div class="blk"><p>Die Trasse wird für die Straße gebaut, aber nicht jedes Gebäude schließt an; alle Dichte-Schwellen aus Abschnitt 5 verschieben sich entsprechend nach oben. Ohne <a class="jj" href="#eb-anschlussquote" tabindex="0">Anschluss- und Benutzungszwang</a> ist die Quote eine freie Variable des Projektrisikos; <em>mit</em> Zwang wird das Risiko in einen Freiheitseingriff umgebucht, dessen politische Kosten hier nicht bepreist sind, aber existieren. Die Wärmepumpe kennt dieses Problem nicht: Jede Investition versorgt exakt den Haushalt, der sie auslöst.</p></div>
+
+<h3 id="s2-9">2.9 Was sonst noch anfällt — und was davon nicht bepreist ist<a class="anch" href="#s2-9">§</a></h3>
+<div class="blk"><p>Nicht bepreist, aber real: (a) Redundanz- und Spitzenlastkessel für die Versorgungssicherheit; (b) Planungs-, Genehmigungs- und Transaktionskosten (Wärmeplanung, Machbarkeitsstudien, Transformationspläne); (c) volkswirtschaftliche Kosten der Bauphase (Verkehrsbehinderung, Gewerbeausfälle bei jahrelangem innerstädtischem Tiefbau); (d) Verzögerungskosten — Haushalte in ausgewiesenen Eignungsgebieten warten auf den Netzausbau und betreiben ihre fossile Heizung Jahre länger; (e) Zinsänderungsrisiko der langen Bauvorlaufzeiten, bei kommunalen Bürgschaften öffentlich getragen.</p></div>
+<hr>
+<h2 id="s3">3 Kostenkomponenten Wärmepumpe<a class="anch" href="#s3">§</a></h2>
+<h3 id="s3-1">3.1 Gerät und Installation<a class="anch" href="#s3-1">§</a></h3>
+<div class="blk"><p>Die Octopus-Energy-/RWTH-Aachen-Studie (Analyse realer Angebote) beziffert eine 8-kW-Luft/Wasser-Wärmepumpe komplett installiert auf <strong>~28.000 € in Deutschland vs. ~14.000 € in Großbritannien</strong> [<a class="src" href="#q-octopusrwth">Octopus-RWTH</a>]; als Ursachen werden erhöhte technische Anforderungen, Förderstruktur/Besteuerung und aufwändigere Installation benannt — deckungsgleich mit den Hebeln aus Teil I. Selbst Österreich mit ähnlichen technischen Standards liegt 20–35 % unter dem deutschen Niveau [<a class="src" href="#q-hug">HuG</a>].</p></div>
+<div class="blk"><p><strong>Modellannahmen: 30.000 € (deutsches Preisniveau) vs. 14.000 € netto (europäisch normalisiert), Nutzungsdauer 20 a.</strong> Das europäische Niveau ist kein theoretischer Wert, sondern in Nachbarmärkten beobachteter Marktpreis für dieselbe Technologie. Der dänische Technologiekatalog, eine amtliche und von diesem Papier unabhängige Quelle, nennt für dieselbe Anlage im Bestandseinfamilienhaus 12.869 € netto bei einer Bandbreite von 10.300 bis 15.400 € und einer Nutzungsdauer von 20 Jahren [<a class="src" href="#q-deahi">DEA-HI</a>]. Die hier angesetzten 14.000 € liegen darüber.</p></div>
+
+<h3 id="s3-2">3.2 Elektrischer Anschluss und anteilige Stromnetzkosten<a class="anch" href="#s3-2">§</a></h3>
+<div class="blk"><p>Der strukturelle Vorteil: Das Stromverteilnetz <em>existiert bereits</em> an jedem Gebäude; ein paralleler Infrastrukturneubau entfällt. Fairerweise ist der WP-Hochlauf aber nicht netzkostenfrei — Verteilnetze müssen punktuell verstärkt werden. § 14a EnWG begrenzt die Gleichzeitigkeitsspitze; die anteiligen Netzausbaukosten je Wärmepumpe liegen in Netzstudien im niedrigen vierstelligen Bereich und damit ein bis zwei Größenordnungen unter Fernwärme-Trassenkosten je Anschluss. <strong>Modellannahme (eigene, bewusst zulasten der WP): 1.000 € je Anlage, annuisiert ~0,3 ct/kWh.</strong></p></div>
+
+<h3 id="s3-3">3.3 Laufende Stromkosten<a class="anch" href="#s3-3">§</a></h3>
+<div class="blk"><p>Empirische Effizienz im <em>unsanierten</em> Bestand nach Fraunhofer ISE: Das Projekt „WP-QS im Bestand“ (77 Anlagen, vier Jahre Feldmessung, Abschluss 2025) ergab <strong>JAZ im Mittel 3,4 für Luft/Wasser- und 4,3 für erdgekoppelte Anlagen</strong> (Spannweite 2,6–5,4) und CO₂-Emissionen 2024 um 64 % unter Erdgasheizungen — <em>ohne</em> Korrelation zwischen Baujahr und Effizienz; entscheidend sind Vorlauftemperatur und hydraulische Einbindung [<a class="src" href="#q-iseqs">ISE-QS</a>]. Das Vorgängerprojekt maß 2019 noch JAZ 3,1 [<a class="src" href="#q-isesmart">ISE-smart</a>]; die Feldeffizienz <em>steigt</em> also.</p></div>
+<div class="blk"><p><strong>Modellannahme: JAZ 3,4 (Sensitivität 3,1); Wärmepumpenstromtarif 26 ct/kWh brutto (Sensitivität 24–28 ct).</strong> 26 ct ist der <em>obere</em> Rand des 2026 real verfügbaren Korridors von 20–26 ct/kWh; der Monitoringbericht der Bundesnetzagentur weist für Wärmepumpenstrom ab 2024 rund 20,3 ct/kWh aus [<a class="src" href="#q-bnetzamon">BNetzA-Mon</a>, <a class="src" href="#q-verivox">Verivox</a>]. Die Wahl des oberen Randes ist konservativ zulasten der Wärmepumpe. Der CO₂-Preis verteuert Gas und damit Gas-KWK-Fernwärme planmäßig weiter, während EE-Ausbau und dynamische Tarife den effektiven WP-Strompreis tendenziell senken.</p></div>
+
+<h3 id="s3-4">3.4 Heizkörperanpassung / hydraulischer Abgleich<a class="anch" href="#s3-4">§</a></h3>
+<div class="blk"><p>Im Bestand fallweise nötig, keineswegs immer. <strong>Modellannahme: 0–5.000 €, im Basisfall 2.000 €</strong>, Nutzungsdauer 30 a.</p></div>
+
+<h3 id="s3-5">3.5 Was sonst noch anfällt<a class="anch" href="#s3-5">§</a></h3>
+<div class="blk"><p>Zusätzlich zu erfassen: Warmwasser- und Pufferspeicher (in den 30.000/14.000 € üblicherweise enthalten), Wartung inklusive Kältemitteldichtheitsprüfung — <strong>Modellannahme 250 €/a</strong>, der obere Rand des deutschen Korridors von 150–250 €/a. Separater Schallschutz ist meist nicht nötig, die Entsorgung des Altkessels bei hohen Schrottpreisen eher kostenneutral. Die Zählerschrank-Ertüchtigung kann bei Verzicht auf 400V-Technik eher entfallen und ist daher ebenfalls nicht eingepreist. Auf Systemebene: Vorgelagerte Stromerzeugungs- und Übertragungsnetzkosten sind im Strompreis bereits internalisiert — anders als bei der Fernwärme, wo Netzkosten teils über Baukostenzuschüsse, teils über Grundpreise, teils über öffentliche Förderung laufen und sich der Gesamtbetrachtung leicht entziehen.</p></div>
+<hr>
+<h2 id="s4">4 Modellrechnung: Vollkosten je kWh Nutzwärme <em>(eigene Berechnung)</em><a class="anch" href="#s4">§</a></h2>
+<h3 id="s4-1">4.1 Der Vergleichsmaßstab<a class="anch" href="#s4-1">§</a></h3>
+<div class="blk"><p>Der europäische Referenzpreis von 14.000 € stammt überwiegend aus dem britischen Markt, wo auf Wärmepumpen keine Umsatzsteuer anfällt — er ist faktisch ein Nettopreis. Für den Vergleich wird er deshalb mit dem deutschen Regelsatz belegt:</p></div>
+<ul>
+<li><strong>Referenzfall — Kostenreform ohne Steuerreform.</strong> Deutsche Installationen erreichen die europäische Kostenstruktur, der Regelsatz von 19 % bleibt: <strong>16.660 € brutto</strong>. Alle Tabellen dieses Papiers rechnen mit diesem Wert.</li>
+<li><strong>Kontrast: deutsches Preisniveau heute.</strong> 30.000 € brutto.</li>
+</ul>
+<div class="blk"><p>Ein ermäßigter Steuersatz von 5 % würde die Investition auf 14.700 € senken. Dieser Fall wird bewusst <em>nicht</em> als eigenes Szenario durch die Tabellen geführt, um dieses Papier möglichst schlank zu halten. Als Exkurs beziffert <a class="jj anh" href="#a5" tabindex="0" data-jj="a5">Anhang A.5</a> die Wirkung einer einseitigen Senkung der Umsatzsteuer für Wärmepumpen.</p></div>
+
+<h3 id="s4-2">4.2 Wärmepumpe<a class="anch" href="#s4-2">§</a></h3>
+<div class="blk"><p>Die folgende Tabelle zeigt die Kosten für Wärmepumpenwärme unter drei Preisannahmen: links die Investition in Gerät und Installation, in der Mitte die Vollkosten pro Jahr, rechts die Vollkosten je Kilowattstunde. Die Kosten für die Installation ergibt sich aus 3.1, die Differenz zu den Vollkosten aus 3.2–3.5. Details siehe <a class="jj anh" href="#a2" tabindex="0" data-jj="a2">Anhang A.2</a>, Schritt 1.</p></div>
+<figure class="tblfig"><div class="tw"><table><thead><tr><th>Fall</th><th class="num">Investition</th><th class="num">Vollkosten pro Jahr</th><th class="num">je kWh</th></tr></thead><tbody>
+<tr><td><strong>Referenzfall (europäisches Kostenniveau, 19 % USt)</strong></td><td class="num">16.660 €</td><td class="num">2.662 €/a</td><td class="num"><strong>17,75 ct</strong></td></tr>
+<tr><td>Deutsches Preisniveau heute</td><td class="num">30.000 €</td><td class="num">3.559 €/a</td><td class="num"><strong>23,73 ct</strong></td></tr>
+<tr><td><em>nachrichtlich: bei ermäßigtem Satz von 5 %</em></td><td class="num"><em>14.700 €</em></td><td class="num"><em>2.530 €/a</em></td><td class="num"><em>16,87 ct</em></td></tr>
+</tbody></table></div></figure>
+<div class="blk"><p>In den Modellannahmen enthalten sind: Gerät und Installation über 20 Jahre, Heizkörperanpassung über 30 Jahre, anteilige Stromnetzverstärkung über 40 Jahre, Wartung und Strom bei JAZ 3,4. Die Vollkosten pro Jahr werden durch den Referenzbedarf von 15.000 kWh/a (Abschnitt 1) geteilt, um die Spalte „je kWh“ zu erhalten. Der vollständige Rechenweg steht in <a class="jj anh" href="#a2" tabindex="0" data-jj="a2">Anhang A.2</a>.</p></div>
+
+<h3 id="s4-3">4.3 Fernwärme: der Sockel vor dem ersten Meter Netz<a class="anch" href="#s4-3">§</a></h3>
+<div class="explainbox side" id="eb-sockelbudget"><span class="et">Sockel und Budget</span>
+<p>Der <em>Sockel</em> ist der Teil der Fernwärmekosten, der unabhängig von der Bebauungsdichte anfällt. Darin stecken hier die Energiekosten der Wärmequelle einschließlich Netzverlusten, anteiliger Erzeuger-CAPEX, Hausanschluss mit Übergabestation, Pumpstrom und Netzbetrieb. Das <em>Budget</em> ist die Differenz zwischen Sockel und Wärmepumpen-Vollkosten: So viel darf das Verteilnetz je Kilowattstunde kosten. Bei negativem Budget bleibt kein Geld für den Bau des Verteilnetzes übrig - die normalisierte Wärmepumpe ist bei jeder Bebauungsdichte günstiger.</p></div>
+<div class="blk"><p>Die folgende Tabelle zeigt das <a class="jj" href="#eb-sockelbudget" tabindex="0"><em>Budget</em></a> für das Verteilnetz je Wärmequelle: links der <a class="jj" href="#eb-sockelbudget" tabindex="0">Sockel</a>, in der Mitte zum Vergleich die Wärmepumpen-Vollkosten im Referenzfall aus 4.2, rechts die Differenz — das Budget.</p></div>
+<figure class="tblfig"><div class="tw"><table><thead><tr><th>Wärmequelle</th><th class="num">Sockel je kWh</th><th class="num">Wärmepumpe, Referenzfall (aus 4.2)</th><th class="num">Budget fürs Verteilnetz</th></tr></thead><tbody>
+<tr><td>Abwärme / Müllverbrennung</td><td class="num">10,02 ct</td><td class="num">17,75 ct</td><td class="num"><strong>+7,72 ct</strong></td></tr>
+<tr><td>Großwärmepumpe / Geothermie</td><td class="num">16,23 ct</td><td class="num">17,75 ct</td><td class="num"><strong>+1,51 ct</strong></td></tr>
+<tr><td>Gas-KWK <em>(fossile Phase)</em></td><td class="num">20,30 ct</td><td class="num">17,75 ct</td><td class="num"><strong>−2,55 ct</strong></td></tr>
+</tbody></table></div>
+<div class="readexample">Ablesebeispiel: Zeile <em>Abwärme</em> — 17,75 ct (Wärmepumpe, Referenzfall) minus 10,02 ct Sockel ergibt 7,72 ct Budget je Kilowattstunde für Bau und Betrieb des Verteilnetzes.</div>
+</figure>
+
+<figure class="graf" id="graf-vollkosten">
+<svg viewBox="0 0 780 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="g1-title g1-desc">
+<title id="g1-title">Vollkosten Wärmepumpe vs. Fernwärme-Sockel</title>
+<desc id="g1-desc">Was Fernwärme kostet, bevor ein Meter Verteilnetz gebaut ist. Bis zur Linie der Wärmepumpe bleibt das Budget für das Netz; bei Gas-KWK (fossile Phase) ist die Linie schon überschritten.</desc>
+<defs>
+<pattern id="hatch" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+<line x1="0" y1="0" x2="0" y2="6" stroke="#1F5673" stroke-width="2"/>
+</pattern>
+<pattern id="hatchred" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+<line x1="0" y1="0" x2="0" y2="6" stroke="#8A2E2E" stroke-width="2"/>
+</pattern>
+<style>
+.ax{stroke:#C9C3B4;stroke-width:1}
+.lbl{font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;fill:#1A1A17}
+.num{font-family:'IBM Plex Sans',sans-serif;font-size:11px;fill:#1A1A17;font-weight:600}
+.tick{font-family:'IBM Plex Sans',sans-serif;font-size:10px;fill:#56534B}
+.reflbl{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;fill:#1F5673;font-weight:600}
+</style>
+</defs>
+<!-- scale 0-22 ct/kWh mapped to x=150..650 (500px / 22ct = 22.73 px/ct) -->
+<g>
+<line class="ax" x1="230" y1="20" x2="230" y2="235"/>
+<line class="ax" x1="230" y1="235" x2="730" y2="235"/>
+<text class="tick" x="230" y="252" text-anchor="middle">0</text>
+<text class="tick" x="344" y="252" text-anchor="middle">5</text>
+<text class="tick" x="457" y="252" text-anchor="middle">10</text>
+<text class="tick" x="571" y="252" text-anchor="middle">15</text>
+<text class="tick" x="684" y="252" text-anchor="middle">20 ct/kWh</text>
+<line class="ax" x1="344" y1="20" x2="344" y2="235" stroke-dasharray="1,3"/>
+<line class="ax" x1="457" y1="20" x2="457" y2="235" stroke-dasharray="1,3"/>
+<line class="ax" x1="571" y1="20" x2="571" y2="235" stroke-dasharray="1,3"/>
+<line class="ax" x1="684" y1="20" x2="684" y2="235" stroke-dasharray="1,3"/>
+</g>
+<!-- Referenzlinie WP 17.75ct -> x = 150 + 17.75*22.727 = 553.4 -->
+<line x1="633" y1="12" x2="633" y2="235" stroke="#1F5673" stroke-width="2"/>
+<text class="reflbl" x="633" y="12" text-anchor="middle">Wärmepumpe 17,75 ct/kWh</text>
+<!-- Abwaerme: Sockel 10.02 -> 150+227.7=377.7 ; budget bar to 553 hatched -->
+<g>
+<text class="lbl" x="220" y="53" text-anchor="end">Abwärme / Müllverbrennung</text>
+<rect x="230" y="40" width="228" height="20" fill="#0F5257" opacity="0.82"/>
+<rect x="458" y="40" width="175" height="20" fill="url(#hatch)" opacity="0.9"/>
+<text class="num" x="464" y="55">Sockel 10,02</text>
+<text class="num" x="638" y="55">Budget +7,72</text>
+</g>
+<!-- GrossWP: Sockel 16.23 -> 150+368.9=518.9 ; budget to 553 hatched -->
+<g>
+<text class="lbl" x="220" y="98" text-anchor="end"><tspan x="220" dy="0">Großwärmepumpe /</tspan><tspan x="220" dy="13">Geothermie</tspan></text>
+<rect x="230" y="90" width="369" height="20" fill="#0F5257" opacity="0.82"/>
+<rect x="599" y="90" width="34" height="20" fill="url(#hatch)" opacity="0.9"/>
+<text class="num" x="280" y="105" fill="#F7F5EF">Sockel 16,23</text>
+<text class="num" x="638" y="105">Budget +1,51</text>
+</g>
+<!-- Gas-KWK: Sockel 20.30 -> 150+461.4=611.4 ; overhang beyond 553 in red -->
+<g>
+<text class="lbl" x="220" y="153" text-anchor="end">Gas-KWK (fossil)</text>
+<rect x="230" y="140" width="403" height="20" fill="#0F5257" opacity="0.82"/>
+<rect x="633" y="140" width="58" height="20" fill="url(#hatchred)" opacity="0.95"/>
+<text class="num" x="280" y="155" fill="#F7F5EF">Sockel 20,30</text>
+<text class="num" x="696" y="155" fill="#8A2E2E">−2,55</text>
+</g>
+<text class="tick" x="230" y="270" text-anchor="start">Vollfläche = Sockel · Schraffur = Budget fürs Verteilnetz · rot = Sockel übersteigt die Wärmepumpe</text>
+</svg>
+<figcaption><strong>Was Fernwärme kostet, bevor ein Meter Verteilnetz gebaut ist.</strong> Bis zur Linie der Wärmepumpe bleibt das Budget für das Netz; bei Gas-KWK (fossile Phase) ist die Linie schon überschritten.</figcaption>
+</figure>
+
+<div class="blk"><p><strong>Der wichtigste Einzelbefund:</strong> Gas-KWK-Fernwärme erreicht in ihrer fossilen Phase mit 20,30 ct einen Sockel, der die Vollkosten einer preisnormalisierten Wärmepumpe (17,75 ct, siehe Tabelle) übersteigt. Konkurrenzfähig erscheint sie nur gegen das deutsche Preisniveau von 23,73 ct (aus 4.2) — dort hätte sie ein positives Budget von 3,42 ct. Die Kostenreform aus Teil I entzieht ihr diese Grundlage. Weil eine Gasanlage aber nur bis 2045 laufen darf, ist dieser Sockel nicht der Sockel eines Netzes, sondern der seiner ersten neunzehn Jahre; die Rechnung für das Netz steht in <a class="jj anh" href="#a7" tabindex="0" data-jj="a7">Anhang A.7</a>.</p></div>
+<hr>
+<h2 id="s5">5 Die endogene Wärmeliniendichte-Schwelle <em>(eigene Berechnung)</em><a class="anch" href="#s5">§</a></h2>
+<div class="blk"><p>Statt „hohe Dichte rechtfertigt Fernwärme“ als Axiom zu setzen, wird die Schwelle berechnet: Fernwärme ist günstiger, sobald die Wärmeliniendichte den Wert <code>Netzkosten je Trassenmeter ÷ Budget</code> überschreitet.</p></div>
+
+<div class="explainbox side" id="eb-waermeliniendichte"><span class="et">Wärmeliniendichte</span>
+<p>Die Wärmeliniendichte ist die Wärmemenge, die ein Meter Trasse im Jahr absetzt: Jahreswärmebedarf aller angeschlossenen Gebäude eines Straßenzugs, geteilt durch dessen Trassenlänge, in MWh je Meter und Jahr. Sie ist die übliche Kenngröße der Netzplanung, weil die Kosten an der Länge hängen und die Erlöse an der Wärmemenge — dieselbe Trasse ist vor Mehrfamilienhäusern billig je Kilowattstunde und in der Streusiedlung teuer.</p></div>
+<div class="blk"><p>Drei Größen senken die <a class="jj" href="#eb-waermeliniendichte" tabindex="0">Wärmeliniendichte</a>, und sie wirken multiplikativ: geringe Bebauungsdichte, geringe Anschlussquote (Abschnitt 2.8) und sinkender Wärmebedarf durch Sanierung (Abschnitt 2.7).</p></div>
+
+<div class="blk"><p>Zur Einordnung gilt in der Planungspraxis rund 1,5 MWh/(m·a) als grobe Untergrenze konventioneller Netze [<a class="src" href="#q-npro">nPro</a>]. Typische Bestandsquartiere liegen bei: lockere Ein- und Zweifamilienhausgebiete 0,3–0,8, Reihenhaus 0,8–1,5, Blockrandbebauung 2–4, dichte Innenstadt mit Großverbrauchern 3–6 und mehr MWh/(m·a).</p></div>
+
+<div class="explainbox side" id="eb-breakeven"><span class="et">Break-even</span>
+<p>Der Break-even ist der Wert, bei dem zwei Alternativen gleich teuer sind — darunter ist die eine günstiger, darüber die andere. Berechnet wird er, wenn eine Entscheidung nicht generell, sondern nur unter Bedingungen fällt; gesucht ist hier die Wärmeliniendichte, ab der ein Netz die Wärmepumpe schlägt.</p></div>
+<div class="blk"><p>Die folgende Tabelle zeigt, ab welcher Wärmeliniendichte ein Netz günstiger ist als Wärmepumpen in denselben Gebäuden. Die Zeilen sind die Wärmequelle des Netzes, die Spalten die Bebauungssituation. Gesucht ist dabei der <a class="jj" href="#eb-breakeven" tabindex="0">Break-even</a>.</p></div>
+
+<figure class="tblfig">
+<div class="readline"><strong>Break-even-Wärmeliniendichte in MWh/(m·a) — Fernwärme günstiger oberhalb des Tabellenwerts:</strong></div>
+<div class="tw"><table><thead><tr><th>Wärmequelle ↓ / Bebauung →</th><th class="num">Neubaugebiet, unbefestigt</th><th class="num">Bestandsstraße, befestigt</th><th class="num">Innenstadt- oder Hauptverkehrsstraße</th></tr></thead><tbody>
+<tr><td><em>Baukosten pro Trassenmeter</em></td><td class="num"><em>677 €</em></td><td class="num"><em>1.692 €</em></td><td class="num"><em>3.554 €</em></td></tr>
+<tr class="grp"><td colspan="4"><strong>Referenzfall: Wärme aus Wärmepumpe zu 17,75 ct/kWh</strong></td></tr>
+<tr><td>Abwärme</td><td class="num">0,43</td><td class="num">1,07</td><td class="num">2,25</td></tr>
+<tr><td>Großwärmepumpe / Geothermie</td><td class="num">2,18</td><td class="num">5,46</td><td class="num">11,47</td></tr>
+<tr><td>Gasvorlauf → Abwärme</td><td class="num">1,65</td><td class="num">4,13</td><td class="num">8,67</td></tr>
+<tr><td>Gasvorlauf → Großwärmepumpe / Geothermie</td><td class="num">nie</td><td class="num">nie</td><td class="num">nie</td></tr>
+<tr class="grp"><td colspan="4"><strong>Zum Vergleich: dieselbe Rechnung gegen den heutigen deutschen Wärmepumpenpreis (23,73 ct/kWh) — so rechnen kommunale Wärmepläne heute</strong></td></tr>
+<tr><td>Abwärme</td><td class="num">0,24</td><td class="num">0,60</td><td class="num">1,27</td></tr>
+<tr><td>Großwärmepumpe / Geothermie</td><td class="num">0,44</td><td class="num">1,10</td><td class="num">2,32</td></tr>
+<tr><td>Gasvorlauf → Abwärme</td><td class="num">0,41</td><td class="num">1,04</td><td class="num">2,18</td></tr>
+<tr><td>Gasvorlauf → Großwärmepumpe / Geothermie</td><td class="num">0,63</td><td class="num">1,58</td><td class="num">3,32</td></tr>
+</tbody></table></div>
+</figure>
+<div class="blk"><p><em>„nie“ heißt: Der Sockel übersteigt bereits die Vollkosten der Wärmepumpe, das Budget ist negativ. Alle Werte gelten bei einer Anschlussquote von 100 %; bei 60 % steigen sämtliche Schwellen um den Faktor 1,67 (Abschnitt 7).</em></p></div>
+<div class="blk"><p>Die Trassenkosten sind Bruttowerte, hergeleitet in Abschnitt 2.1. Der untere Teil der Tabelle zeigt nicht, was wirtschaftlich <em>ist</em>, sondern was wirtschaftlich <em>erscheint</em>, wenn gegen überhöhte Wärmepumpenpreise gerechnet wird: Mit diesem Maßstab überschreitet selbst ein gasgegründetes Netz in der Bestandsstraße ab 1,58 MWh/(m·a) jene Schwelle von rund 1,5, ab der ein Netz in der Planungspraxis als tragfähig gilt — mit dem richtigen Maßstab trägt es bei keiner Dichte. Der Vergleichsmaßstab entscheidet hier also nicht über eine Nuance, sondern über das Vorzeichen der Planungsempfehlung. Diese Differenz ist Kernbefund 4.</p></div>
+<div class="readexample"><strong>Wie die Tabelle zu lesen ist.</strong> Ein Beispiel: Zeile <em>Abwärme</em>, Spalte <em>Bestandsstraße</em>. Der Wert 1,07 bedeutet, dass jeder Meter Trasse mindestens 1,07 MWh Wärme im Jahr absetzen muss, damit das Netz günstiger ist als Wärmepumpen in denselben Gebäuden. Ob das erreicht wird, entscheidet die Bebauung: Ein freistehendes Einfamilienhaus mit 15 MWh Jahresbedarf und 45 Trassenmetern kommt auf 0,33 und liegt weit darunter. Ein Reihenhaus mit zwei Wohneinheiten und 20 Trassenmetern erreicht 1,50 und liegt darüber. Ein Mehrfamilienhaus mit zwölf Wohneinheiten und 50 Trassenmetern erreicht 3,60 und trägt das Netz deutlich. Dieselben drei Quartiere mit einem Gasvorlauf vor der Abwärme stehen eine Zeile tiefer: dort steigt die Anforderung von 1,07 auf 4,13 — das Mehrfamilienhaus mit 3,60 fällt darunter und trägt das Netz nicht mehr. Steht am Ende des Vorlaufs eine Großwärmepumpe statt Abwärme, steht dort „nie“, unabhängig davon, wie dicht gebaut wird.</div>
+<div class="blk"><p><strong>Interpretation:</strong></p></div>
+<div class="blk"><p><strong>1. Die Wärmequelle dominiert, nicht die Dichte.</strong> Mit echter Abwärme ist Fernwärme selbst gegen die preisnormalisierte Wärmepumpe schon ab moderaten Dichten günstiger — in der Bestandsstraße ab 1,07 MWh/(m·a), also im Bereich dichter Reihenhausbebauung. Mit einem Gasvorlauf steigt die Anforderung in der Bestandsstraße auf 4,13 MWh/(m·a), vor einer Großwärmepumpe ist sie bei keiner Dichte erreichbar. Korrekt lautet die Regel: <em>Fernwärme rechnet sich dort, wo eine strukturell billige Wärmequelle existiert und die Trasse sie erreicht; hohe Dichte senkt lediglich den Verteilkostenaufschlag.</em></p></div>
+<div class="blk"><p><strong>2. Das deutsche WP-Preisniveau subventioniert die Fernwärme-Wirtschaftlichkeit.</strong> Der Wechsel des Vergleichsmaßstabs von 23,73 auf 17,75 ct verschiebt alle Schwellen nach oben — bei Abwärme um Faktor 1,8, bei Großwärmepumpen um Faktor 5. Jede kommunale Wärmeplanung, die gegen deutsche WP-Vollkosten rechnet, weist systematisch zu große Netzgebiete aus — ein Planungsrisiko, das einzupreisen ist, bevor Infrastruktur mit fünfzigjähriger Bindung gebaut wird.</p></div>
+<div class="blk"><p><strong>3. Innenstadt: Fernwärmeland, aber nur mit billiger Quelle.</strong> In der Innenstadtlage liegt die Schwelle mit Abwärme bei 2,25 und damit unter typischen Innenstadtdichten von 3 bis 6 — dort ist Fernwärme robust günstiger, zumal Wärmepumpen in dichter Blockrandbebauung auch praktische Grenzen haben (Aufstellflächen, Schall, Geschosseigentum). Mit Großwärmepumpen-Erzeugung liegt sie bei 11,47 und damit jenseits jeder realen Innenstadtdichte: Auch im Kernbestand entscheidet die Wärmequelle.</p></div>
+<hr>
+<h2 id="s6">6 Opportunitätskostenrechnung öffentlicher Mittel <em>(eigene Modellrechnung)</em><a class="anch" href="#s6">§</a></h2>
+<div class="blk"><p>Das von VKU beauftragte Prognos-Gutachten „Perspektive der Fernwärme“ (2024) beziffert rund <strong>74 Mrd. € Investitionsbedarf bis 2045</strong> und einen öffentlichen Förderbedarf von 3,4–3,5 Mrd. €/a [<a class="src" href="#q-prognosvku">Prognos-VKU</a>]. Das ist ein Verbandsgutachten der Fernwärmewirtschaft — methodisch solide, aber im Auftrag von Akteuren mit direktem Interesse an hohen ausgewiesenen Förderbedarfen. Unabhängige Gegenrechnungen existieren kaum; das ist als Datenlücke zu benennen.</p></div>
+<div class="blk"><p><strong>Was kauft 1 Mrd. € kollektiv aufgebrachter Mittel?</strong></p></div>
+<figure class="tblfig">
+<div class="readline">Die folgende Tabelle zeigt für vier Pfade, was eine Milliarde Euro erreicht: links die Kosten je Wohneinheit, rechts die Zahl der damit versorgten Wohneinheiten.</div>
+<div class="tw"><table><thead><tr><th>Pfad</th><th class="num">je Wohneinheit</th><th class="num">Wohneinheiten je Mrd. €</th></tr></thead><tbody>
+<tr><td>Wärmepumpen-Festbetrag (9.000 €, nach britischem Vorbild)</td><td class="num">9.000 €</td><td class="num"><strong>111.000</strong></td></tr>
+<tr><td>Netzausbau dichtes MFH-Quartier (12 WE/Geb., 50 Tm/Geb.)</td><td class="num">15.640 €</td><td class="num">64.000</td></tr>
+<tr><td>Netzausbau Reihenhausgebiet (2 WE/Geb., 20 Tm/Geb.)</td><td class="num">21.920 €</td><td class="num">46.000</td></tr>
+<tr><td>Netzausbau EFH-Gebiet (1 WE/Geb., 45 Tm/Geb.)</td><td class="num">86.150 €</td><td class="num"><strong>12.000</strong></td></tr>
+</tbody></table></div>
+</figure>
+<div class="blk"><p><strong>Ergebnis:</strong> Selbst im dichten Mehrfamilienhausquartier versorgt derselbe Euro als Festbetragsförderung rund 1,7-mal so viele Wohneinheiten wie als Netzausbau; im Reihenhausbestand 2,4-mal, im Ein- und Zweifamilienhausbestand <strong>9,6-mal so viele</strong>. Da dieser Gebäudetyp den Großteil des deutschen Wohnbestands außerhalb der Kernstädte stellt, ist die Standardvermutung der kommunalen Wärmeplanung umzukehren: Nicht die Wärmepumpe muss sich gegen das Netz rechtfertigen, sondern der Netzausbau gegen die preisnormalisierte Wärmepumpe.</p></div>
+<div class="blk"><p><strong>Zwei Einschränkungen, die zur Fairness gehören.</strong> Erstens hebelt der Festbetrag privates Kapital, weil der Haushalt die Differenz zwischen Förderung und Anlagenpreis selbst trägt; der Vergleich misst also, wie viele Haushalte je Euro in Bewegung kommen, nicht wie viel Vermögen dabei gebildet wird. Zweitens ist der Netzausbau in dichten Quartieren mit Abwärme auch dann sinnvoll, wenn er je Wohneinheit teurer ist — weil er dort eine dezentral nicht nutzbare Wärmequelle erschließt. Die Opportunitätsrechnung ersetzt die Systementscheidung aus Abschnitt 5 nicht, sie ergänzt sie um die Mengenfrage.</p></div>
+<div class="blk"><p>Zur Buchungslogik: Auch der nicht öffentlich geförderte Teil der Netzinvestition ist kein „privates“ Geld im ökonomischen Sinn — er fließt von denselben Bürgerinnen und Bürgern zurück (Abschnitt 1), nur ohne Wahlfreiheit und ohne Wettbewerbskontrolle.</p></div>
+<hr>
+
+<h2 id="s7">7 Robustheit: Halten die Aussagen überhaupt? <em>(eigene Berechnung)</em><a class="anch" href="#s7">§</a></h2>
+<div class="blk"><p>Eine Modellrechnung, deren Ergebnis an einer einzelnen Annahme hängt, ist wertlos. Deshalb wurde das Budget aus Abschnitt 4.3 vollfaktoriell über die vier Parameter gerechnet, bei denen die Datenlage eine echte Bandbreite zulässt: WP-Investition (14.700 oder 16.660 €), Strompreis (24, 26, 28 ct), Jahresarbeitszahl (3,1 oder 3,4) und Erzeugungskosten (±15 %) — 36 Kombinationen je Wärmequelle, begründet in <a class="jj anh" href="#a3" tabindex="0" data-jj="a3">Anhang A.3</a>.</p></div>
+
+<figure class="graf" id="graf-sensitivitaet">
+<svg viewBox="0 0 860 265" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="g2-title g2-desc">
+<title id="g2-title">Sensitivitätsleiste — Budget über 36 Parameterkombinationen, je Pfad mit und ohne Gasvorlauf</title>
+<desc id="g2-desc">Vier Balken in zwei Paaren. Die Lage eines Balkens beantwortet, ob das Netz gegen die Wärmepumpe trägt; der Pfeil zwischen den Balken eines Paares beantwortet, was der Gasvorlauf kostet. Beide Pfeile zeigen nach links.</desc>
+<defs>
+<style>
+.lbl{font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;fill:#1A1A17}
+.sub{font-family:'IBM Plex Sans',sans-serif;font-size:11px;fill:#56534B}
+.num{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;fill:#1A1A17}
+.tick{font-family:'IBM Plex Sans',sans-serif;font-size:10px;fill:#56534B}
+.zl{stroke:#1A1A17;stroke-width:1.5}
+.hl{stroke:#56534B;stroke-width:1;stroke-dasharray:4 3}
+.dl{stroke:#1A1A17;stroke-width:1.2;stroke-dasharray:3 2}
+</style>
+<pattern id="hatch" width="5" height="5" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+<rect width="5" height="5" fill="#F7F5EF"/><line x1="0" y1="0" x2="0" y2="5" stroke="#28633B" stroke-width="3"/>
+</pattern>
+<pattern id="hatchr" width="5" height="5" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+<rect width="5" height="5" fill="#F7F5EF"/><line x1="0" y1="0" x2="0" y2="5" stroke="#8A2E2E" stroke-width="3"/>
+</pattern>
+<marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+<path d="M0,0 L7,3.5 L0,7 z" fill="#1A1A17"/></marker>
+</defs>
+
+<line class="hl" x1="505" y1="18" x2="505" y2="196"/>
+<line class="zl" x1="430" y1="18" x2="430" y2="196"/>
+<text class="tick" x="430" y="14" text-anchor="middle">0</text>
+<text class="tick" x="505" y="14" text-anchor="middle">reale Dichte ab hier</text>
+
+<!-- Paar 1: Abwaerme -->
+<text class="lbl" x="240" y="46" text-anchor="end">Abwärme</text>
+<rect x="595.6" y="36" width="129.6" height="15" fill="#28633B"/>
+<line x1="659.5" y1="34" x2="659.5" y2="53" stroke="#1A1A17" stroke-width="2"/>
+<text class="num" x="736" y="47">0/36 negativ</text>
+<text class="sub" x="240" y="70" text-anchor="end">mit 19 a Gasvorlauf</text>
+<rect x="399.4" y="60" width="30.6" height="15" fill="url(#hatchr)"/>
+<rect x="430" y="60" width="148.2" height="15" fill="url(#hatch)"/>
+<line x1="487.9" y1="58" x2="487.9" y2="77" stroke="#1A1A17" stroke-width="2"/>
+<text class="num" x="736" y="71">4/36 negativ</text>
+<line class="dl" x1="655" y1="55" x2="497" y2="58" marker-end="url(#ar)"/>
+<text class="num" x="576" y="52" text-anchor="middle">Gasvorlauf −5,7 ct</text>
+
+<!-- Paar 2: GrossWP/Geothermie -->
+<text class="lbl" x="240" y="116" text-anchor="end"><tspan x="240" dy="0">Großwärmepumpe /</tspan><tspan x="240" dy="13">Geothermie</tspan></text>
+<rect x="387.4" y="106" width="42.6" height="15" fill="#8A2E2E"/>
+<rect x="430" y="106" width="131.1" height="15" fill="#28633B"/>
+<line x1="473.5" y1="104" x2="473.5" y2="123" stroke="#1A1A17" stroke-width="2"/>
+<text class="num" x="736" y="117">6/36 negativ</text>
+<text class="sub" x="240" y="140" text-anchor="end">mit 19 a Gasvorlauf</text>
+<rect x="307" y="130" width="123" height="15" fill="url(#hatchr)"/>
+<rect x="430" y="130" width="75.3" height="15" fill="url(#hatch)"/>
+<line x1="405.4" y1="128" x2="405.4" y2="147" stroke="#1A1A17" stroke-width="2"/>
+<text class="num" x="736" y="141">24/36 negativ</text>
+<line class="dl" x1="469" y1="125" x2="414" y2="128" marker-end="url(#ar)"/>
+<text class="num" x="441" y="122" text-anchor="middle">−2,3 ct</text>
+
+<text class="tick" x="250" y="212" text-anchor="middle">−6</text>
+<text class="tick" x="340" y="212" text-anchor="middle">−3</text>
+<text class="tick" x="430" y="212" text-anchor="middle">0</text>
+<text class="tick" x="520" y="212" text-anchor="middle">+3</text>
+<text class="tick" x="610" y="212" text-anchor="middle">+6</text>
+<text class="tick" x="730" y="212" text-anchor="middle">+10 ct/kWh</text>
+<text class="tick" x="250" y="232" text-anchor="start">Balken: Minimum bis Maximum über 36 Kombinationen · Strich: Mittelwert · rot links, grün rechts der Nulllinie</text>
+<text class="tick" x="250" y="248" text-anchor="start">Schraffiert: mit vorgelagerter Gasphase · Pfeil: Wirkung des Gasvorlaufs auf den Mittelwert</text>
+</svg>
+<figcaption><strong>Die Lage der Balken vergleicht Netz und Wärmepumpe — der Pfeil vergleicht mit und ohne Gasvorlauf.</strong> Links der Nulllinie bleibt für das Verteilnetz nichts übrig; rechts der gestrichelten Linie fällt die erforderliche Dichte in realen Bestand. Abwärme trägt ein Netz robust, mit neunzehn Jahren Gas davor nur noch rechnerisch. Für die Großwärmepumpe entscheidet das Modell nicht — mit Gasvorlauf kippt sie.</figcaption>
+</figure>
+
+<div class="blk"><p><strong>Abwärme trägt ein Netz. Das ist robust.</strong> In der Bestandsstraße liegt die Break-even-Dichte je nach Kombination zwischen 0,84 und 1,50 MWh/(m·a).</p></div>
+<div class="blk"><p><strong>Ein Gasvorlauf ist keine Wärmequelle, sondern eine Variante jeder anderen.</strong> Ein „Gas-KWK-Netz“ gibt es als Fünfzigjahresentscheidung nicht; was entsteht, ist ein Netz mit einer Gasanlage am Anfang und einer anderen Quelle ab etwa 2045 (<a class="jj anh" href="#a7" tabindex="0" data-jj="a7">Anhang A.7</a>). Der Sweep rechnet deshalb nicht drei Wärmequellen, sondern zwei Pfade in je zwei Varianten — mit und ohne vorgelagerte Gasphase.</p></div>
+
+<div class="blk"><p><strong>Der Vorlauf verbessert keinen Pfad; er verbraucht dessen Reserve.</strong> Sein Beitrag ist keine Frage des Zufalls, sondern eine Identität: Er kostet stets 56 % der Differenz zwischen dem Gassockel und dem der Nachfolgequelle. Vor der Großwärmepumpe sind das 2,3 ct, das Budget fällt von +1,51 auf −0,75 ct und kippt in 24 von 36 Kombinationen ins Negative. Vor der Abwärme sind es 5,7 ct: Das Budget bleibt mit +2,00 ct positiv, aber die erforderliche Dichte in der Bestandsstraße steigt von 1,07 auf 4,13 MWh/(m·a) — der robusteste Pfad des Papiers verlässt damit den Bereich realer Bebauung. Dass ein Netz mit Gasvorlauf gegenüber der Wärmepumpe noch positiv dasteht, ist deshalb kein Argument für den Vorlauf, sondern eines für die Quelle, die ihn trägt.</p></div>
+
+<div class="blk"><p><strong>Der naheliegende Einwand — Biomethan oder Wasserstoff ab 2045 — verlässt diese Struktur nicht.</strong> Auch grünes Gas ist eine Nachfolgequelle, nur in derselben Anlage. Damit das Budget im Referenzfall überhaupt null erreicht, müsste die grüne Phase Wärme für 6,4 ct/kWh erzeugen; damit das Netz in Blockrandbebauung tatsächlich trägt, für 2,4 ct/kWh. Zum Vergleich: Fossiles Erdgas einschließlich CO₂-Kosten liegt in dieser Rechnung heute bei rund 6 ct/kWh Brennstoff. Beide Werte sind der für die Gegenseite günstigere Maßstab: Gemessen am Planungsrichtwert von 1,5 MWh/(m·a), ab dem ein Netz in der Praxis als tragfähig gilt, wäre die Anforderung in der Bestandsstraße selbst bei einem Brennstoffpreis von null nicht erfüllbar. Der Einwand ist damit nicht widerlegt, aber beziffert — wer ein Netz darauf gründet, muss diese Schwelle belegen (<a class="jj anh" href="#a7" tabindex="0" data-jj="a7">Anhang A.7</a>).</p></div>
+<div class="blk"><p><strong>Für Großwärmepumpen- und Geothermienetze entscheidet das Modell nicht.</strong> Das Budget wechselt in einem Sechstel der Kombinationen das Vorzeichen; die Vollkosten beider Pfade liegen innerhalb weniger Zehntelcent beieinander und damit unterhalb der Auflösung dieses Modells. Break-even-Werte mit zwei Nachkommastellen wären hier Scheingenauigkeit. Das ist kein Rückschlag, sondern das politisch belastbarere Ergebnis: Für die derzeit am häufigsten vorgeschlagene klimaneutrale Netzquelle ist der ökonomische Vorteil gegenüber der dezentralen Wärmepumpe <strong>nicht nachweisbar</strong>. Wer darauf ein Netz mit fünfzigjähriger Bindung gründet, tut das ohne belastbare Wirtschaftlichkeitsgrundlage.</p></div>
+<div class="blk"><p><strong>Außerhalb des Sweeps</strong> wirkt die Anschlussquote direkt proportional auf alle Schwellen aus Abschnitt 5 — in der Praxis die am wenigsten kontrollierbare Projektvariable. Trassenkosten und Netznutzungsdauer wirken ebenfalls proportional auf die Schwelle, aber nicht auf das Budget — sie verschieben, wo die Grenze liegt, nicht ob es eine gibt.</p></div>
+<div class="blk"><p><strong>Die Hausanschlusskosten</strong> sind als schwächste Einzelannahme separat über den gesamten publizierten Korridor gerechnet: Der robuste Befund zur Abwärme ohne Gasvorlauf bleibt unberührt, der Großwärmepumpen- und Geothermiepfad kippt bei rund 14.450 € je Anschluss (<a class="jj anh" href="#a6" tabindex="0" data-jj="a6">Anhang A.6</a>).</p></div>
+<div class="blk"><p><strong>Und der symmetrische Einwand.</strong> Der Strompreis nach 2045 ist genauso unbekannt wie der eines grünen Brennstoffs — die Beweislastregel müsste also für beide Seiten gelten. Die Asymmetrie liegt aber nicht bei den Preisen, sondern bei der Bindung: Eine Wärmepumpe, die sich als Fehlentscheidung erweist, wird nach zwanzig Jahren ersetzt, ein Verteilnetz bindet fünfzig. Unsicherheit ist deshalb kein Argument für Symmetrie in der Behandlung, sondern eines für den Pfad, der revidierbar bleibt.</p></div>
+<hr>
+<h2 id="s8">8 Was die Kostenrechnung nicht erfasst<a class="anch" href="#s8">§</a></h2>
+<div class="blk"><p>Die Abschnitte 4 bis 7 messen Euro je Kilowattstunde. Vier Unterschiede zwischen den Pfaden tauchen darin nicht auf, wirken aber über Jahrzehnte — und sie sind prüfbar, unabhängig davon, wem der Versorger gehört.</p></div>
+<div class="blk"><p><em>Erstens Eigentum am Anlagevermögen.</em> Bei der Wärmepumpe gehört die Anlage dem Haushalt; nach der Amortisation verbleibt der Restwert dort, und sie produziert weiter Wärme zu Grenzkosten. Bei der Fernwärme gehört dem Haushalt nur die Übergabestation — Netz und Erzeuger bleiben beim Versorger und werden über Grund- und Arbeitspreise dauerhaft refinanziert; auch nach der buchhalterischen Abschreibung endet die Zahlung nicht.</p></div>
+<div class="blk"><p><em>Zweitens Ausstiegsoption.</em> Der Wärmepumpenbetreiber kann den Stromlieferanten jederzeit wechseln. Für Fernwärme existiert kein Lieferantenwechsel, weil es keinen regulierten Netzzugang Dritter gibt: Der Anschluss bindet an genau einen Anbieter, dessen Preise über Preisänderungsklauseln nach AVBFernwärmeV fortgeschrieben werden (Abschnitt 2.6). Wo Anschluss- und Benutzungszwang besteht, entfällt die Option ganz.</p></div>
+<div class="blk"><p><em>Drittens Eigenversorgungsfähigkeit.</em> Eine Wärmepumpe lässt sich mit einer Photovoltaikanlage koppeln; der effektive Wärmepreis sinkt dann in Richtung der Eigenerzeugungskosten. Bei leitungsgebundener Wärme gibt es diese Option nicht — Effizienzgewinne auf der Erzeugerseite kommen erst über die Preisanpassung an, und wann und in welchem Umfang, entscheidet der Versorger.</p></div>
+<div class="blk"><p><em>Viertens Kühlung.</em> Die Rechnung fragt, was es kostet, ein Gebäude zu heizen. Die richtige Frage lautet, was es kostet, ein Gebäude ganzjährig auf angenehmer Temperatur zu halten — und darauf antworten die beiden Pfade unterschiedlich. Eine Wärmepumpe kann in der Regel auch kühlen; die Investition ist bereits getätigt, hinzu kommen allenfalls Kosten der Verteilung. Ein Wärmenetz kann das nicht: Wer im Fernwärmegebiet Kühlung will, kauft ein zweites Gerät, oder die Kommune baut ein zweites Netz. Weil die Zahl der Kühlgradtage steigt, wächst dieser Unterschied über die fünfzigjährige Bindungsdauer eines Netzes — und zwar zulasten der Fernwärme, ohne dass er in einer einzigen Zeile dieses Papiers auftaucht.</p></div>
+<div class="blk"><p>Daraus folgt ein praktischer Hinweis: Weil der Tiefbau den Großteil der Verlegekosten ausmacht (Abschnitt 2.1), gilt: Wer eine Straße ohnehin öffnet, sollte die Kälteleitung oder wenigstens ein Leerrohr mitverlegen — ein zweiter Aufbruch derselben Straße kostet fast so viel wie der erste.</p></div>
+<div class="blk"><p><em>Fünftens die Option zu warten.</em> Diese Rechnung vergleicht zwei Pfade, die beide heute beginnen. Der reale Einwand gegen Abschnitt 7 lautet aber selten „Gas ist gut“, sondern „die klimaneutrale Quelle steht noch nicht zur Verfügung“. Dann ist der Gegenspieler des Gasvorlaufs nicht das sofort gebaute Netz, sondern: zwanzig Jahre Wärmepumpen und der Netzbau, wenn die Quelle da ist. Weil Trassenkosten annuisiert werden, sobald sie anfallen, kostet Warten auf der Netzseite nichts als Zeit — auf der Gebäudeseite fällt in dieser Zeit ohnehin eine Heizung an. Das Modell bewertet diese Option nicht; wer den Gasvorlauf begründen will, müsste zeigen, dass sie schlechter ist.</p></div>
+
+<div class="blk"><p><strong>Der Einwand, und was von ihm bleibt.</strong> Bei einem vollständig kommunalen Stadtwerk gehört das Versorgungsunternehmen der Bürgerschaft. Das entkräftet den ersten Punkt teilweise — die beiden anderen nicht: Auch gegenüber einem kommunalen Monopolisten gibt es keinen Lieferantenwechsel und keine Eigenversorgung. Und die Refinanzierung über den städtischen Haushalt ist selbst eine Verteilungsentscheidung, weil Wärmekunden dann Leistungen mitfinanzieren, die allen Einwohnern zugutekommen. Das kann kommunalpolitisch gewollt sein; es sollte nur benannt und nicht als Kostenvorteil der Fernwärme verbucht werden.</p></div>
+<div class="blk"><p>Daraus folgt kein Argument gegen Wärmenetze — wo Abwärme verfügbar ist, bleibt das Netz die überlegene Lösung, und Abschnitt 7 zeigt das robust. Es folgt ein Argument gegen die Annahme, beide Pfade seien austauschbar, sobald die Vollkosten ungefähr gleich sind. Dort, wo dieses Papier keine Entscheidung liefert, sollten solche Erwägungen den Ausschlag geben und nicht die zweite Nachkommastelle einer Modellrechnung.</p></div>
+<hr>
+
+<h2 id="s9">9 Schlussfolgerungen und bundespolitische Instrumente<a class="anch" href="#s9">§</a></h2>
+<div class="blk"><p><strong>9.1 Der Vergleichsmaßstab gehört ins Gesetz.</strong> Fernwärme-Eignungsgebiete nach § 18 WPG sollten nur ausgewiesen werden dürfen, wenn die Wirtschaftlichkeit gegen eine <strong>europäisch normalisierte</strong> Wärmepumpen-Referenz gerechnet wurde, nicht gegen deutsche Vollkosten. Die verwendeten Annahmen sind offenzulegen, und die Rechnung ist einem Sanierungs-Stresstest zu unterziehen: Was passiert mit der Wärmeliniendichte, wenn der Gebäudebestand im Versorgungsgebiet bis 2045 den erwarteten Effizienzpfad geht?</p></div>
+<div class="blk"><p><strong>9.2 Kostentransparenz herstellen.</strong> Die AVBFernwärmeV-Novelle sollte Betreiber zur strukturierten Veröffentlichung ihrer Kostenbestandteile verpflichten. Parallel braucht es ein <strong>Wärmenetzregister</strong> mit Trassenlängen, Anschlusswerten, Wärmequellen und Netzverlusten. Dass der Branchenverband selbst nur etwa ein Siebtel der geschätzten Trassenlänge statistisch erfasst (Abschnitt 2.1), zeigt, dass die Datengrundlage für eine Transformationsplanung dieser Größenordnung derzeit nicht existiert.</p></div>
+<div class="blk"><p><strong>9.3 Förderung quellenscharf steuern.</strong> Die Bundesförderung für effiziente Wärmenetze sollte nach Wärmequelle differenzieren. Netze auf Basis echter Abwärme sind nach dieser Rechnung robust überlegen und verdienen Vorrang. Netze, die mit einer Gasanlage beginnen, sollten wie Netze ihrer geplanten Nachfolgequelle behandelt werden: Die Förderentscheidung gehört an den Nachweis für die Quelle ab 2045 gebunden, nicht an die Anlage, die bis dahin läuft. Netze auf Großwärmepumpen- oder Geothermiebasis liegen im Unentschieden — für sie sollte die Förderung an eine projektspezifische Vollkostenrechnung gegen die Wärmepumpen-Referenz gebunden werden, nicht pauschal fließen.</p></div>
+<div class="blk"><p><strong>9.4 Eine öffentliche Kostenbenchmark für den Trassenbau.</strong> Die Datenlage aus Abschnitt 2.1 trägt keine Wirtschaftlichkeitsrechnung. Eine regelmäßige, regional aufgelöste und tabellierte Erhebung — etwa durch das Statistische Bundesamt oder die Bundesnetzagentur — würde die Wirtschaftlichkeitsrechnung der kommunalen Wärmeplanung erstmals auf überprüfbaren Boden stellen.</p></div>
+<div class="blk"><p><strong>9.5 Die Kostenreform der Wärmepumpe ist zugleich Fernwärme-Preisdisziplin.</strong> In einem Sektor, den das Bundeskartellamt selbst für faktisch nicht regulierbar hält, ist die glaubwürdige dezentrale Alternative das einzige wirksame Preissignal: Jeder Euro, den die Reformhebel vom Installationspreis abziehen, wirkt als Obergrenze für den Fernwärmepreis.</p></div>
+<div class="blk"><p><strong>9.6 Für die kommunale Ebene.</strong> Wer eine Wärmeplanung kommentiert, sollte fragen: Wurde die Planung gegen die Wärmepumpe gerechnet? Wenn ja, gegen welchen Wärmepumpenpreis? Welche Wärmequelle trägt das geplante Netz, und ist sie vertraglich gesichert? Welche Anschlussquote unterstellt die Rechnung, und was passiert bei Unterschreitung? Ist Kühlung mitgedacht — und wird, wenn die Straße ohnehin geöffnet wird, wenigstens ein Leerrohr mitverlegt? Die Antworten entscheiden mehr über die Tragfähigkeit des Plans als die ausgewiesene Bebauungsdichte.</p></div>
+<div class="blk"><p><strong>9.7 Das Risiko, das die Entscheidung des Endverbrauchers für die Kommune bedeutet.</strong> Über den Anschluss entscheidet am Ende der einzelne Haushalt — und er rechnet dabei, ob bewusst oder nicht, gegen die Wärmepumpe. Fällt deren Preis auf europäisches Niveau, während das Netz bereits im Boden liegt, entsteht ein doppeltes Risiko: Bleiben die Anschlüsse aus, steigen die Kosten je Kilowattstunde für die verbleibenden Kunden und das Netz droht zum <em>stranded asset</em> zu werden; wird stattdessen ein Anschluss- und Benutzungszwang verhängt, entscheidet die Kommune gegen die erkennbare wirtschaftliche Präferenz ihrer Bürgerinnen und Bürger und bezahlt einen politischen Preis. Beide Wege werden wahrscheinlicher, je erfolgreicher die Reformhebel aus Teil I wirken. Kommunen sollten diesen Zielkonflikt vor dem Spatenstich bewerten, nicht danach.</p></div>
+<hr>
+
+<h2 id="s10">10 Was an dieser Rechnung neu ist — und was sie braucht<a class="anch" href="#s10">§</a></h2>
+<div class="blk"><p>Vier Dinge unterscheiden den Ansatz von der üblichen Wirtschaftlichkeitsbetrachtung der Wärmeplanung; sie sind der eigentliche Beitrag dieses Papiers.</p></div>
+<div class="blk"><p><strong>Erstens: Vollkosten beider Pfade an derselben Systemgrenze.</strong> Verglichen wird nicht der Arbeitspreis auf der Rechnung gegen den Anschlusspreis im Angebot, sondern der gesellschaftliche Gesamtaufwand beider Wege — Investition, Ersatzinvestitionskette, Betrieb, Netzverluste, anteilige Infrastruktur —, und zwar ohne Förderungen, weil sie verschieben, wer zahlt, nicht was es kostet.</p></div>
+<div class="blk"><p><strong>Zweitens: der Wärmepumpenpreis auf europäischem Niveau.</strong> Der Vergleichsmaßstab ist nicht der deutsche Preis, sondern der, den dieselbe Anlage heute in Großbritannien, Frankreich oder Österreich kostet. Damit wird ein politisch veränderliches Kostenniveau als das behandelt, was es ist: eine Variable, keine Naturkonstante. Wichtig ist dabei die Zeitform. Es sind <em>heutige</em> europäische Marktpreise; künftige Senkungen durch Skalen- und Lernkurveneffekte des Hochlaufs — bei der Photovoltaik über zwei Jahrzehnte der bestimmende Effekt — sind ausdrücklich <strong>nicht</strong> eingerechnet. Treten sie ein, verschiebt sich das Ergebnis weiter zulasten des Netzausbaus. Auch in dieser Hinsicht rechnet das Papier zugunsten der Fernwärme.</p></div>
+<div class="blk"><p><strong>Drittens: die Dichteschwelle wird abgeleitet, nicht gesetzt.</strong> Die Planungspraxis arbeitet mit Faustwerten für die Mindest-Wärmeliniendichte. Hier ergibt sie sich aus dem Kostenvergleich selbst und wird damit zu einer Funktion von Wärmequelle, Vergleichsmaßstab und Trassenlage statt zu einer festen Zahl. Genau daraus entsteht der Kernbefund, dass die Wärmequelle die Dichte dominiert.</p></div>
+<div class="blk"><p><strong>Viertens: die Übersetzung in Rechtsfolgen.</strong> Die Rechnung endet nicht im Ergebnis, sondern in benannten Instrumenten — vom Vergleichsmaßstab in § 18 WPG bis zur quellenscharfen BEW-Förderung.</p></div>
+<div class="blk"><p><strong>Und was das nicht ersetzt.</strong> Die Kalibrierung ist die verwundbare Seite. Wer in einem Fachinstitut oder in der Netzkalkulation eines Versorgers täglich mit Erzeugungskosten und Trassenpreisen umgeht, wird über die Herleitung mancher Eingangswerte womöglich den Kopf schütteln: Die Erzeugungskosten für Großwärmepumpe und Gas-KWK sind eigene Setzungen, die Trassenkosten eine Ablesung aus Punktwolken, die Hausanschlusskosten fußen auf einer schwachen Datengrundlage. Das ist kein Randproblem, sondern die entscheidende Schwäche — und im Papier durchgehend als solche gekennzeichnet.</p></div>
+<div class="blk"><p>Beides kann zugleich zutreffen: schwache Kalibrierung und tragfähiger methodischer Ansatz. Der nächste sinnvolle Schritt ist deshalb kein weiterer Rechengang, sondern ein Fachreview. Zwei Fragen genügen für den Anfang:</p></div>
+<ol>
+<li>Sind die Erzeugungskosten je Wärmequelle plausibel kalibriert — und wenn nein, mit welchen Werten wäre zu rechnen?</li>
+<li>Sind die angesetzten Verlegekosten von 677, 1.692 und 3.554 €/m realistisch?</li>
+</ol>
+<div class="blk"><p>Wer das beantworten kann, sitzt bei Agora Energiewende, beim Fraunhofer IEE oder ISE, beim ifeu, in der Kalkulation eines Stadtwerks — oder womöglich in der BAG Energie selbst. Fällt die Antwort ungünstig aus, ist die Rechnung erledigt; fällt sie günstig aus, ist sie belastbar. Beides wäre ein Fortschritt gegenüber dem gegenwärtigen Zustand, in dem eine offene Gegenrechnung zur unterstellten Fernwärme-Wirtschaftlichkeit schlicht nicht vorliegt. Und ob eine KI-gestützte Analyse dieser Art etwas taugt, entscheidet sich ohnehin nicht an ihrer Entstehung, sondern daran, ob die Zahlen halten — deshalb liegen Skript und Annahmen offen.</p></div>
+<hr>
+<h1 id="anhang" class="part">Anhang<a class="anch" href="#anhang">§</a></h1>
+<div class="blk"><p>Das beiliegende Skript <code>simulation_wp_fernwaerme_v2-7.py</code> (Python 3, keine Abhängigkeiten, MIT-Lizenz) enthält alle Modellparameter kommentiert im Kopf. Es ist bewusst so gebaut, dass Kommunen, Stadtwerke, Fraktionen und Verbände es mit lokalen Werten nachrechnen können — Korrekturen und Kritik sind ausdrücklich erwünscht. Der folgende Anhang macht dieselbe Rechnung ohne Programmierkenntnisse nachvollziehbar.</p></div>
+
+<h2 id="a1">A.1 Annuitätsfaktoren<a class="anch" href="#a1">§</a></h2>
+<div class="blk"><p>Die folgende Tabelle zeigt die Annuitätsfaktoren für die vier im Papier verwendeten Nutzungsdauern bei 3 % realem Kalkulationszins [<a class="src" href="#q-vdi2067">VDI-2067</a>]; die rechte Spalte übersetzt sie in die Jahresrate für 1.000 € Investition.</p></div>
+<figure class="tblfig"><div class="tw"><table><thead><tr><th>Nutzungsdauer</th><th class="num">Faktor</th><th class="num">1.000 € Investition entsprechen</th></tr></thead><tbody>
+<tr><td>20 Jahre (Wärmepumpe)</td><td class="num">0,0672</td><td class="num">67 €/a</td></tr>
+<tr><td>30 Jahre (Hausanschluss, Übergabestation, Heizkörper)</td><td class="num">0,0510</td><td class="num">51 €/a</td></tr>
+<tr><td>40 Jahre (anteilige Stromnetzverstärkung)</td><td class="num">0,0433</td><td class="num">43 €/a</td></tr>
+<tr><td>50 Jahre (Wärmenetz)</td><td class="num">0,0389</td><td class="num">39 €/a</td></tr>
+</tbody></table></div>
+<div class="readexample">Ablesebeispiel: Zeile <em>20 Jahre</em> — 1.000 € Investition in eine Wärmepumpe entsprechen 67 € im Jahr; die 16.660 € des Referenzfalls ergeben so die 1.120 €/a aus Schritt 1.</div>
+</figure>
+
+<h2 id="a2">A.2 Eine Rechnung vollständig durchgerechnet<a class="anch" href="#a2">§</a></h2>
+<div class="blk"><p>Beispiel: <strong>Abwärme, Bestandsstraße, Referenzfall</strong> (europäisches Kostenniveau, 19 % Umsatzsteuer). Alle anderen Zellen der Break-even-Tabellen entstehen nach demselben Schema mit anderen Eingangswerten.</p></div>
+
+<div class="rstrecke">
+<div class="rstep"><span class="marker">1</span>
+<h4>Was die Wärmepumpe im Jahr kostet</h4>
+<span class="rl">Rechnung</span>
+<div class="rechnung">1.120 € <span class="herk">(Gerät und Installation, 16.660 € über 20 a)</span> + 102 € <span class="herk">(Heizkörperanpassung / hydraulischer Abgleich, 2.000 € über 30 a)</span> + 43 € <span class="herk">(anteilige Stromnetzverstärkung, 1.000 € über 40 a)</span> + 250 € <span class="herk">(Wartung)</span> + 1.147 € <span class="herk">(Strom: 15.000 kWh ÷ JAZ 3,4 × 26 ct)</span> = 2.662 €/a</div>
+<span class="rl">Ergebnis</span>
+<p class="ergebnis">2.662 € ÷ 15.000 kWh = <span class="chipval">17,75 ct/kWh</span> — die Vergleichsgröße für alles Weitere.</p>
+</div>
+
+<div class="rstep"><span class="marker">2</span>
+<h4>Was die Fernwärme kostet, bevor ein Meter Netz gebaut ist</h4>
+<span class="rl">Rechnung</span>
+<div class="rechnung">4,90 ct <span class="herk">(Abwärme 3,5 ct netto → brutto, geteilt durch 0,85 wegen 15 % Netzverlusten — eine Division, weil für 1 kWh beim Kunden mehr als 1 kWh eingespeist werden muss)</span> + 0,36 ct <span class="herk">(anteiliger Erzeuger-CAPEX 0,3 ct netto → brutto)</span> + 3,93 ct <span class="herk">(Hausanschluss und Übergabestation, 10.000 € über 30 a, plus 80 €/a Wartung)</span> + 0,83 ct <span class="herk">(Pumpstrom und Netzbetrieb 0,7 ct netto → brutto)</span></div>
+<span class="rl">Ergebnis</span>
+<p class="ergebnis">Sockel <span class="chipval">10,02 ct/kWh</span></p>
+</div>
+
+<div class="rstep"><span class="marker">3</span>
+<h4>Was für das Verteilnetz übrig bleibt</h4>
+<span class="rl">Rechnung</span>
+<div class="rechnung"><span class="chipval">17,75 ct</span> − <span class="chipval">10,02 ct</span></div>
+<span class="rl">Ergebnis</span>
+<p class="ergebnis">Budget <strong>7,72 ct/kWh</strong></p>
+</div>
+
+<div class="rstep"><span class="marker">4</span>
+<h4>Was ein Meter Trasse im Jahr kostet</h4>
+<span class="rl">Rechnung</span>
+<div class="rechnung">1.000 €/m netto <span class="herk">(AGFW-Median 2021)</span> × 1,422 <span class="herk">(Baupreisindex Ortskanäle bis Mai 2026)</span> × 1,19 <span class="herk">(Umsatzsteuer)</span> = 1.692 €/m; davon die Jahresrate: 1.692 € × (0,0389 Annuität über 50 a + 0,01 Instandhaltung)</div>
+<span class="rl">Ergebnis</span>
+<p class="ergebnis"><strong>82,69 €/(m·a)</strong></p>
+</div>
+
+<div class="rstep"><span class="marker">5</span>
+<h4>Die gesuchte Dichte</h4>
+<span class="rl">Rechnung</span>
+<div class="rechnung">82,69 €/(m·a) ÷ (<strong>7,72 ct/kWh</strong> × 10); der Faktor 10 rechnet nur die Einheit um — 7,72 ct/kWh sind 77,20 € je MWh</div>
+<span class="rl">Ergebnis</span>
+<p class="ergebnis"><strong>1,07 MWh/(m·a)</strong> — setzt der Straßenzug weniger ab, ist die Wärmepumpe günstiger; setzt er mehr ab, das Netz. Bei einer Anschlussquote von 60 % steigt die Anforderung auf 1,78 MWh/(m·a).</p>
+</div>
+</div>
+
+<div class="blk"><p><strong>Gegenprobe: dasselbe Gebäude mit Gas-KWK statt Abwärme — gerechnet für die fossile Phase.</strong> Schritt 1 bleibt unverändert. Schritt 2 ergibt einen Sockel von 20,30 ct/kWh — Erzeugung 14,70, anteiliger Anlagen-CAPEX 0,83, Hausanschluss 3,94, Netzbetrieb 0,83. Schritt 3: 17,75 − 20,30 = <strong>−2,55 ct/kWh</strong>. Hier endet die Rechnung. Die Schritte 4 und 5 entfallen — nicht weil die Dichte zu gering wäre, sondern weil die Frage nach der Dichte gar nicht mehr gestellt werden kann. Für das Netz als Fünfzigjahresentscheidung ist damit erst die halbe Rechnung gemacht; die zweite steht in <a class="jj anh" href="#a7" tabindex="0" data-jj="a7">Anhang A.7</a>.</p></div>
+<div class="blk"><p><em>Herkunft dieses Rechenwegs.</em> Eigener Ansatz. Die Bausteine sind Standard: die Annuitätenmethode nach VDI 2067 [<a class="src" href="#q-vdi2067">VDI-2067</a>] und die in der Quartiersplanung übliche Kenngröße Wärmeliniendichte [<a class="src" href="#q-npro">nPro</a>, <a class="src" href="#q-vdidim">VDI-Dim</a>]. Neu ist ihre Verbindung (Abschnitt 10). Alle Eingangswerte stammen aus dem Abschnitt „Herkunft der Modellannahmen“; die Ergebnisse sind mit dem beiliegenden Skript reproduzierbar.</p></div>
+<hr>
+<h2 id="a3">A.3 Der Robustheitstest: welche 36 Kombinationen<a class="anch" href="#a3">§</a></h2>
+<div class="blk"><p><strong>Was getestet wird.</strong> Geprüft wird das <em>Budget</em> aus Schritt 3 der Beispielrechnung. An ihm hängt die qualitative Frage: Bleibt für das Verteilnetz überhaupt etwas übrig? In den Sweep gehören deshalb genau jene Parameter, die eine der beiden Größen verändern und bei denen die Datenlage eine echte Bandbreite zulässt.</p></div>
+<div class="blk"><p><strong>Welche Parameter, mit welchen Stufen.</strong></p></div>
+<figure class="tblfig"><div class="tw"><table><thead><tr><th>Parameter</th><th>Stufen</th><th>Begründung der Stufen</th></tr></thead><tbody>
+<tr><td>Wärmepumpen-Investition (brutto)</td><td>14.700 € / 16.660 €</td><td>europäisches Kostenniveau mit ermäßigtem bzw. Regelsteuersatz; die untere Stufe deckt zugleich eine günstigere Installation ab</td></tr>
+<tr><td>Strompreis</td><td>24 / 26 / 28 ct/kWh</td><td>Marktkorridor der Wärmepumpentarife 2026 [<a class="src" href="#q-bnetzamon">BNetzA-Mon</a>, <a class="src" href="#q-verivox">Verivox</a>], oben leicht darüber</td></tr>
+<tr><td>Jahresarbeitszahl</td><td>3,1 / 3,4</td><td>Feldmessungen des Fraunhofer ISE, älterer und aktueller Wert [<a class="src" href="#q-isesmart">ISE-smart</a>, <a class="src" href="#q-iseqs">ISE-QS</a>]</td></tr>
+<tr><td>Erzeugungskosten der Wärmequelle</td><td>85 % / 100 % / 115 %</td><td>±15 % auf den angesetzten Wert je Wärmequelle</td></tr>
+</tbody></table></div></figure>
+<div class="blk"><p><strong>Wie ausgewertet wird.</strong> 2 × 3 × 2 × 3 = 36 Kombinationen je Variante. Varianten sind die beiden klimaneutralen Pfade, jeweils mit und ohne vorgelagerte Gasphase — insgesamt 4 × 36. Der Gasvorlauf ist dabei keine fünfte Parameterachse, sondern eine Variante der Nachfolgequellenfrage; die Barwertgewichtung (19 a Gas, 31 a Nachfolge, 3 % real) steht in <a class="jj anh" href="#a7" tabindex="0" data-jj="a7">Anhang A.7</a>. Für jede Kombination wird das Budget neu bestimmt; ausgewiesen werden Minimum, Mittel, Maximum und die Zahl der Kombinationen mit negativem Budget. Die Ergebnisse stehen in Abschnitt 7, die Rechnung im beiliegenden Skript (Tabelle 6). Ebenfalls außerhalb des Sweeps steht ein grüner Brennstoff nach 2045: Für ihn existiert kein belegter Preiskorridor, aus dem sich Stufen begründen ließen, und ein Sweep über gesetzte Werte würde Genauigkeit vortäuschen, die es nicht gibt. Er wird deshalb als Schwellenrechnung geführt (<a class="jj anh" href="#a7" tabindex="0" data-jj="a7">Anhang A.7</a>). Die Regel dahinter gilt im ganzen Papier: Sweep für belegte Bandbreiten, Schwellenrechnung für unbelegte Größen.</p></div>
+<div class="blk"><p><strong>Was bewusst außerhalb des Sweeps steht.</strong> Trassenkosten und Netznutzungsdauer berühren das Budget nicht — sie wirken erst in Schritt 4, die Anschlussquote erst in Schritt 5, und alle drei verschieben die Schwelle proportional; ihre Wirkung ist deshalb ohne Sweep angebbar (Abschnitt 7). Die Hausanschlusskosten wirken zwar auf den Sockel, sind aber die am schwächsten belegte Einzelannahme und werden deshalb gesondert über einen breiteren Korridor gerechnet (<a class="jj anh" href="#a6" tabindex="0" data-jj="a6">Anhang A.6</a>).</p></div>
+<hr>
+
+<h2 id="a4">A.4 Was aus den AGFW-Punktwolken abgelesen wurde<a class="anch" href="#a4">§</a></h2>
+<div class="blk"><p>Die folgenden Werte sind <strong>Ablesungen</strong> aus den Punktwolken der Praxishilfe (Abschnitt 2.1), keine zitierten Angaben. Betrachtet wurden kleine Nennweiten (DN 25 bis DN 100). Alle Werte netto, Preisstand Ende 2020 / Anfang 2021.</p></div>
+<figure class="tblfig">
+<div class="readline">Die folgende Tabelle zeigt die Ablesung je Oberflächenart: links der Bereich, in dem die Mehrzahl der Punkte liegt, rechts der daraus gewählte Median.</div>
+<div class="tw"><table><thead><tr><th>Oberfläche</th><th>Kernbereich der Punktwolke</th><th class="num">Ausreißer bis</th><th class="num">im Modell verwendeter Median</th></tr></thead><tbody>
+<tr><td>Unbefestigt (Grünfläche)</td><td>~150–1.000 €/m</td><td class="num">~1.600</td><td class="num">400 €/m</td></tr>
+<tr><td>Befestigt (Straße, Gehweg)</td><td>~500–2.500 €/m</td><td class="num">~4.500</td><td class="num">1.000 €/m</td></tr>
+<tr><td>Befestigt, oberes Drittel (Innenstadt)</td><td>~1.500–3.500 €/m</td><td class="num">~4.500</td><td class="num">2.100 €/m</td></tr>
+</tbody></table></div>
+<div class="readexample">Ablesebeispiel: Zeile <em>Befestigt</em> — die gemeldeten Kosten streuen von rund 500 bis 2.500 €/m mit Ausreißern bis 4.500 €/m; angesetzt wurden 1.000 €/m.</div>
+</figure>
+<div class="blk"><p><strong>Warum der Innenstadtwert das obere Drittel der befestigten Wolke ist.</strong> Die Erhebung unterscheidet nur befestigte und unbefestigte Oberflächen, nicht Lagen. Der Innenstadtwert ist deshalb keine eigene Kategorie, sondern eine Auswahl innerhalb der befestigten Punktwolke. Sie stützt sich auf die auffälligste Eigenschaft der Daten: Bei ein und derselben Nennweite streuen die Kosten um mehr als Faktor zehn, von rund 250 bis 4.400 €/m, und die höchsten Werte liegen bei DN 25 bis 150 — also bei kleinen Leitungen, nicht bei großen. Die Rohrdimension erklärt die Streuung damit nicht; sie entsteht auf der Baustelle.</p></div>
+<div class="blk"><p>Der plausibelste Treiber ist die Länge des zusammenhängenden Bauabschnitts. Baustelleneinrichtung, Verkehrssicherung, Maschinentransport und Randwiederherstellung fallen je Abschnitt an, nicht je Meter; auf dreißig statt dreihundert Meter verteilt, vervielfacht sich ihr Anteil an den Meterkosten. Genau kurze Abschnitte erzwingen Innenstadtlagen — Zufahrten, Kreuzungen und enge Sperrzeitfenster lassen nichts anderes zu —, und dieselben Lagen erzwingen wegen der Leitungsdichte im Untergrund Handschachtung statt Baggerarbeit.</p></div>
+<div class="blk"><p>Diese Zuordnung ist eine begründete Annahme, keine Messung. Sie exakt zu prüfen würde voraussetzen, jeden Datenpunkt der Punktwolke einzeln zu quantifizieren und einer Baustellensituation zuzuordnen — die Praxishilfe gibt das nicht her. Die Ableitung bleibt damit eine benannte Schwäche dieses Papiers.</p></div>
+<div class="blk"><p>Die Praxishilfe ist frei abrufbar, aber urheberrechtlich geschützt; die Abbildungen werden hier deshalb nicht wiedergegeben.</p></div>
+<hr>
+
+<h2 id="a5">A.5 Umsatzsteuer: Rechtslage und Behandlung im Modell<a class="anch" href="#a5">§</a></h2>
+<div class="blk"><p>Eine Senkung der Umsatzsteuer auf Wärmepumpen wäre ein politisch wünschenswerter und leicht umzusetzender Hebel für den Wärmepumpenausbau, der jedoch mit weitreichenden Folgen für die Wirtschaftlichkeit des Fernwärmeausbaus einhergeht. Daher haben wir diese Option gesondert betrachtet. Hier die Befunde dazu.</p></div>
+<div class="blk"><p><strong>Der ermäßigte Satz.</strong> Die Richtlinie (EU) 2022/542 hat Anhang III der Mehrwertsteuer-Systemrichtlinie um Nummer 22 erweitert, die „Lieferung und Installation von hocheffizienten emissionsarmen Heizanlagen“ umfasst [<a class="src" href="#q-rl2022542">RL-2022-542</a>]. Ein Satz von mindestens 5 % ist damit EU-rechtlich gesichert.</p></div>
+<div class="blk"><p><strong>Ein Nullsatz ist bisher EU-rechtlich nicht zulässig.</strong> Nach Art. 98 Abs. 2 MwStSystRL ist ein Satz unter 5 % nur für die Nummern 1 bis 6 und 10c des Anhangs III zulässig — Grundbedarfsgüter und, seit 2022 eigens eingefügt, Solarpaneele [<a class="src" href="#q-btwd06222">BT-WD-062-22</a>]. Deutschland hat diese Öffnung genutzt und mit dem Jahressteuergesetz 2022 den Nullsteuersatz für Photovoltaikanlagen eingeführt (§ 12 Abs. 3 UStG, seit 1. Januar 2023). Für Wärmepumpen fehlt die entsprechende Grundlage; sie zu schaffen, erfordert eine Änderung der Systemrichtlinie und nach Art. 113 AEUV Einstimmigkeit im Rat — Hebel 5.</p></div>
+<div class="blk"><p><strong>Die offene Neutralitätsfrage.</strong> Nummer 22 nennt hocheffiziente Heizanlagen und Fernwärme in derselben Position. Ob eine Senkung allein auf der Wärmepumpenseite steuerrechtlich haltbar wäre, ist damit nicht ausgemacht; die Neutralität zwischen konkurrierenden Leistungen wäre zu prüfen.</p></div>
+<div class="blk"><p><strong>Warum die Steuer nicht durch die Tabellen geführt wird.</strong> Umsatzsteuer ist ein Transfer zwischen Bürgern und Staat, kein Ressourcenverbrauch. In einer gesellschaftlichen Vollkostenrechnung fällt sie deshalb heraus — und rechnerisch bleibt sie für die Break-even-Dichten folgenlos (Abschnitt 1); sie verändert nur die ausgewiesenen Absolutwerte.</p></div>
+<div class="blk"><p><strong>Was eine einseitige Senkung der Umsatzsteuer für Wärmepumpen bewirken würde.</strong> Würde man — analog zur Photovoltaik — einen ermäßigten Satz nur für Wärmepumpeninvestitionen erwirken, hätte das im Modell drei Folgen:</p></div>
+<ul>
+<li>Die Investitionssumme sänke bei gleichbleibendem Strompreis; dadurch sänken die Vollkosten der Wärmepumpe von 17,75 auf 16,87 ct/kWh.</li>
+<li>Die Break-even-Dichte in der Bestandsstraße stiege von 1,07 auf 1,21 MWh/(m·a).</li>
+<li>Großwärmepumpen- und Geothermienetze verlören ihren ohnehin knappen Vorteil praktisch vollständig.</li>
+</ul>
+<div class="blk"><p>Käme der ermäßigte Satz dagegen <em>beiden</em> Pfaden zugute, drehte sich die Wirkung um — bei der Wärmepumpe wäre nur die Investition entlastet (rund 44 % ihrer Vollkosten), bei der Fernwärme nahezu die gesamte Kette; die Schwelle in der Bestandsstraße läge dann bei 0,92 MWh/(m·a) und damit <em>unter</em> dem Ausgangswert.</p></div>
+<div class="blk"><p><strong>Wie das zu lesen ist.</strong> Eine Steuersenkung senkt nicht den gesellschaftlichen Aufwand, sondern verschiebt, wer ihn trägt, und mit ihm die private Investitionsentscheidung. Sie ist damit ein Anreiz- und Verteilungsinstrument, kein Kostensenkungsinstrument — und ihre Wirkung auf die Netzgebietsabgrenzung hängt vollständig daran, dass sie einseitig bleibt. Wer den ermäßigten Satz politisch verfolgt, sollte beides wissen.</p></div>
+<hr>
+
+<h2 id="a6">A.6 Sensitivität der Hausanschlusskosten<a class="anch" href="#a6">§</a></h2>
+<div class="blk"><p>Die 10.000 € aus Abschnitt 2.2 machen mit 3,94 ct/kWh knapp 40 % des Abwärme-Sockels aus. Unsicher ist dabei nicht der netzseitige Teil, sondern der gebäudeseitige (Abschnitt 2.2). Statt ihn schärfer zu schätzen, als die Datenlage erlaubt, wird die Gesamtposition über den publizierten Korridor variiert (Beispielschnitt: Referenzfall, Bestandsstraße mit 1.692 €/m, Anschlussquote 100 % — die Zahlen gelten für diesen Schnitt, die Schlussfolgerungen allgemein):</p></div>
+<figure class="tblfig">
+<div class="readline">Die folgende Tabelle zeigt, wie Sockel und Break-even auf den Hausanschlusspreis reagieren: links die vier Preisstufen, in der Mitte die Sockel beider Wärmequellen, rechts die zugehörigen Break-even-Dichten.</div>
+<div class="tw"><table><thead><tr><th>Hausanschluss inkl. Übergabestation</th><th class="num">Sockel Abwärme</th><th class="num">Sockel GroßWP/Geo</th><th class="num">Break-even Abwärme</th><th class="num">Break-even GroßWP/Geo</th></tr></thead><tbody>
+<tr><td>7.500 € (unterer Rand [<a class="src" href="#q-heizungde">heizung.de</a>])</td><td class="num">9,17 ct</td><td class="num">15,38 ct</td><td class="num">0,96</td><td class="num">3,50</td></tr>
+<tr><td><strong>10.000 € (Modellwert)</strong></td><td class="num"><strong>10,02 ct</strong></td><td class="num"><strong>16,23 ct</strong></td><td class="num"><strong>1,07</strong></td><td class="num"><strong>5,46</strong></td></tr>
+<tr><td>15.500 € (netzseitiger Wert plus vorliegende Kostenschätzung)</td><td class="num">11,90 ct</td><td class="num">18,10 ct</td><td class="num">1,41</td><td class="num">nie</td></tr>
+<tr><td>20.000 € (oberer Rand [<a class="src" href="#q-heizungde">heizung.de</a>])</td><td class="num">13,43 ct</td><td class="num">19,63 ct</td><td class="num">1,91</td><td class="num">nie</td></tr>
+</tbody></table></div>
+<div class="readexample">Ablesebeispiel: Zeile <em>15.500 €</em> — der Abwärme-Sockel steigt auf 11,90 ct und die erforderliche Dichte auf 1,41 MWh/(m·a), während der Großwärmepumpen-Pfad mit „nie“ ganz ausscheidet.</div>
+</figure>
+<div class="blk"><p><strong>Abwärme bleibt robust.</strong> Selbst bei 20.000 € liegt die Schwelle in der Bestandsstraße bei 1,91 MWh/(m·a) und damit im Bereich der Blockrandbebauung. Wiederholt man den Sweep aus <a class="jj anh" href="#a3" tabindex="0" data-jj="a3">Anhang A.3</a> mit 15.500 €, bleibt das Budget in allen 36 Kombinationen positiv (Minimum +3,65 ct).</p></div>
+<div class="blk"><p><strong>Der Gasvorlauf bleibt chancenlos</strong>, auch am unteren Rand des Korridors — und zwar unabhängig vom Hausanschluss, weil er den Sockel beider Varianten gleichermaßen anhebt und die Differenz zwischen ihnen deshalb unberührt lässt.</p></div>
+<div class="blk"><p><strong>Großwärmepumpe und Geothermie kippen.</strong> Ihr Budget erreicht null bei rund 14.450 € je Hausanschluss — ein Wert nahe der Mitte beider publizierter Korridore. Oberhalb davon ist dieser Pfad bei keiner Bebauungsdichte mehr günstiger; im Sweep mit 15.500 € ist das Budget in 21 von 36 Kombinationen negativ. Der Befund aus Abschnitt 7, dass hier keine Entscheidung möglich ist, wird dadurch nicht widerlegt, sondern bestätigt — und zwar an einer Position, die in Wärmeplänen üblicherweise nicht einmal gesondert ausgewiesen wird.</p></div>
+<div class="blk"><p>Reproduzierbar im Skript über den Parameter <code>HAUSANSCHLUSS</code> bzw. die Liste <code>HA_SENS</code> (Tabelle 7).</p></div>
+<hr>
+
+<h2 id="a7">A.7 Gas-KWK: Woher die Zahl kommt — und warum die Nachfolgequelle entscheidet<a class="anch" href="#a7">§</a></h2>
+<div class="blk"><p><strong>Die Wärmegestehungskosten sind eine Differenz, keine Summe.</strong> Ein Gasmotor mit 47 % elektrischem und 47 % thermischem Wirkungsgrad braucht je Kilowattstunde Wärme rund 2,1 kWh Gas — bei Gas einschließlich CO₂-Kosten von etwa 6 ct also 12,8 ct — und erzeugt dabei 1,0 kWh Strom. Was übrig bleibt, hängt allein am Stromerlös: bei 6 ct je kWh Strom rund 6,8 ct Wärmegestehungskosten, bei 9 ct rund 3,8 ct, mit KWKG-Zuschlag noch weniger. Deshalb existiert Gas-KWK-Wärme zu Preisen, die heute konkurrenzfähig aussehen.</p></div>
+<div class="blk"><p><strong>Der Modellwert von 10,5 ct unterstellt, dass die Gutschrift schrumpft</strong> — und das ist der Mehrheitspfad, nicht eine Sonderannahme. Der CO₂-Preis steigt und verteuert den Brennstoff; die Großhandelsstrompreise sinken nach den gängigen Langfristprognosen bis 2045 auf etwa 73 €/MWh [<a class="src" href="#q-prognosstrom">Prognos-Strom</a>], was die Gutschrift verkleinert; die Vollbenutzungsstunden fossiler KWK gehen zurück, was den Kapitalkostenanteil je Kilowattstunde erhöht; und die KWKG-Förderung läuft aus. Alle vier Entwicklungen wirken in dieselbe Richtung.</p></div>
+<div class="blk"><p><strong>Die Schwelle liegt bei 8,7 ct.</strong> Unterhalb dieser Wärmegestehungskosten würde das Budget positiv. Der Sweep aus <a class="jj anh" href="#a3" tabindex="0" data-jj="a3">Anhang A.3</a> testet mit ±15 % nur den Bereich 8,9 bis 12,1 ct und berührt sie knapp nicht. Wer den Befund allein über die Erzeugungskosten angreifen will, muss also zeigen, dass die Kosten dauerhaft darunter bleiben.</p></div>
+<div class="blk"><p><strong>Und wenn der Brennstoff grün wird?</strong> Der häufigste Einwand gegen diese Rechnung lautet, die Gasanlage laufe ab 2045 mit Biomethan oder Wasserstoff weiter. Das verlässt die Struktur nicht: Grünes Gas ist eine Nachfolgequelle wie jede andere, nur in derselben Anlage. Die Schwellen ergeben sich aus derselben Differenzrechnung wie oben, rückwärts gelesen.</p></div>
+<figure class="tblfig"><div class="tw"><table><thead><tr><th>Konfiguration</th><th class="num">erforderliche Wärmegestehung</th><th class="num">daraus Brennstoffpreis</th></tr></thead><tbody>
+<tr><td>durchgehend grün, 50 a</td><td class="num">8,7 ct/kWh</td><td class="num">7,6 ct/kWh</td></tr>
+<tr><td>19 a fossil, dann grün</td><td class="num"><strong>6,4 ct/kWh</strong></td><td class="num"><strong>6,5 ct/kWh</strong></td></tr>
+<tr><td>dito, Budget +2,5 ct (oberer Rand realer Blockrandbebauung, Bestandsstraße 3,29 MWh/(m·a))</td><td class="num">2,4 ct/kWh</td><td class="num">4,6 ct/kWh</td></tr>
+<tr><td>dito, Planungsrichtwert 1,5 MWh/(m·a), Bestandsstraße</td><td class="num" colspan="2">nicht erreichbar</td></tr>
+</tbody></table></div></figure>
+<div class="blk"><p>Der Brennstoffpreis ist mit denselben 2,1 kWh je kWh Wärme und einer Stromgutschrift von 7,3 ct/kWh zurückgerechnet; bei 6 ct Stromerlös sinkt die mittlere Anforderung auf 5,9 ct, bei 9 ct steigt sie auf 7,3 ct. Die mittlere Zeile beschreibt den tatsächlich vorgeschlagenen Pfad. Sie liegt <em>unterhalb</em> der ersten, weil die fossile Vorlaufphase bereits Budget verbraucht, das die grüne Phase nachträglich kompensieren muss. Verlangt ist damit ein grüner Brennstoff, der 2045 ungefähr so viel kostet wie fossiles Erdgas einschließlich CO₂-Kosten heute — und für ein Netz, das in Blockrandbebauung wirklich trägt, deutlich weniger. Dieses Papier prognostiziert diese Preise nicht. Es hält fest, wo die Schwelle liegt, und überlässt den Nachweis dem, der die Fünfzigjahresbindung eingeht.</p></div>
+<div class="blk"><p><strong>Warum zwei Schwellen — und warum ausgerechnet +2,5 ct.</strong> Ein Budget von null beantwortet nur die Vorzeichenfrage: Dort kostet das Netz genau so viel wie Wärmepumpen, bevor ein einziger Trassenmeter gebaut ist, und die erforderliche Dichte geht gegen unendlich. Die zweite Schwelle braucht deshalb ein Budget, das einer bebaubaren Dichte entspricht. Die +2,5 ct sind kein gesetzter Parameter, sondern die günstigste der 36 Kombinationen aus Abschnitt 7, rückwärts als Zielgröße gelesen: in der Bestandsstraße 3,29 MWh/(m·a) und damit der obere Rand dessen, was dieses Papier noch als reale Blockrandbebauung führt.</p>
+<p>Der Anker ist eine Konvention, keine Ableitung, und er hängt an der Trassenlage — dasselbe Budget bedeutet im unbefestigten Neubaugebiet 1,32 MWh/(m·a), in der Bestandsstraße 3,31 und in der Innenstadtstraße 6,95. Gewählt ist er zugunsten der Gegenseite: Am Planungsrichtwert von 1,5 MWh/(m·a) gemessen verlangte die Bestandsstraße 5,51 ct und die Innenstadtstraße 11,58 ct, und erreichbar ist beides nicht, denn auch bei einem Brennstoffpreis von null bleiben Netzverluste, Erzeuger-CAPEX, Pumpstrom und Hausanschluss, und mit vorgelagerter Gasphase steigt das Budget auf höchstens 3,96 ct. Auch im Neubaugebiet, wo der Vorlauf rechnerisch tragbar bliebe, gibt es billigere Lösungen — dasselbe Netz ohne Gasphase erreicht dort 0,43 statt 1,65 MWh/(m·a), und Wärmepumpen kosten 9.000 € je Wohneinheit gegen 86.148 € Netzanschluss im EFH-Gebiet. Am strengeren Maßstab wäre der Biomethan- und Wasserstoffpfad im Bestand also nicht teuer, sondern rechnerisch ausgeschlossen; dieses Papier rechnet mit dem milderen. Nachrechnen lässt sich beides über Tabelle 12 des beiliegenden Skripts.</p></div>
+<div class="blk"><p><em>Nachrichtlich:</em> Rechnet man Gas naiv über die volle Netzlebensdauer durch, wie es Wirtschaftlichkeitsvergleiche gelegentlich tun, fällt das Ergebnis deutlicher aus — das Budget ist dann in 32 von 36 Kombinationen negativ. Diese Rechnung beschreibt aber keine zulässige Konfiguration und wird hier nicht als Befund geführt.</p></div>
+<div class="blk"><p><strong>Warum das trotzdem nicht die entscheidende Frage ist.</strong> Nach § 29 Wärmeplanungsgesetz müssen bestehende Wärmenetze 2030 zu 30 % und 2040 zu 80 % aus erneuerbaren Quellen gespeist werden und 2045 klimaneutral sein. Eine heute gebaute Gasanlage hat damit rund 19 Jahre Perspektive, das Verteilnetz fünfzig. Was tatsächlich entsteht, ist kein Gas-KWK-Netz, sondern ein Netz mit einer Gasanlage am Anfang und einer anderen Quelle ab etwa 2045. Barwertgewichtet über die fünfzig Jahre des Netzes bei 3 % realem Zins:</p></div>
+<figure class="tblfig"><div class="tw"><table><thead><tr><th>Netz auf Gas-KWK, ab 2045 umgestellt auf …</th><th class="num">Sockel über 50 a</th><th class="num">Budget</th></tr></thead><tbody>
+<tr><td>Großwärmepumpe / Geothermie</td><td class="num">18,50 ct</td><td class="num"><strong>−0,75 ct</strong></td></tr>
+<tr><td>Abwärme, sofern erschließbar</td><td class="num">15,75 ct</td><td class="num">+2,00 ct</td></tr>
+</tbody></table></div></figure>
+<div class="blk"><p><strong>Was der Vorlauf kostet, ist eine Identität, keine Messung.</strong> Weil die Barwertgewichtung linear ist, gilt für jede Nachfolgequelle: <em>Δ Budget = w · (Sockel<sub>Gas</sub> − Sockel<sub>Nachfolge</sub>)</em>, mit w = 55,7 % als Barwertanteil der neunzehn Gasjahre. Vor der Abwärme sind das 0,557 · (20,30 − 10,02) = 5,72 ct, vor der Großwärmepumpe 0,557 · (20,30 − 16,23) = 2,26 ct. Beides sind exakt die Werte der Tabelle. Der Befund braucht dafür keinen Robustheitstest: Solange Gas den teuersten Sockel hat, ist der Beitrag des Vorlaufs zwangsläufig negativ, für jede Quelle und bei jeder Dichte. Der Sweep beantwortet nur noch die zweite Frage — ob das <em>verbleibende</em> Budget gegen die Wärmepumpe reicht.</p></div>
+
+<div class="blk"><p><strong>Und die Bedingung, unter der das gilt.</strong> Der Satz hängt daran, dass Gas-KWK-Wärme teurer ist als die der Nachfolgequelle — im Modell 20,30 gegen 16,23 ct. Das ist eine Folge des angesetzten Mehrheitspfads steigender CO₂- und sinkender Stromgroßhandelspreise, keine Naturkonstante. Mit heutigen Stromerlösen und Gas-KWK-Wärme zu 6 ct/kWh läge der Sockel bei 14,00 ct und damit <em>unter</em> dem der Großwärmepumpe; der Vorlauf senkte die Kosten dann um 1,24 ct. Genau deshalb wird in der Praxis so geplant, und es ist kein Rechenfehler der Planer — es ist eine Wette darauf, dass die vier in diesem Anhang genannten Entwicklungen ausbleiben.</p></div>
+
+<div class="blk"><p>Und die Gegenprobe: Selbst wenn die Gas-KWK-Wärme in den ersten 19 Jahren nur 6 ct/kWh kostete, läge der Sockel bei 14,99 ct, das Budget bei +2,76 ct und die erforderliche Dichte in der Bestandsstraße bei 3,00 MWh/(m·a) — erreichbar nur in dichter Innenstadtbebauung. <strong>Die Entscheidung hängt damit nicht an den Erzeugungskosten der Gasanlage, sondern an der Nachfolgequelle.</strong> Für die gilt der Befund aus Abschnitt 7: nicht entscheidbar.</p></div>
+<hr>
+
+<h2 id="a8">A.8 Herleitung des anteiligen Erzeuger-CAPEX<a class="anch" href="#a8">§</a></h2>
+<div class="blk"><p>Kapitalkosten je Kilowattstunde Wärme = Anlagenpreis × Annuität ÷ (Vollbenutzungsstunden × 1.000), bei Kuppelproduktion multipliziert mit dem Wärmeanteil. Zins 3 % real, Annuität über 25 Jahre = 0,05743.</p></div>
+<figure class="tblfig">
+<div class="readline">Die folgende Tabelle zeigt die Kapitalkosten je Kilowattstunde für vier Anlagentypen bei drei Auslastungen; fett sind die im Modell verwendeten Werte bei 4.000 Vollbenutzungsstunden.</div>
+<div class="tw"><table><thead><tr><th>Anlage</th><th class="num">Preis je MW Wärme</th><th class="num">Wärmeanteil</th><th class="num">3.000 h</th><th class="num">4.000 h</th><th class="num">5.000 h</th></tr></thead><tbody>
+<tr><td>Gasmotor-BHKW</td><td class="num">0,99 Mio. €</td><td class="num">50,2 %</td><td class="num">0,95 ct</td><td class="num"><strong>0,71 ct</strong></td><td class="num">0,63 ct</td></tr>
+<tr><td>Luft-Wasser-Großwärmepumpe, 10 MW</td><td class="num">0,99 Mio. €</td><td class="num">100 %</td><td class="num">1,90 ct</td><td class="num"><strong>1,43 ct</strong></td><td class="num">1,14 ct</td></tr>
+<tr><td>Wärmepumpe auf Abwärmequelle, 10 MW</td><td class="num">0,94 Mio. €</td><td class="num">100 %</td><td class="num">—</td><td class="num">1,34 ct</td><td class="num">1,08 ct</td></tr>
+<tr><td>Tiefengeothermie, 2.000 m</td><td class="num">1,90 Mio. €</td><td class="num">100 %</td><td class="num">—</td><td class="num">2,73 ct</td><td class="num">2,18 ct</td></tr>
+</tbody></table></div>
+<div class="readexample">Ablesebeispiel: Zeile <em>Luft-Wasser-Großwärmepumpe</em>, Spalte <em>4.000 h</em> — 1,43 ct je Kilowattstunde; bei nur 3.000 Vollbenutzungsstunden wären es 1,90 ct.</div>
+</figure>
+<div class="blk"><p>Anlagenpreise und Nutzungsdauern aus dem dänischen Technologiekatalog [<a class="src" href="#q-deael">DEA-EL</a>]; die Gasmotorwerte dort beruhen auf deutschen ASUE-BHKW-Kenndaten. Der Wärmeanteil der KWK ist energetisch alloziert: Bei einem Cb-Koeffizienten von 0,99 entfallen 50,2 % der Anlagenleistung auf die Wärme.</p></div>
+<div class="blk"><p><strong>Warum dänische Anlagenpreise hier zulässig sind, dänische Tiefbaupreise aber nicht.</strong> Tiefbau ist arbeits- und regulierungsgetrieben; die deutschen Kosten liegen dort deutlich über den dänischen (<a class="jj anh" href="#a9" tabindex="0" data-jj="a9">Anhang A.9</a>), weshalb sich beide nicht mischen lassen. Anlagentechnik ist Weltmarktware, und deutsche Anlagen sind eher teurer, nie billiger. Ein dänischer Anlagenpreis ist damit eine belastbare Untergrenze — und eine Untergrenze beim Erzeuger-CAPEX rechnet zugunsten der Fernwärme.</p></div>
+<div class="blk"><p><strong>Modellwerte und was sie auslassen.</strong> Gerechnet wird mit 0,7 ct für Gas-KWK und 1,4 ct für Großwärmepumpe/Geothermie, jeweils bei 4.000 Vollbenutzungsstunden. Nicht abgebildet sind zwei Positionen, die beide zulasten der Fernwärme gingen: die auf 19 Jahre verkürzte Restlaufzeit der Gasanlage (0,87 statt 0,71 ct, Abschnitt 2.3) und die hohen Fixbetriebskosten der Tiefengeothermie von rund 60.000 € je MW und Jahr [<a class="src" href="#q-deael">DEA-EL</a>], die bei 5.000 Stunden weitere 1,2 ct/kWh ausmachen. Mit dem Geothermie-CAPEX von 2,2 ct sinkt das Budget von +1,51 auf +0,56 ct; mit den Fixkosten wird es negativ. <strong>Tiefengeothermienetze sind nach dieser Rechnung deutlich schlechter gestellt als Großwärmepumpennetze</strong>, werden im Modell aber gemeinsam mit ihnen und zu ihren günstigeren Werten geführt.</p></div>
+<hr>
+
+<h2 id="a9">A.9 Gegenprobe am dänischen Technologiekatalog<a class="anch" href="#a9">§</a></h2>
+<div class="blk"><p>Die dänische Energieagentur veröffentlicht Kostenkataloge, die in der europäischen Fachliteratur als Referenz gelten. <strong>Kein dänischer Wert geht in die Modellrechnung ein</strong>; sie dienen ausschließlich der Prüfung deutscher Setzungen. Verglichen wird der Verteilnetzteil [<a class="src" href="#q-deaet">DEA-ET</a>].</p></div>
+<figure class="tblfig">
+<div class="readline">Die folgende Tabelle stellt jedem deutschen Modellwert den dänischen Katalogwert gegenüber; die rechte Spalte bewertet, in welche Richtung die Abweichung wirkt.</div>
+<div class="tw"><table><thead><tr><th>Position</th><th>Modellwert (deutsch)</th><th>dänischer Katalogwert</th><th>Bewertung</th></tr></thead><tbody>
+<tr><td>Trassenkosten, unbefestigt</td><td>569 €/m netto</td><td>274 €/m</td><td>deutscher Wert doppelt so hoch</td></tr>
+<tr><td>Trassenkosten, befestigte Bestandsstraße</td><td>1.422 €/m netto</td><td>349 €/m</td><td>deutscher Wert vierfach</td></tr>
+<tr><td>Trassenkosten, Innenstadt</td><td>2.986 €/m netto</td><td>383 €/m</td><td>deutscher Wert achtfach</td></tr>
+<tr><td>Netzverluste</td><td>15 % pauschal</td><td>7 % Stadt, 12,4 % Vorstadt, 18 % Neubaugebiet</td><td>plausibel, aber gebietsabhängig</td></tr>
+<tr><td>Nutzungsdauer Netz</td><td>50 a</td><td>45 a, Spanne 30–60</td><td>am oberen Rand</td></tr>
+<tr><td>Hausanschluss netzseitig</td><td>—</td><td>3.960–5.607 €, plus 33–50 % im Bestand</td><td>stützt die Modellannahme</td></tr>
+<tr><td>Netzbetrieb und Pumpstrom</td><td>0,7 ct/kWh</td><td>rund 0,23 ct/kWh</td><td>deutscher Wert dreifach, konservativ</td></tr>
+</tbody></table></div>
+<div class="readexample">Ablesebeispiel: Zeile <em>Netzbetrieb und Pumpstrom</em> — der Modellwert von 0,7 ct/kWh liegt beim Dreifachen des dänischen Werts und damit konservativ zulasten der Fernwärme.</div>
+</figure>
+<div class="blk"><p>Fünf der sieben Positionen sind konservativ zugunsten der Fernwärme gesetzt. Die Ausnahme sind die Trassenkosten, und sie ist erklärungsbedürftig: Ein Faktor zwei bis acht lässt sich nicht mit Datenstreuung erklären. Drei Ursachen kommen in Betracht — dänische Werte sind auf 2020 deflationiert und kleine Nennweiten, deutscher Tiefbau ist tatsächlich erheblich teurer (Verkehrssicherung, Leitungsdichte im Untergrund, Wiederherstellungsauflagen), und die Ablesung aus den AGFW-Punktwolken kann zu hoch liegen. Trifft die dritte Ursache zu, sind die Break-even-Schwellen dieses Papiers zu hoch angesetzt und die Fernwärme wird benachteiligt; trifft die zweite zu, ist es ein eigenständiger Befund: Dann wiederholt sich auf der Netzseite genau das deutsche Kostenproblem, das Teil I für die Wärmepumpe beschreibt. <strong>Diese Frage ist offen und gehört zu den beiden, die Abschnitt 10 einem Fachreview vorlegt.</strong></p></div>
+<div class="blk"><p>Hinzu kommt, dass beide Datensätze offenkundig nicht dasselbe messen. Der dänische Katalog weist zwischen Stadt und Vorstadt bei gleicher Nennweite nur rund 10 % Unterschied aus, die deutsche Erhebung dagegen eine Streuung um mehr als Faktor zehn innerhalb derselben Nennweite: dort Planungsdurchschnitte standardisierter Projekte, hier einzelne realisierte Bauvorhaben einschließlich der schwierigen. Der Abstand bleibt allerdings auch dann bestehen, wenn man den Median der befestigten Lagen heranzieht — er liegt beim Dreifachen des dänischen Vorstadtwerts.</p></div>
+<div class="blk"><p>Eine unabhängige Gegenrechnung stützt eher die zweite Lesart: Der Katalog weist Verteilnetzkosten auch je Quadratkilometer und Wärmedichte aus; daraus ergeben sich 1,8 bis 3,3 ct/kWh Netzkosten. Die Modellrechnung dieses Papiers kommt in der Bestandsstraße bei 1,5 MWh/(m·a) auf 5,5 ct/kWh — also rund das Doppelte, konsistent mit dem Trassenkostenunterschied und nicht mit einem Rechenfehler.</p></div>
+<hr>
+<h1 id="quellen" class="part">Quellenverzeichnis<a class="anch" href="#quellen">§</a></h1>
+<div class="blk"><p><strong>Hinweis zum Bearbeitungsstand:</strong> Die Quellen wurden vom Autor noch nicht sämtlich im Volltext geprüft und gelesen — das lag bislang über dem ehrenamtlichen Zeitbudget und wird aus eigenem Interesse nachgeholt. Wo dieses Papier auf einer Sekundäraufbereitung beruht, ist das im jeweiligen Eintrag vermerkt. Wer eine Angabe im Original prüft und eine Abweichung findet, möge sie bitte melden.</p></div>
+<div class="blk"><p><strong>Hinweis zu den Links:</strong> Noch nicht jeder Eintrag trägt eine URL; alle Angaben sind aber so gefasst, dass die Quelle über Titel, Herausgeber und Datum auffindbar ist. Die Vervollständigung erfolgt in der gelayouteten Fassung.</p></div>
+
+<h2 id="q-teil-i">Teil I<a class="anch" href="#q-teil-i">§</a></h2>
+<h3 id="q-preisvergleich">Preisvergleich Europa<a class="anch" href="#q-preisvergleich">§</a></h3>
+<div class="blk"><p><strong>Verbraucherzentrale Rheinland-Pfalz (2025):</strong> Auswertung von 160 Angeboten für Luft-Wasser-Wärmepumpen, Erhebungszeitraum Oktober 2024 – Mai 2025. Preisspanne 20.000–63.000 €, Durchschnitt 36.300 €, Median 35.000 €.
+→ Zu finden über: verbraucherzentrale-rlp.de, Pressemitteilungen 2025</p></div>
+<div class="blk"><p id="q-octopusrwth"><strong>RWTH Aachen / Octopus Energy (2025):</strong> White Paper RWTH-EBC 2025-001, „Analyse der Endkundenpreise für Luft-Wasser-Wärmepumpen: Deutschland – Vereinigtes Königreich“, Autoren: Vering, Kühn, Maier, Müller.
+→ DOI: 10.18154/RWTH-2025-05335</p></div>
+<div class="blk"><p><strong>heatpumpswatch.org (Februar 2026):</strong> „Wärmepumpen-Installationskosten im europäischen Vergleich“, mit Preistabellen für DE, UK, FR, NL, AT, PL.
+→ <a href="https://heatpumpswatch.org/de/waermepumpen-installationskosten-im-europaeischen-vergleich/">https://heatpumpswatch.org/de/waermepumpen-installationskosten-im-europaeischen-vergleich/</a></p></div>
+
+<h3 id="q-foerderstruktur">Förderstruktur<a class="anch" href="#q-foerderstruktur">§</a></h3>
+<div class="blk"><p><strong>BAFA / BEG (2024):</strong> Förderrichtlinien Bundesförderung für effiziente Gebäude – Einzelmaßnahmen. Fördersätze 30–70 %, Deckelung 30.000 € förderfähige Kosten.
+→ <a href="https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/Bundesfoerderung_effiziente_Gebaeude/beg_node.html">https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/Bundesfoerderung_effiziente_Gebaeude/beg_node.html</a></p></div>
+<div class="blk"><p><strong>UK Boiler Upgrade Scheme (2024):</strong> DESNZ, Festbetrag 7.500 GBP für Wärmepumpen-Installationen.
+→ <a href="https://www.gov.uk/apply-boiler-upgrade-scheme">https://www.gov.uk/apply-boiler-upgrade-scheme</a></p></div>
+<div class="blk"><p><strong>MaPrimeRénov' / ADEME (2024):</strong> Einkommensabhängige Festbeträge 4.000–9.000 € für Wärmepumpen in Frankreich.
+→ <a href="https://www.maprimerenov.gouv.fr/">https://www.maprimerenov.gouv.fr/</a></p></div>
+
+<h3 id="q-normenhaftung">Normen und Haftung<a class="anch" href="#q-normenhaftung">§</a></h3>
+<div class="blk"><p><strong>Wissenschaftliche Dienste des Bundestags (2023):</strong> WD-5-073-23, „Rechtsnatur und Umsetzungskosten der VDI-Richtlinie 4640“. Dokumentiert den formal freiwilligen, faktisch verbindlichen Charakter von VDI-Richtlinien.
+→ <a href="https://www.bundestag.de/resource/blob/989734/5d9efb7effb19739178bb5353ca01606/WD-5-073-23-pdf.pdf">https://www.bundestag.de/resource/blob/989734/5d9efb7effb19739178bb5353ca01606/WD-5-073-23-pdf.pdf</a></p></div>
+<div class="blk"><p><strong>Koalitionsvertrag CDU/CSU-SPD (Mai 2025):</strong> „Verantwortung für Deutschland“ — Ankündigung, „die Bindungswirkung von Normsetzungen durch Selbstverwaltungsorganisationen auf ein sicherheitsrelevantes Maß zurückzuführen“.
+→ <a href="https://www.bundesregierung.de/breg-de/aktuelles/koalitionsvertrag-2025-2340970">https://www.bundesregierung.de/breg-de/aktuelles/koalitionsvertrag-2025-2340970</a></p></div>
+<div class="blk"><p><strong>DIN e. V. — Finanzierungsstruktur:</strong> Eigenangabe DIN (~59 % aus Normenverkauf/Mitgliedsbeiträgen); DIN Media GmbH als Vermarktungsgesellschaft im Eigentum von DIN e. V., VDI, ASI und SNV.
+→ <a href="https://www.din.de/de/din-und-seine-partner/din-e-v/finanzierung-von-din-e-v/faq-finanzierung-und-kosten-von-normen">https://www.din.de/de/din-und-seine-partner/din-e-v/finanzierung-von-din-e-v/faq-finanzierung-und-kosten-von-normen</a></p></div>
+<div class="blk"><p><strong>Eckpunktepapier Gebäudetyp E (20. November 2025):</strong> BMJV/BMWSB, Eckpunkte für ein „Gesetz zur zivilrechtlichen Erleichterung des Gebäudebaus“.
+→ <a href="https://www.bmjv.de/SharedDocs/Gesetzgebungsverfahren/DE/2025_GebauedetypE.html">https://www.bmjv.de/SharedDocs/Gesetzgebungsverfahren/DE/2025_GebauedetypE.html</a></p></div>
+
+<h3 id="q-heizstabtechnik">Heizstab und Technik<a class="anch" href="#q-heizstabtechnik">§</a></h3>
+<div class="blk"><p><strong>Fraunhofer ISE — WPsmart im Bestand (2020):</strong> Feldtest mit 56 Wärmepumpenanlagen, Leitung Dr. Marek Miara. Heizstabanteil bei korrekt ausgelegten Luft-Wasser-Wärmepumpen: 1,9 % der Heizarbeit.
+→ <a href="https://www.ise.fraunhofer.de/de/presse-und-medien/presseinformationen/2020/warmepumpen-funktionieren-auch-in-bestandsgebaeuden-zuverlaessig.html">https://www.ise.fraunhofer.de/de/presse-und-medien/presseinformationen/2020/warmepumpen-funktionieren-auch-in-bestandsgebaeuden-zuverlaessig.html</a></p></div>
+<div class="blk"><p><strong>ZVSHK-Panelbefragung (2024):</strong> Durchschnittliche Installationszeit Wärmepumpe 110 Monteurstunden, Gaskessel 36 Monteurstunden. n = 1.121, Juli 2024.
+→ Veröffentlicht über den Zentralverband Sanitär Heizung Klima, zvshk.de</p></div>
+<div class="blk"><p><strong>Fraunhofer ISE — WESPE-Studie (2025):</strong> Zeitverteilung bei WP-Installationen: 81 % Installation und Fahrzeit, 19 % Planung/Abrechnung. Analyse von 30 Installationen.
+→ Über Fraunhofer ISE, Abteilung Wärmepumpensysteme, ise.fraunhofer.de</p></div>
+
+<h3 id="q-14a-uk">§ 14a EnWG und UK-Modell<a class="anch" href="#q-14a-uk">§</a></h3>
+<div class="blk"><p><strong>Bundesnetzagentur (2024):</strong> Festlegung zur Integration steuerbarer Verbrauchseinrichtungen gemäß § 14a EnWG, gilt seit 1. Januar 2024. Schwellenwert 4,2 kW elektrische Dauerleistung.
+→ <a href="https://www.bundesnetzagentur.de">https://www.bundesnetzagentur.de</a> (Suchbegriff: „§ 14a EnWG Festlegung“)</p></div>
+<div class="blk"><p><strong>BSI — PAS 1878:2021 und PAS 1879:2021:</strong> Britische Standards für Energy Smart Appliances und Demand Side Response. Kostenlos zugänglich.
+→ <a href="https://www.bsigroup.com/en-GB/insights-and-media/insights/brochures/pas-1878-and-pas-1879/">https://www.bsigroup.com/en-GB/insights-and-media/insights/brochures/pas-1878-and-pas-1879/</a></p></div>
+<div class="blk"><p><strong>DESNZ / PV Magazine (April 2025):</strong> Ankündigung Smart-Ready-Pflicht für Wärmepumpen in UK ab 2026.
+→ <a href="https://www.pv-magazine.com/2025/04/25/uk-government-announces-smart-ready-regulations-for-heat-pumps-new-flexibility-obligations-for-utilities/">https://www.pv-magazine.com/2025/04/25/uk-government-announces-smart-ready-regulations-for-heat-pumps-new-flexibility-obligations-for-utilities/</a></p></div>
+
+<h3 id="q-umsatzsteuer">Umsatzsteuer<a class="anch" href="#q-umsatzsteuer">§</a></h3>
+<ul>
+<li id="q-rl2022542"><strong><a class="src" href="#q-rl2022542">[RL-2022-542]</a></strong> Richtlinie (EU) 2022/542 des Rates vom 5. April 2022 in Bezug auf die Mehrwertsteuersätze. Fügt Anhang III Nr. 10c (Solarpaneele) und Nr. 22 (u. a. hocheffiziente emissionsarme Heizanlagen, Fernwärme) ein. <em>EU-Rechtsakt.</em>
+→ <a href="https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32022L0542">https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX%3A32022L0542</a></li>
+<li id="q-btwd06222"><strong><a class="src" href="#q-btwd06222">[BT-WD-062-22]</a></strong> Wissenschaftliche Dienste des Deutschen Bundestages: WD 4-3000-062/22, „Möglichkeiten der Mehrwertsteuerermäßigung und -befreiung nach der Richtlinie (EU) 2022/542“. Dokumentiert die Beschränkung des Nullsatzes auf Anhang III Nrn. 1–6 und 10c. <em>Parlamentarischer Gutachtendienst.</em>
+→ <a href="https://www.bundestag.de/resource/blob/899430/4d250bcb182988097f43d91f2060b210/WD-4-062-22-pdf.pdf">https://www.bundestag.de/resource/blob/899430/4d250bcb182988097f43d91f2060b210/WD-4-062-22-pdf.pdf</a></li>
+</ul>
+
+<h2 id="q-teil-ii">Teil II (mit Kennzeichnung der Interessenlage)<a class="anch" href="#q-teil-ii">§</a></h2>
+<ul>
+<li id="q-octopusrwth2"><strong><a class="src" href="#q-octopusrwth2">[Octopus-RWTH]</a></strong> Octopus Energy / RWTH Aachen, Lehrstuhl für Gebäude- und Raumklimatechnik: Vergleichsstudie WP-Installationskosten DE/UK, März 2025. <em>Interessenlage: Octopus ist WP-Anbieter mit Interesse an Kostensenkung; wissenschaftliche Begleitung RWTH; Datenbasis reale Angebote.</em></li>
+<li id="q-hug"><strong><a class="src" href="#q-hug">[HuG]</a></strong> Haus &amp; Grund Bonn/Rhein-Sieg: „Wärmepumpen-Installationskosten im europäischen Vergleich“ (Sechs-Länder-Vergleich 2022–2025). <em>Eigentümerverband; Sekundäraufbereitung.</em></li>
+<li id="q-iseqs"><strong><a class="src" href="#q-iseqs">[ISE-QS]</a></strong> Fraunhofer ISE: Projekt „Wärmepumpen-Qualitätssicherung im Bestand“, Schlussbericht/PI Nov. 2025; 77 Anlagen, 4 Jahre Feldmessung. <em>Unabhängige Forschung; Projektpartner u. a. Hersteller.</em></li>
+<li id="q-isesmart"><strong><a class="src" href="#q-isesmart">[ISE-smart]</a></strong> Fraunhofer ISE: „WPsmart im Bestand“, Abschluss 2019/2020; 56 Bestandsgebäude. <em>Unabhängige Forschung.</em></li>
+<li id="q-prognosvku"><strong><a class="src" href="#q-prognosvku">[Prognos-VKU]</a></strong> Prognos AG im Auftrag des VKU: „Perspektive der Fernwärme“, Aktualisierung 2024 (74 Mrd. € bis 2045; 3,4–3,5 Mrd. €/a Förderbedarf; 59 Tm/Gebäude). <em>Verbandsgutachten der kommunalen Versorgungswirtschaft — Interessenlage: hoher ausgewiesener Förderbedarf.</em></li>
+<li id="q-agfwhb"><strong><a class="src" href="#q-agfwhb">[AGFW-HB]</a></strong> AGFW-Hauptbericht (jährlich; Netzverluste Ø ~12 %, mittl. Anschlusswert 138 kW/Übergabestation). <em>Verbandsstatistik auf Basis freiwilliger Mitgliederbefragung.</em></li>
+<li id="q-agfwph"><strong><a class="src" href="#q-agfwph">[AGFW-PH]</a></strong> AGFW-Praxishilfe „Fernwärmeleitungsbau – Verlegesysteme und Kosten“ (Umfrage Ende 2020/Anfang 2021, Kunststoffmantelrohre Dämmserie 1). <em>Frei abrufbar, aber urheberrechtlich geschützt; weist die Kostenergebnisse ausschließlich als Punktwolken ohne Zahlenwerte, Mittelwerte oder Quantile aus — im Text als Transparenzproblem adressiert.</em>
+→ <a href="https://www.agfw.de/technik-normung/aktuelles-aus-dem-bereich/newsdetail/praxishilfe-fernwaermeleitungsbau-verlegesysteme-und-kosten">https://www.agfw.de/technik-normung/aktuelles-aus-dem-bereich/newsdetail/praxishilfe-fernwaermeleitungsbau-verlegesysteme-und-kosten</a></li>
+<li id="q-agfwtaz"><strong><a class="src" href="#q-agfwtaz">[AGFW-taz]</a></strong> taz, 09.11.2023: Angabe der AGFW-Vorstandsvorsitzenden Kerstin Andreae zu Infrastrukturkosten des Fernwärmeausbaus von 2.000–4.000 €/m. <em>Verbandsangabe in journalistischer Wiedergabe — Interessenlage: Begründung eines höheren Förderbedarfs.</em></li>
+<li id="q-duh"><strong><a class="src" href="#q-duh">[DUH]</a></strong> Deutsche Umwelthilfe: Hintergrundpapier „Netzverluste in Wärmenetzen“, 23.09.2022 (11,6 von 70 TWh/a; Spannweite 1–42,8 %). <em>Umwelt-NGO; Datenbasis: Pflichtveröffentlichungen der Betreiber.</em></li>
+<li id="q-bkarta2025"><strong><a class="src" href="#q-bkarta2025">[BKartA-2025]</a></strong> Bundeskartellamt: PM 20.03.2025 zu laufenden Fernwärmeverfahren; Jahresbericht 2024/25 (sieben Pilotverfahren; Monopolstellung; Zitat Mundt zur Nichtregulierbarkeit). <em>Behörde.</em></li>
+<li id="q-bkarta2012"><strong><a class="src" href="#q-bkarta2012">[BKartA-2012]</a></strong> Bundeskartellamt: Sektoruntersuchung Fernwärme, Abschlussbericht 2012. <em>Behörde.</em></li>
+<li id="q-ifeuwn40"><strong><a class="src" href="#q-ifeuwn40">[ifeu-WN4.0]</a></strong> ifeu et al.: „Wärmenetzsysteme 4.0“, Endbericht (Abwärmeannahme 4 ct/kWh; Förderbedarf teils &gt;50 % der Investition). <em>Unabhängiges Institut im BMWi-Auftrag.</em>
+→ <a href="https://www.ifeu.de/projekt/waermenetzsysteme-4-0/">https://www.ifeu.de/projekt/waermenetzsysteme-4-0/</a></li>
+<li id="q-vdidim"><strong><a class="src" href="#q-vdidim">[VDI-Dim]</a></strong> „Dimensionierung von Fernwärmenetzen“, VDI-Fachmedien/ingenieur.de (Straßenzuschlag 18–23 %; Verteilkosten ~2,16 ct/kWh bei 2 MWh/(m·a)). <em>Fachliteratur.</em></li>
+<li id="q-npro"><strong><a class="src" href="#q-npro">[nPro]</a></strong> nPro Energy: Planungskennwert Wärmeliniendichte, Grenzwert ~1,5 MWh/(m·a) für konventionelle Netze. <em>Software-Anbieter Quartiersplanung; Planungspraxiswert.</em></li>
+<li id="q-nprown"><strong><a class="src" href="#q-nprown">[nPro-WN]</a></strong> nPro Energy: Dokumentation Wirtschaftlichkeitsberechnung Quartiere (Rechenbeispiel 500 €/m Rohrnetz + 400 €/m Erdarbeiten; Wartung 1 %/a der Investition). <em>Software-Anbieter; Planungspraxiswerte.</em></li>
+<li id="q-zfkavb"><strong><a class="src" href="#q-zfkavb">[ZfK-AVB]</a></strong> ZfK (Zeitung für kommunale Wirtschaft), Dez. 2025: BMWK-Ankündigung zur AVBFernwärmeV-Novelle (Kabinett Sommer 2026; Wärmenetzregister). <em>Fachmedium der kommunalen Wirtschaft.</em></li>
+<li id="q-monkomm"><strong><a class="src" href="#q-monkomm">[MonKomm]</a></strong> Monopolkommission: Hauptgutachten XXV, Kap. V „Wettbewerb im Fernwärmemarkt“. <em>Unabhängiges Beratungsgremium.</em></li>
+<li id="q-swmfw"><strong><a class="src" href="#q-swmfw">[SWM-FW]</a></strong> Stadtwerke Münster: Kostenübersicht Fernwärme; Preisbeispiel Hausanschluss Einfamilienhaus 10 kW rund 7.800 € (Preisstand 01.01.2025), enthält Hausanschlussverlegung, Baukostenzuschuss und Inbetriebsetzung — nicht die Übergabestation und die gebäudeinterne Installation. <em>Kommunaler Versorger, eigene Preisangabe; regional und nicht repräsentativ, aber ein veröffentlichtes Preisbeispiel statt einer Marktschätzung.</em>
+→ <a href="https://www.stadtwerke-muenster.de/wissen/fernwaerme/fernwaerme-kosten">https://www.stadtwerke-muenster.de/wissen/fernwaerme/fernwaerme-kosten</a></li>
+<li id="q-42watt"><strong><a class="src" href="#q-42watt">[42watt]</a></strong> 42watt: Ratgeber „Fernwärme Kosten“ (Stand 04/2026); einmalige Anschluss- und Übergabestationskosten 5.000–15.000 €. <em>Kommerzielles Sanierungsportal mit Wärmepumpen-Vermittlung — Interessenlage zugunsten dezentraler Lösungen.</em>
+→ <a href="https://42watt.de/magazin/fernwaerme-kosten">https://42watt.de/magazin/fernwaerme-kosten</a></li>
+<li id="q-heizungde"><strong><a class="src" href="#q-heizungde">[heizung.de]</a></strong> heizung.de (Viessmann-Gruppe): Fernwärme-Kostenübersicht (Übergabetechnik 7.500–20.000 €; Grundpreis 50–150 €/kW·a; Arbeitspreise regional 12–20 ct/kWh, Stand 02/2026). <em>Herstellernahes Portal.</em></li>
+<li id="q-deaet"><strong><a class="src" href="#q-deaet">[DEA-ET]</a></strong> Danish Energy Agency / Energinet: Technology Data — Energy Transport, Kapitel 3 (Fernwärmeverteilung, Gebietstypen Neubaugebiet/Vorstadt/Stadt), Datenblattversion 08. Kostenbasis 2020-EURO, Projektdaten Ramboll, konsolidiert mit dem dänischen Fernwärmeverband. <em>Amtlicher Katalog; in diesem Papier ausschließlich als Gegenprobe verwendet, kein Wert geht ins Modell ein.</em></li>
+<li id="q-deael"><strong><a class="src" href="#q-deael">[DEA-EL]</a></strong> Danish Energy Agency / Energinet: Technology Data — Generation of Electricity and District Heating, Datenblattversion 0018 (Gasmotoren Kap. 06, Großwärmepumpen Kap. 40, Geothermie Kap. 45). Gasmotordaten dort auf Basis der deutschen ASUE-BHKW-Kenndaten. <em>Amtlicher Katalog; Anlagenpreise als Untergrenze für die CAPEX-Herleitung verwendet, siehe <a class="jj anh" href="#a8" tabindex="0" data-jj="a8">Anhang A.8</a>.</em></li>
+<li id="q-deahi"><strong><a class="src" href="#q-deahi">[DEA-HI]</a></strong> Danish Energy Agency: Technology Data — Heating Installations, Datenblattversion 07 (Kap. 207, Luft-Wasser-Wärmepumpe im Bestandseinfamilienhaus: 12.869 € netto, Bandbreite 10.300–15.400 €, Preisstand 2025; Nutzungsdauer 20 a; Jahresarbeitszahl 3,3; Wartung 350 €/a). <em>Amtlicher Katalog; unabhängige Bestätigung des europäischen Preisniveaus.</em></li>
+<li id="q-prognosstrom"><strong><a class="src" href="#q-prognosstrom">[Prognos-Strom]</a></strong> Prognos AG im Auftrag der vbw: Strompreisprognose bis 2045 (mittlerer Pfad: 86 €/MWh 2030, rund 73 €/MWh 2045; steigende Volatilität). <em>Auftragsgutachten eines Wirtschaftsverbands; hier nur für die Richtung der Großhandelspreisentwicklung herangezogen.</em></li>
+<li id="q-wolffjagnow"><strong><a class="src" href="#q-wolffjagnow">[Wolff-Jagnow]</a></strong> Wolff, D.; Jagnow, K. (2011): „Untersuchung von Nah- und Fernwärmenetzen“, Endbericht (deutscher Fernwärme-Bundesdurchschnitt &gt;4.000 kWh/(m·a); Bioenergiedörfer 636–2.619 kWh/(m·a)). <em>Unabhängige Fachstudie; über freie-waerme.de verbreitet — Verbreitungsplattform mit Interesse an dezentraler Wärmeversorgung.</em></li>
+<li id="q-destatis61261"><strong><a class="src" href="#q-destatis61261">[Destatis-61261]</a></strong> Statistisches Bundesamt, Preisindizes für die Bauwirtschaft, Tabelle 61261 (Ingenieurbau/Tiefbau), Bauwerksart „Ortskanäle“, Basis 2021 = 100; Mai 2026 = 142,2. <em>Amtliche Statistik.</em>
+→ <a href="https://www-genesis.destatis.de">https://www-genesis.destatis.de</a> (Tabellen 61261-0003 und 61261-0004)</li>
+<li id="q-vdi2067"><strong><a class="src" href="#q-vdi2067">[VDI-2067]</a></strong> VDI 2067 Blatt 1: „Wirtschaftlichkeit gebäudetechnischer Anlagen — Grundlagen und Kostenberechnung“ (Ausgabe 2012-09). Standardverfahren der Annuitätenmethode; europäisches Pendant DIN EN 15459-1. <em>Technisches Regelwerk (kostenpflichtig).</em></li>
+<li id="q-carmen"><strong><a class="src" href="#q-carmen">[CARMEN]</a></strong> C.A.R.M.E.N. e. V.: Merkblatt „Nahwärmenetze und Bioenergieanlagen“ (Trassenkosten 200–400 €/m ländlich). <em>Fachverband Nachwachsende Rohstoffe; Planungspraxis.</em></li>
+<li id="q-borderstep"><strong><a class="src" href="#q-borderstep">[Borderstep]</a></strong> Clausen, J. (2012): „Kosten und Marktpotenziale ländlicher Wärmenetze“, Borderstep Institut (~18.000 €/Haushalt bei 50 m Leitungslänge). <em>Unabhängiges Institut.</em></li>
+<li id="q-bnetzamon"><strong><a class="src" href="#q-bnetzamon">[BNetzA-Mon]</a></strong> Bundesnetzagentur: Monitoringbericht 2025 — Durchschnittspreis Wärmepumpenstrom ab 2024 ca. 20,3 ct/kWh bei 5.636 kWh/a Referenzverbrauch. <em>Behörde; hier über Sekundäraufbereitung zitiert.</em></li>
+<li id="q-verivox"><strong><a class="src" href="#q-verivox">[Verivox]</a></strong> Verivox: Preisentwicklung Wärmepumpenstrom 2026 (Neukundendurchschnitt ~20,7 ct/kWh); übereinstimmend Marktkorridor 20–26 ct/kWh bei mehreren Vergleichsportalen. <em>Kommerzielles Vergleichsportal.</em></li>
+</ul>
+<h2 id="herkunft">Herkunft der Modellannahmen<a class="anch" href="#herkunft">§</a></h2>
+<div class="blk"><p>Jede Setzung der Simulation mit ihrer Grundlage. Die Ampel in der Spalte <em>Status</em> zeigt, worauf ein Wert beruht; die rot markierten Zeilen sind die vorrangigen Angriffspunkte für Fachkritik.</p></div>
+
+<div class="legend" role="group" aria-label="Ampel-Filter">
+<button class="liall active" data-filter="all">Alle</button>
+<button class="li" data-filter="g"><span class="chip g">belegt</span> Wert stammt aus einer benannten Quelle</button>
+<button class="li" data-filter="y"><span class="chip y">Planungspraxis</span> üblicher Kennwert ohne belegten Einzelwert</button>
+<button class="li" data-filter="r"><span class="chip r">eigene Setzung</span> begründete Schätzung ohne belegte Referenz</button>
+</div>
+<div class="blk"><p>Zwei Chips in einer Zeile heißen: teils belegt, teils gesetzt.</p></div>
+
+<div class="blk"><p>Die folgende Tabelle zeigt jede Modellannahme mit ihrem Wert, ihrer Ampel und ihrer Grundlage.</p></div>
+<figure class="tblfig">
+<div class="tw"><table id="annahmen-table"><thead><tr><th>Annahme</th><th>Wert</th><th>Status</th><th>Grundlage</th></tr></thead><tbody>
+<tr data-chips="g"><td>Rechenverfahren</td><td>Annuitätenmethode, real</td><td class="chip-col"><span class="chip g">belegt</span></td><td>Standardverfahren [<a class="src" href="#q-vdi2067">VDI-2067</a>]; Nutzungsdauern dort tabelliert</td></tr>
+<tr data-chips="g"><td>Kalkulationszins</td><td>3 % real</td><td class="chip-col"><span class="chip g">belegt</span></td><td>In der Wärmenetz-Wirtschaftlichkeitsrechnung konventioneller Ansatz [<a class="src" href="#q-vdidim">VDI-Dim</a>, <a class="src" href="#q-vdi2067">VDI-2067</a>]</td></tr>
+<tr data-chips="g y"><td>Netz-Nutzungsdauer / Instandhaltung</td><td>50 a / 1 %/a</td><td class="chip-col"><span class="chip g">belegt</span><span class="chip y">Planungspraxis</span></td><td>AGFW nennt für Kunststoffmantelrohre Erfahrungen über mehr als fünf Jahrzehnte [<a class="src" href="#q-agfwph">AGFW-PH</a>]; Instandhaltungssatz aus der Planungspraxis [<a class="src" href="#q-nprown">nPro-WN</a>]</td></tr>
+<tr data-chips="g"><td>Trassenkosten</td><td>677 / 1.692 / 3.554 €/m brutto</td><td class="chip-col"><span class="chip g">belegt</span></td><td>Medianablesung aus den Punktwolken der AGFW-Umfrage [<a class="src" href="#q-agfwph">AGFW-PH</a>], netto 2021, fortgeschrieben mit dem amtlichen Baupreisindex Ortskanäle [<a class="src" href="#q-destatis61261">Destatis-61261</a>] und mit Umsatzsteuer belegt. Gegenprobe an [<a class="src" href="#q-agfwtaz">AGFW-taz</a>], [<a class="src" href="#q-nprown">nPro-WN</a>], [<a class="src" href="#q-carmen">CARMEN</a>] — siehe <a class="jj anh" href="#a4" tabindex="0" data-jj="a4">Anhang A.4</a></td></tr>
+<tr data-chips="g r"><td>Hausanschluss + Übergabestation</td><td>10.000 €</td><td class="chip-col"><span class="chip g">belegt</span><span class="chip r">eigene Setzung</span></td><td>Netzseitiger Teil durch Versorger-Preisbeispiel belegt (~7.800 €, EFH 10 kW) [<a class="src" href="#q-swmfw">SWM-FW</a>]; gebäudeseitiger Teil stark objektabhängig und nur durch eine Einzelschätzung gestützt. Konservative Schätzung am unteren Rand der publizierten Korridore 5.000–15.000 € [<a class="src" href="#q-42watt">42watt</a>] bzw. 7.500–20.000 € [<a class="src" href="#q-heizungde">heizung.de</a>]. Schwächste Einzelannahme — Sensitivität in <a class="jj anh" href="#a6" tabindex="0" data-jj="a6">Anhang A.6</a></td></tr>
+<tr data-chips="g r"><td>Trassenmeter je Gebäude</td><td>59 Tm (Bundesmittel)</td><td class="chip-col"><span class="chip g">belegt</span><span class="chip r">eigene Setzung</span></td><td>[<a class="src" href="#q-prognosvku">Prognos-VKU</a>]; Differenzierung nach Quartierstyp in Abschn. 6 ist eigene Setzung</td></tr>
+<tr data-chips="g"><td>Erzeugungskosten Abwärme</td><td>3,5 ct/kWh</td><td class="chip-col"><span class="chip g">belegt</span></td><td>An die ifeu-Annahme von 4 ct/kWh angelehnt, bewusst leicht darunter [<a class="src" href="#q-ifeuwn40">ifeu-WN4.0</a>]</td></tr>
+<tr data-chips="r"><td>Erzeugungskosten GroßWP/Geothermie, Gas-KWK</td><td>7 / 10,5 ct/kWh</td><td class="chip-col"><span class="chip r">eigene Setzung</span></td><td>Hergeleitet aus Strompreis und COP bzw. Gaspreis plus CO₂-Pfad; nicht aus einer Einzelquelle belegt — zusammen mit den Trassenkosten die größte Unsicherheit der Rechnung</td></tr>
+<tr data-chips="g r"><td>Anteiliger Erzeuger-CAPEX</td><td>0,3 / 1,4 / 0,7 ct/kWh</td><td class="chip-col"><span class="chip g">belegt</span><span class="chip r">eigene Setzung</span></td><td>Hergeleitet aus Anlagenpreis, Nutzungsdauer und Vollbenutzungsstunden [<a class="src" href="#q-deael">DEA-EL</a>]; Rechnung in <a class="jj anh" href="#a8" tabindex="0" data-jj="a8">Anhang A.8</a>. Abwärme-Einbindung bleibt eigene Setzung</td></tr>
+<tr data-chips="g"><td>Netzverluste</td><td>15 %</td><td class="chip-col"><span class="chip g">belegt</span></td><td>Mittelwert zwischen Verbandsangabe ~12 % [<a class="src" href="#q-agfwhb">AGFW-HB</a>] und NGO-Auswertung ~17 % [<a class="src" href="#q-duh">DUH</a>]</td></tr>
+<tr data-chips="r"><td>Pumpstrom + Netzbetrieb</td><td>0,7 ct/kWh</td><td class="chip-col"><span class="chip r">eigene Setzung</span></td><td>Ohne belegte Einzelquelle; Gegenprobe am dänischen Katalog in <a class="jj anh" href="#a9" tabindex="0" data-jj="a9">Anhang A.9</a></td></tr>
+<tr data-chips="g"><td>WP-Preis EU / DE</td><td>16.660 / 30.000 € brutto (Sensitivitätsstufe 14.700 €)</td><td class="chip-col"><span class="chip g">belegt</span></td><td>Europäischer Nettopreis ~14.000 € [<a class="src" href="#q-octopusrwth2">Octopus-RWTH</a>, <a class="src" href="#q-hug">HuG</a>], mit 19 % Umsatzsteuer belegt; die untere Stufe entspricht einem ermäßigten Satz von 5 %; DE = Median der 160-Angebote-Erhebung. <em>Heutiges</em> Marktniveau — künftige Kostensenkungen durch den Hochlauf sind nicht eingerechnet (Abschn. 10)</td></tr>
+<tr data-chips="g"><td>Jahresarbeitszahl</td><td>3,4 (Sensitivität 3,1)</td><td class="chip-col"><span class="chip g">belegt</span></td><td>Feldmessung 77 Anlagen [<a class="src" href="#q-iseqs">ISE-QS</a>], Vorgängerwert 3,1 [<a class="src" href="#q-isesmart">ISE-smart</a>]</td></tr>
+<tr data-chips="g"><td>WP-Strompreis</td><td>26 ct/kWh brutto</td><td class="chip-col"><span class="chip g">belegt</span></td><td>Oberer Rand des Marktkorridors 2026 von 20–26 ct/kWh [<a class="src" href="#q-bnetzamon">BNetzA-Mon</a>, <a class="src" href="#q-verivox">Verivox</a>] — konservativ, aber marktexistent</td></tr>
+<tr data-chips="g"><td>Wartung Wärmepumpe</td><td>250 €/a</td><td class="chip-col"><span class="chip g">belegt</span></td><td>Oberer Rand des deutschen Korridors 150–250 €/a; dänischer Katalog nennt 350 €/a [<a class="src" href="#q-deahi">DEA-HI</a>]</td></tr>
+<tr data-chips="r"><td>Heizkörper / hydraul. Abgleich</td><td>2.000 €</td><td class="chip-col"><span class="chip r">eigene Setzung</span></td><td>Im Korridor 0–5.000 €</td></tr>
+<tr data-chips="r"><td>Anteilige Stromnetzverstärkung</td><td>1.000 €</td><td class="chip-col"><span class="chip r">eigene Setzung</span></td><td>Bewusst zulasten der Wärmepumpe angesetzt</td></tr>
+<tr data-chips="r"><td>Referenzwärmebedarf</td><td>15.000 kWh/a</td><td class="chip-col"><span class="chip r">eigene Setzung</span></td><td>Bestandsgebäude</td></tr>
+<tr data-chips="y"><td>WLD-Orientierungswerte, Schwelle ~1,5 MWh/(m·a)</td><td>Planungspraxis [nPro]</td><td class="chip-col"><span class="chip y">Planungspraxis</span></td><td>Bundesdurchschnitt &gt;4.000 kWh/(m·a) [<a class="src" href="#q-wolffjagnow">Wolff-Jagnow</a>]</td></tr>
+<tr data-chips="g"><td>WP-Festbetrag Opportunitätsrechnung</td><td>9.000 €</td><td class="chip-col"><span class="chip g">belegt</span></td><td>Am britischen Boiler Upgrade Scheme orientiert (7.500 GBP)</td></tr>
+</tbody></table></div>
+</figure>
+<div class="readexample" style="margin-left:48px">Ablesebeispiel: Zeile <em>Pumpstrom + Netzbetrieb</em> — der Wert von 0,7 ct/kWh trägt den roten Chip, ist also weder belegt noch Planungspraxis, sondern eine eigene Schätzung.</div>
+<div class="blk"><p><em>Rot markierte Zeilen sind Setzungen ohne belegte Einzelquelle. Sie sind in der Sensitivitätsanalyse (Abschnitt 7) durchgerechnet; die qualitativen Kernaussagen hängen an keiner von ihnen allein.</em></p></div>
+<hr>
+<div class="blk"><p><em>Florian Schulte, Gießen — August 2026 (Erstfassung Mai 2026). Dieses Papier gibt die persönliche Einschätzung des Autors wieder und erhebt keinen Anspruch auf Vollständigkeit. Rückfragen, Korrekturen und Gegenrechnungen ausdrücklich willkommen; Simulationsskript unter MIT-Lizenz beigefügt.</em></p></div>
+<div class="blk"><p><em><strong>Lizenz.</strong> Text und Abbildungen dieses Papiers stehen unter <a href="https://creativecommons.org/licenses/by/4.0/deed.de">CC BY 4.0</a> — Weitergabe und Bearbeitung sind erlaubt, auch kommerziell, sofern der Autor genannt wird. Das beiliegende Simulationsskript steht abweichend davon unter der MIT-Lizenz; der Lizenztext steht im Kopf des Skripts.</em></p></div>
+
+<h1 id="skript" class="part">Das Simulationsskript<a class="anch" href="#skript">§</a></h1>
+<div class="codewrap">
+<p style="max-width:var(--measure)">Alle Zahlen dieses Papiers stammen aus dem folgenden Skript. Es läuft ohne Programmbibliotheken, alle Annahmen stehen als benannte Konstanten im Kopf. Lizenz: MIT — Kommunen, Stadtwerke und Verbände können es mit lokalen Werten neu rechnen.</p>
+<div class="btns"><button id="cp">Skript kopieren</button><button id="dl">Als .py herunterladen</button></div>
+<details style="margin-top:1rem"><summary>Quelltext anzeigen (428 Zeilen)</summary>
+<pre id="pycode"></pre></details>
+</div>
+</main></div>
+<script type="text/plain" id="py-source"># -*- coding: utf-8 -*-
+"""
+Systemkostenvergleich Waermepumpe vs. Fernwaerme  —  Version 2.7 (August 2026)
+Florian Schulte, Giessen.  Lizenz: MIT — bitte nachrechnen und widersprechen.
+
+Reproduziert saemtliche Tabellen in Teil II des Diskussionspapiers V4.
+Python 3, keine Abhaengigkeiten:   python3 simulation_wp_fernwaerme_v2-7.py
+
+--------------------------------------------------------------------------
+AENDERUNGEN GEGENUEBER V2.6
+--------------------------------------------------------------------------
+1. Gas-KWK ist keine dritte Waermequelle mehr, sondern ein VORLAUF von rund
+   19 Jahren vor einer der beiden klimaneutralen Quellen.  Grund: Nach dem
+   Waermeplanungsgesetz darf eine heute gebaute Gasanlage nur bis 2045 laufen,
+   das Verteilnetz wird aber ueber 50 a annuisiert.  Ein "Gas-KWK-Netz" als
+   Fuenfzigjahresentscheidung existiert nicht.  TAB 3 und TAB 6 rechnen jetzt
+   vier Varianten: zwei Pfade, jeweils mit und ohne Gasvorlauf.
+2. TAB 6 damit auf 4 x 36 Kombinationen erweitert — die Abbildung in
+   Abschnitt 7 ist erst dadurch aus diesem Skript reproduzierbar.  Die reine
+   50-Jahres-Gasrechnung bleibt nachrichtlich erhalten (Fussnote Anhang A.7).
+3. NEU TAB 10: Schwellensolver.  Welche Waermegestehungskosten muss eine
+   Nachfolgequelle unterschreiten, damit das Budget 0 bzw. +2,5 ct erreicht?
+   Beantwortet den Biomethan-/Wasserstoff-Einwand ohne Preisprognose.
+   Rueckrechnung auf einen Brennstoffpreis ueber die Differenzrechnung aus A.7.
+4. NEU TAB 11: Selbstkontrolle der Identitaet
+      Delta Budget = w * (Sockel_Gas - Sockel_Nachfolge),  w = Barwertanteil
+   der Gasphase.  Zeigt, dass der Befund keinen Robustheitstest braucht.
+5. TAB 8 entfaellt bis auf die Gegenprobe "Gas heute 6 ct", die jetzt die
+   Bedingung belegt, unter der der Befund kippen wuerde (Anhang A.7).
+
+--------------------------------------------------------------------------
+WELCHE TABELLE BELEGT WELCHE AUSSAGE IM PAPIER
+--------------------------------------------------------------------------
+TAB 1   Abschnitt 4.2, Vollkostentabelle Waermepumpe
+TAB 2   Abschnitt 4.3, Sockel- und Budgettabelle (inkl. fossiler Phase)
+TAB 3   Abschnitt 5, Break-even-Tabelle beider Maßstaebe
+TAB 4   Abschnitt 7, Anschlussquote 60 %
+TAB 5   Abschnitt 6, Opportunitaetsrechnung
+TAB 6   Abschnitt 7 und Abbildung 2 — die vier Balken; letzte Zeile belegt
+        die nachrichtliche Fussnote in Anhang A.7 (32 von 36)
+TAB 7   Anhang A.6, Sensitivitaet Hausanschluss
+TAB 9   Anhang A.8, Erzeuger-CAPEX-Varianten
+TAB 10  Anhang A.7, Schwellen fuer Biomethan/Wasserstoff
+TAB 11  Anhang A.7, Identitaet des Vorlaufs, Gegenprobe "Gas heute 6 ct"
+        und die Unabhaengigkeit des Delta vom Hausanschluss (Anhang A.6)
+TAB 12  Anhang A.7, Wahl des Referenzbudgets: warum +2,5 ct und nicht der
+        Planungsrichtwert 1,5 MWh/(m*a) — belegt den konservativen Anker
+TAB 8   entfaellt; die Nummer bleibt frei, damit die uebrigen Verweise im
+        Papier stabil bleiben.
+
+--------------------------------------------------------------------------
+PARAMETER — alle hier aenderbar.  Quellen in eckigen Klammern wie im Papier.
+--------------------------------------------------------------------------
+"""
+# ---- Rahmen ----------------------------------------------------------------
+ZINS          = 0.03     # realer Kalkulationszins [VDI-2067, VDI-Dim]
+UST           = 1.19     # Umsatzsteuer Regelsatz Deutschland
+BRUTTO        = True     # False = netto/netto-Sensitivitaet (Break-even identisch)
+WAERMEBEDARF  = 15000    # kWh/a Nutzwaerme, Referenz-Bestandsgebaeude [eigene Setzung]
+
+# ---- Waermepumpe -----------------------------------------------------------
+WP_NETTO_EU   = 14000    # EUR netto, europaeisches Preisniveau [Octopus-RWTH, HuG]
+SZENARIEN = {            # WP-Investition brutto, in der Reihenfolge der Papier-Tabellen
+    "Referenz":   round(WP_NETTO_EU * 1.19),   # 16.660 — EU-Kostenniveau, Regelsatz 19 %
+    "DE heute":   30000,                       # deutsches Preisniveau [VZ-RLP]
+    "5% USt":     round(WP_NETTO_EU * 1.05),   # 14.700 — nachrichtlich, Anhang A.5
+}
+WP_NUTZ       = 20       # a  [VDI-2067]
+JAZ           = 3.4      # Feldmessung 77 Anlagen [ISE-QS]; Sensitivitaet 3.1 [ISE-smart]
+STROMPREIS    = 0.26     # EUR/kWh brutto. Oberer Rand der 2026 real verfuegbaren
+                         # Waermepumpentarife (20-26 ct) [BNetzA-Mon, Verivox]
+HEIZKOERPER   = 2000     # EUR, Anpassung/hydraul. Abgleich [eigene Setzung, 0-5000]
+NETZVERSTAERK = 1000     # EUR, anteilige Stromnetzverstaerkung [eigene Setzung]
+HK_NUTZ, NV_NUTZ = 30, 40
+WARTUNG_WP    = 250      # EUR/a, oberer Rand des dt. Korridors 150-250 [DEA-HI: 350]
+
+# ---- Waermequellen ---------------------------------------------------------
+# Erzeugungskosten sind Produktionskosten (netto) und werden unten ggf. brutto gestellt.
+ERZEUGUNG = {            # (Energiekosten EUR/kWh netto, anteiliger Erzeuger-CAPEX EUR/kWh netto)
+    "Abwaerme":      (0.035, 0.003),   # an ifeu-Annahme 4 ct angelehnt [ifeu-WN4.0];
+                                       # CAPEX nur Einbindung, Anlage existiert ohnehin
+    "GrossWP/Geo":   (0.070, 0.014),   # CAPEX hergeleitet, Anhang A.8; Geothermie 0.022
+    "Gas-KWK":       (0.105, 0.007),   # [eigene Setzung] aus Gaspreis + CO2-Pfad, Anhang A.7
+}
+NACHFOLGE = ("Abwaerme", "GrossWP/Geo")   # klimaneutrale Quellen, die ein Netz 50 a tragen
+VORLAUF   = "Gas-KWK"                     # fossile Uebergangsquelle, rechtlich bis 2045
+
+NETZVERLUST   = 0.15     # zwischen AGFW ~12% [AGFW-HB] und DUH ~17% [DUH]
+PUMP_BETRIEB  = 0.007    # EUR/kWh netto, Pumpstrom + Netzbetrieb [eigene Setzung]
+HAUSANSCHLUSS = 10000    # EUR brutto, Stichleitung + Uebergabestation.  Schwach belegt:
+                         # zwei Einzelbeobachtungen Giessen, konservativ am unteren Rand
+                         # des Korridors 7.500-20.000 [heizung.de].  Sensitivitaet TAB 7 / Anhang A.6.
+HA_SENS       = (7500, 10000, 15500, 20000)    # Anhang A.6
+HA_NUTZ       = 30       # a  [VDI-2067]
+WARTUNG_UEGS  = 80       # EUR/a brutto
+
+# ---- Restlaufzeitgrenze der fossilen Phase ---------------------------------
+GAS_JAHRE     = 19       # a — von 2026 bis zur Klimaneutralitaetspflicht 2045
+                         # [Waermeplanungsgesetz]; Herleitung Anhang A.7
+
+# ---- Verteilnetz -----------------------------------------------------------
+NETZ_NUTZ     = 50       # a — AGFW: KMR erreichen "deutlich mehr als fuenf
+                         # Jahrzehnte ohne systematische Schaeden" [AGFW-PH]
+NETZ_INST     = 0.01     # Instandhaltung, Anteil der Investition p.a. [nPro-WN]
+
+# Trassenkosten EUR/m NETTO, Preisstand 2021 (= Erhebungszeitraum AGFW).
+# Median-Schaetzungen der Punktwolken Bild 11/12, kleine Nennweiten (DN 25-100).
+# Die Praxishilfe weist KEINE Zahlenwerte aus.  [AGFW-PH]; Ablesung: Anhang A.4
+TRASSE_2021 = {                       # Median   (Kernbereich der Punktwolke)
+    "Neubaugebiet/offen":  400,       #  ~400    (200-700, unbefestigt/Gruenflaeche)
+    "Bestandsstrasse":    1000,       # ~1000    (500-2500, befestigt)
+    "Innenstadt/Hauptstr":2100,       # ~2100    (oberes Drittel befestigt, bis 4500)
+}
+# Baupreisindex Ortskanaele (Tiefbau), Basis 2021 = 100, Mai 2026 = 142,2 [Destatis 61261]
+BAUPREIS_ESK  = 1.422
+
+# ---- Robustheits-Sweep (Anhang A.3) ----------------------------------------
+SWEEP_INVEST  = (14700, 16660)        # Szenario B / A
+SWEEP_STROM   = (0.24, 0.26, 0.28)    # Marktkorridor 2026, oben leicht darueber
+SWEEP_JAZ     = (3.1, 3.4)            # ISE-smart / ISE-QS
+SWEEP_ERZ     = (0.85, 1.00, 1.15)    # +-15 % auf die Energiekosten der Waermequelle
+
+# ---- Schwellenrechnung gruener Brennstoff (Anhang A.7) ---------------------
+# Differenzrechnung Gasmotor: 47 % elektrisch / 47 % thermisch.
+BRENNSTOFF_JE_KWH_WAERME = 2.1        # kWh Brennstoff je kWh Waerme
+STROMGUTSCHRIFT          = 0.073      # EUR/kWh, Langfristpfad 73 EUR/MWh [Prognos-Strom]
+SG_SENS                  = (0.060, 0.073, 0.090)   # Sensitivitaet der Gutschrift
+BUDGET_REAL              = 2.5        # ct/kWh — konservativer Anker: das Budget der
+                                      # guenstigsten Sweep-Kombination (TAB 6), das in
+                                      # der Bestandsstrasse 3,29 MWh/(m*a) entspricht.
+                                      # KEINE Ableitung, sondern eine Konvention — TAB 12
+                                      # zeigt, wie der Anker am Planungsrichtwert aussaehe.
+WLD_PLANUNG              = 1.5        # MWh/(m*a), Richtwert der Planungspraxis, ab dem ein
+                                      # Netz konventionell als tragfaehig gilt [nPro-WN]
+WLD_SWEEP_BEST           = 3.29       # MWh/(m*a), Bestandsstrasse, guenstigste Kombination
+
+# ---- Quartierstypen fuer die Opportunitaetsrechnung -------------------------
+QUARTIERE = {   # (Wohneinheiten je Gebaeude, Trassenmeter je Gebaeude, Trassenlage)
+    "Dichtes MFH-Quartier": (12, 50, "Innenstadt/Hauptstr"),
+    "Reihenhausgebiet":     ( 2, 20, "Bestandsstrasse"),
+    "EFH-Gebiet":           ( 1, 45, "Bestandsstrasse"),
+}
+WP_FESTBETRAG = 9000     # EUR, am britischen Boiler Upgrade Scheme orientiert
+ANSCHLUSSQUOTE = 1.0     # Sensitivitaet unten mit 0.6
+
+# ============================================================================
+def annuitaet(n, i=ZINS):
+    """Kapitalwiedergewinnungsfaktor. Verteilt eine Investition auf n Jahre.
+    Entspricht einer unendlichen Ersatzkette zu konstanten Realpreisen —
+    Ersatzbeschaffungen sind damit eingepreist."""
+    return i / (1 - (1 + i) ** -n)
+
+def barwertfaktor(n, i=ZINS):
+    """Rentenbarwertfaktor. Gewichtet eine Phase innerhalb der Netzlebensdauer."""
+    return (1 - (1 + i) ** -n) / i
+
+P_GAS  = barwertfaktor(GAS_JAHRE)              # Barwert der fossilen Phase
+P_NETZ = barwertfaktor(NETZ_NUTZ)              # Barwert der gesamten Netzlebensdauer
+P_NACH = P_NETZ - P_GAS                        # Barwert der Nachfolgephase
+W_GAS  = P_GAS / P_NETZ                        # Gewicht der Gasphase, ~0.5567
+
+def _ust(x):
+    """Stellt einen Netto-Betrag brutto, wenn der Basisfall brutto rechnet."""
+    return x * UST if BRUTTO else x
+
+def wp_vollkosten(invest, strompreis=STROMPREIS, jaz=JAZ):
+    """Annuisierte Vollkosten der Waermepumpe. Rueckgabe: (EUR/a, ct/kWh).
+    invest ist bereits ein Endkundenpreis brutto (Szenarien oben)."""
+    total = (invest * annuitaet(WP_NUTZ)
+             + HEIZKOERPER   * annuitaet(HK_NUTZ)
+             + NETZVERSTAERK * annuitaet(NV_NUTZ)
+             + WARTUNG_WP
+             + WAERMEBEDARF / jaz * strompreis)
+    if not BRUTTO:                      # netto/netto-Sensitivitaet
+        total /= UST
+    return total, total / WAERMEBEDARF * 100
+
+def fw_sockel(energie, capex, hausanschluss=HAUSANSCHLUSS):
+    """Dichteunabhaengiger Teil der Fernwaermekosten — faellt an, bevor ein
+    einziger Meter Verteilnetz gebaut ist. Rueckgabe: ct/kWh."""
+    haus = hausanschluss * annuitaet(HA_NUTZ) + WARTUNG_UEGS   # brutto
+    if not BRUTTO:
+        haus /= UST
+    total = (_ust(energie) / (1 - NETZVERLUST)     # Verluste erhoehen die Einspeisemenge
+             + _ust(capex)
+             + haus / WAERMEBEDARF
+             + _ust(PUMP_BETRIEB))
+    return total * 100
+
+def sockel_mit_vorlauf(sockel_gas, sockel_nachfolge):
+    """Barwertgewichteter Sockel eines Netzes, das GAS_JAHRE fossil beginnt und
+    danach auf die Nachfolgequelle wechselt. Der Netzbarwert selbst laeuft ueber
+    NETZ_NUTZ; die Quelle wechselt darin."""
+    return W_GAS * sockel_gas + (1 - W_GAS) * sockel_nachfolge
+
+def varianten_sockel(faktor=1.0, hausanschluss=HAUSANSCHLUSS):
+    """Alle vier Varianten des Papiers ab V4: zwei Pfade, je mit und ohne
+    Gasvorlauf. faktor skaliert die Energiekosten (Sweep). Rueckgabe: dict."""
+    s = {q: fw_sockel(e * faktor, c, hausanschluss)
+         for q, (e, c) in ERZEUGUNG.items()}
+    out = {}
+    for q in NACHFOLGE:
+        out[q] = s[q]
+        out["Gas -> " + q] = sockel_mit_vorlauf(s[VORLAUF], s[q])
+    return out
+
+def trassenkosten(lage):
+    """EUR/m, Preisstand 2026, in der gewaehlten Steuerbasis."""
+    netto26 = TRASSE_2021[lage] * BAUPREIS_ESK
+    return netto26 * UST if BRUTTO else netto26
+
+def k_m(lage):
+    """Annuisierte Netzkosten je Trassenmeter und Jahr, EUR/(m*a)."""
+    return trassenkosten(lage) * (annuitaet(NETZ_NUTZ) + NETZ_INST)
+
+def break_even_wld(wp_ct, sockel_ct, lage, quote=ANSCHLUSSQUOTE):
+    """Waermeliniendichte MWh/(m*a), ab der Fernwaerme guenstiger ist.
+    Budget = was je kWh nach Abzug des Sockels fuer das Verteilnetz uebrig ist.
+    Der Faktor 10 rechnet ct/kWh in EUR/MWh um. None = Fernwaerme ist bei
+    KEINER Dichte guenstiger."""
+    budget = wp_ct - sockel_ct
+    if budget <= 0:
+        return None
+    return k_m(lage) / quote / (budget * 10)
+
+def loese_schwelle(zielbudget, wp_ct, mit_vorlauf, capex=0.007,
+                   lo=0.0, hi=0.30, runden=200):
+    """Bisektion: welche Energiekosten (EUR/kWh netto) muss die Nachfolgequelle
+    unterschreiten, damit das Budget zielbudget erreicht?  mit_vorlauf=True
+    rechnet GAS_JAHRE fossile Vorlaufphase mit dem gesetzten Gaspreis davor."""
+    sg = fw_sockel(*ERZEUGUNG[VORLAUF])
+    def budget(e):
+        s = fw_sockel(e, capex)
+        if mit_vorlauf:
+            s = sockel_mit_vorlauf(sg, s)
+        return wp_ct - s - zielbudget
+    for _ in range(runden):
+        mid = (lo + hi) / 2
+        if budget(mid) > 0:
+            lo = mid
+        else:
+            hi = mid
+    return (lo + hi) / 2
+
+def brennstoffpreis(waermegestehung_ct, gutschrift=STROMGUTSCHRIFT):
+    """Rueckrechnung der Differenzrechnung aus Anhang A.7:
+    Waerme = BRENNSTOFF_JE_KWH_WAERME * Brennstoff - Stromgutschrift.
+    Ein- und Ausgabe in ct/kWh."""
+    return (waermegestehung_ct + gutschrift * 100) / BRENNSTOFF_JE_KWH_WAERME
+
+def sweep_budgets(sockelfunktion, wp_szenarien=SWEEP_INVEST):
+    """Vollfaktorieller Sweep ueber die vier Parameter aus Anhang A.3.
+    sockelfunktion(faktor) liefert den Sockel bei skalierten Energiekosten."""
+    return [wp_vollkosten(inv, st, jz)[1] - sockelfunktion(fak)
+            for inv in wp_szenarien for st in SWEEP_STROM
+            for jz in SWEEP_JAZ for fak in SWEEP_ERZ]
+
+# ============================================================================
+if __name__ == "__main__":
+    f = lambda x: "nie" if x is None else "%.2f" % x
+    wp_ct   = {s: wp_vollkosten(p)[1] for s, p in SZENARIEN.items()}
+    sockel  = varianten_sockel()
+    s_gas   = fw_sockel(*ERZEUGUNG[VORLAUF])       # reine fossile Phase
+    ref     = wp_ct["Referenz"]
+
+    print("Basis: %s | Zins %.0f%% real | Netz %d a | Gasphase %d a (Gewicht %.4f)"
+          % ("brutto" if BRUTTO else "netto", ZINS*100, NETZ_NUTZ, GAS_JAHRE, W_GAS))
+    print("Baupreis-Eskalation %.3f | Trassenkosten 2026 EUR/m: %s\n"
+          % (BAUPREIS_ESK, {k: round(trassenkosten(k)) for k in TRASSE_2021}))
+
+    print("TAB 1  Vollkosten Waermepumpe (Abschnitt 4.2)")
+    for s, p in SZENARIEN.items():
+        eur, ct = wp_vollkosten(p)
+        print("   %-10s %6d EUR  %6.0f EUR/a   %5.2f ct/kWh" % (s, p, eur, ct))
+
+    print("\nTAB 2  Sockel und Budget fuers Verteilnetz, ct/kWh (Abschnitt 4.3)")
+    print("   %-26s %7s %s" % ("Variante", "Sockel",
+          " ".join("%11s" % s for s in SZENARIEN)))
+    for q, v in list(sockel.items()) + [("Gas-KWK (fossile Phase)", s_gas)]:
+        print("   %-26s %7.2f %s" % (q, v,
+              " ".join("%+11.2f" % (wp_ct[s] - v) for s in SZENARIEN)))
+
+    print("\nTAB 3  Break-even-Waermeliniendichte, MWh/(m*a) (Abschnitt 5)")
+    print("   %-22s %-26s %s" % ("Trassenlage", "Variante",
+          " ".join("%11s" % s for s in SZENARIEN)))
+    for lage in TRASSE_2021:
+        for q, v in sockel.items():
+            print("   %-22s %-26s %s" % (lage, q, " ".join(
+                "%11s" % f(break_even_wld(wp_ct[s], v, lage)) for s in SZENARIEN)))
+
+    print("\nTAB 4  Sensitivitaet Anschlussquote 60 % (Referenzfall) (Abschnitt 7)")
+    for lage in TRASSE_2021:
+        print("   %-22s %s" % (lage, "  ".join(
+            "%s %6s" % (q, f(break_even_wld(ref, v, lage, 0.6)))
+            for q, v in sockel.items())))
+
+    print("\nTAB 5  Opportunitaetskosten je 1 Mrd. EUR (Abschnitt 6)")
+    print("   %-26s %14s %12s" % ("Pfad", "EUR je WE", "WE je Mrd."))
+    print("   %-26s %14s %12s" % ("WP-Festbetrag", "%d" % WP_FESTBETRAG,
+                                  "{:,}".format(int(1e9/WP_FESTBETRAG)).replace(",", ".")))
+    for nm, (we, tm, lage) in QUARTIERE.items():
+        je_we = (tm * trassenkosten(lage) + HAUSANSCHLUSS) / we
+        print("   %-26s %14.0f %12s   (Faktor WP %.1fx)" % (
+            "Netz: " + nm, je_we,
+            "{:,}".format(int(1e9/je_we)).replace(",", "."),
+            (1e9/WP_FESTBETRAG)/(1e9/je_we)))
+
+    print("\nTAB 6  Robustheit: 4 Varianten x 36 Kombinationen (Abschnitt 7, Anhang A.3)")
+    print("   %-26s %9s %9s %9s %14s" % ("Variante", "Min", "Mittel", "Max", "Budget < 0"))
+    for q in NACHFOLGE:
+        e, c = ERZEUGUNG[q]
+        eg, cg = ERZEUGUNG[VORLAUF]
+        for mit in (False, True):
+            nm = ("Gas -> " + q) if mit else q
+            fn = ((lambda fak: sockel_mit_vorlauf(fw_sockel(eg*fak, cg),
+                                                  fw_sockel(e*fak, c)))
+                  if mit else (lambda fak: fw_sockel(e*fak, c)))
+            b = sweep_budgets(fn)
+            print("   %-26s %+8.2f %+9.2f %+9.2f %11d/%d" % (
+                  nm, min(b), sum(b)/len(b), max(b),
+                  sum(1 for x in b if x < 0), len(b)))
+    eg, cg = ERZEUGUNG[VORLAUF]
+    b = sweep_budgets(lambda fak: fw_sockel(eg*fak, cg))
+    print("   %-26s %+8.2f %+9.2f %+9.2f %11d/%d   <- nachrichtlich, Fussnote A.7"
+          % ("Gas-KWK rein, 50 a", min(b), sum(b)/len(b), max(b),
+             sum(1 for x in b if x < 0), len(b)))
+
+    print("\n   Guenstigste Kombination der kippenden Variante (Abschnitt 7):")
+    beste = max(((wp_vollkosten(inv, st, jz)[1]
+                  - sockel_mit_vorlauf(fw_sockel(eg*fak, cg),
+                                       fw_sockel(*[ERZEUGUNG["GrossWP/Geo"][0]*fak,
+                                                   ERZEUGUNG["GrossWP/Geo"][1]])),
+                  inv, st, jz, fak)
+                 for inv in SWEEP_INVEST for st in SWEEP_STROM
+                 for jz in SWEEP_JAZ for fak in SWEEP_ERZ))
+    bd, inv, st, jz, fak = beste
+    print("      Budget %+.2f (Invest %d, Strom %.2f, JAZ %.1f, Erz %.2f)"
+          % (bd, inv, st, jz, fak))
+    for lage in ("Bestandsstrasse", "Innenstadt/Hauptstr"):
+        print("      WLD %-22s %s" % (lage, f(k_m(lage)/(bd*10))))
+
+    print("\nTAB 7  Sensitivitaet Hausanschluss (Referenzfall, Bestandsstrasse) (Anhang A.6)")
+    print("   %8s %s" % ("HA EUR", " ".join("%-38s" % q for q in varianten_sockel())))
+    for ha in HA_SENS:
+        zellen = []
+        for q, s in varianten_sockel(hausanschluss=ha).items():
+            zellen.append("Sockel %5.2f Bud %+5.2f WLD %6s " % (
+                s, ref - s, f(break_even_wld(ref, s, "Bestandsstrasse"))))
+        print("   %8d %s" % (ha, " ".join(zellen)))
+
+    print("\nTAB 9  Erzeuger-CAPEX-Varianten GrossWP/Geothermie (Anhang A.8)")
+    for c, nm in ((0.014, "Luft-WP 1,4 ct"), (0.022, "Geothermie 2,2 ct")):
+        s = fw_sockel(0.070, c)
+        print("   %-18s Sockel %5.2f  Budget %+5.2f  mit Vorlauf %+5.2f"
+              % (nm, s, ref - s, ref - sockel_mit_vorlauf(s_gas, s)))
+
+    # ---- TAB 10  Schwellenrechnung gruener Brennstoff (Anhang A.7) ----------
+    print("\nTAB 10  Was eine Nachfolgequelle unterschreiten muss (Anhang A.7)")
+    print("   %-40s %14s %16s" % ("Konfiguration", "Waerme ct/kWh", "Brennstoff ct/kWh"))
+    faelle = (("durchgehend gruen, 50 a",            0.0,          False),
+              ("%d a fossil, dann gruen" % GAS_JAHRE, 0.0,          True),
+              ("dito, Budget +%.1f ct (reale Dichte)" % BUDGET_REAL,
+                                                     BUDGET_REAL,  True))
+    for nm, ziel, mit in faelle:
+        e = loese_schwelle(ziel, ref, mit) * 100
+        print("   %-40s %14.2f %16.2f" % (nm, e, brennstoffpreis(e)))
+    e_mit = loese_schwelle(0.0, ref, True) * 100
+    print("   Sensitivitaet der Stromgutschrift (mittlere Zeile):")
+    for sg in SG_SENS:
+        print("      Gutschrift %4.1f ct  ->  Brennstoff %5.2f ct/kWh"
+              % (sg*100, brennstoffpreis(e_mit, sg)))
+
+    # ---- TAB 11  Identitaet und Bedingung (Anhang A.7) ---------------------
+    print("\nTAB 11  Der Vorlauf als Identitaet: Delta = w * (S_Gas - S_Nachfolge)")
+    print("   %-16s %9s %9s %9s %11s %11s" % ("Nachfolge", "S_nach", "S_mix",
+                                              "Delta", "Identitaet", "Differenz"))
+    for q in NACHFOLGE:
+        sn  = sockel[q]
+        mix = sockel["Gas -> " + q]
+        delta = (ref - mix) - (ref - sn)
+        ident = W_GAS * (sn - s_gas)
+        print("   %-16s %9.2f %9.2f %+9.2f %+11.2f %11.1e"
+              % (q, sn, mix, delta, ident, abs(delta - ident)))
+
+    print("\n   Gegenprobe — die Bedingung, unter der der Befund kippt:")
+    print("   Gas-KWK-Waerme zu 6 ct/kWh statt %.1f ct:" % (ERZEUGUNG[VORLAUF][0]*100))
+    s_guenstig = fw_sockel(0.060, ERZEUGUNG[VORLAUF][1])
+    print("      Sockel fossile Phase %5.2f ct (statt %5.2f)" % (s_guenstig, s_gas))
+    for q in NACHFOLGE:
+        sn  = sockel[q]
+        mix = W_GAS * s_guenstig + (1 - W_GAS) * sn
+        print("      -> %-14s Sockel %5.2f  Budget %+5.2f  Delta %+5.2f  WLD %s"
+              % (q, mix, ref - mix, (ref - mix) - (ref - sn),
+                 f(break_even_wld(ref, mix, "Bestandsstrasse"))))
+    print("   Der Vorlauf senkt die Kosten genau dann, wenn der Gassockel unter dem")
+    print("   der Nachfolgequelle liegt. Im Modell tut er das nicht — das ist eine")
+    print("   Folge des CO2-Pfads und der sinkenden Stromgutschrift, keine Konstante.")
+
+    # ---- TAB 12  Wahl des Referenzbudgets (Anhang A.7) ---------------------
+    print("\nTAB 12  Warum +%.1f ct und nicht der Planungsrichtwert (Anhang A.7)" % BUDGET_REAL)
+    s_frei = fw_sockel(0.0, 0.007)                 # Brennstoffpreis null
+    max_mit = ref - sockel_mit_vorlauf(s_gas, s_frei)
+    print("   Auch bei einem Brennstoffpreis von null bleiben Netzverluste, Erzeuger-CAPEX,")
+    print("   Pumpstrom und Hausanschluss: Sockel %.2f ct, mit Vorlauf %.2f ct." % (
+          s_frei, sockel_mit_vorlauf(s_gas, s_frei)))
+    print("   Hoechstens erreichbares Budget mit Gasvorlauf: %+.2f ct.\n" % max_mit)
+    print("   %-22s %10s %12s %14s %16s" % ("Trassenlage", "Ziel-WLD", "noetiges Bud",
+                                            "gruene Waerme", "Brennstoff"))
+    for lage in TRASSE_2021:
+        for wld, tag in ((WLD_PLANUNG, "Planungsrichtwert"), (WLD_SWEEP_BEST, "Sweep-Bestfall")):
+            ziel = k_m(lage) / (wld * 10)
+            e = loese_schwelle(ziel, ref, True) * 100
+            erreichbar = ziel <= max_mit
+            print("   %-22s %5.2f %-4s %12.2f %14s %16s" % (
+                  lage, wld, "", ziel,
+                  "%.2f ct" % e if erreichbar else "nicht erreichbar",
+                  "%.2f ct" % brennstoffpreis(e) if erreichbar else "-"))
+    print("   Lesart: Der im Papier verwendete Anker von +%.1f ct entspricht dem" % BUDGET_REAL)
+    print("   Sweep-Bestfall in der Bestandsstrasse (%.2f MWh/(m*a)). Am Planungsrichtwert" % WLD_SWEEP_BEST)
+    print("   von %.1f MWh/(m*a) gemessen waere die Anforderung in Bestandsstrasse und" % WLD_PLANUNG)
+    print("   Innenstadt auch bei kostenlosem Brennstoff nicht erfuellbar. Der im Papier")
+    print("   gewaehlte Anker ist damit der fuer die Gegenseite guenstigere.")
+
+    print("\n   Unabhaengigkeit vom Hausanschluss (Anhang A.6):")
+    for ha in HA_SENS:
+        v = varianten_sockel(hausanschluss=ha)
+        d = [(ref - v["Gas -> " + q]) - (ref - v[q]) for q in NACHFOLGE]
+        print("      HA %6d EUR  ->  Delta %s" % (ha, " ".join("%+6.2f" % x for x in d)))
+</script><script>
+// Nav-Highlight beim Scrollen
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+ document.querySelectorAll('nav a').forEach(a=>a.classList.remove('on'));
+ const a=document.querySelector('nav a[href="#'+e.target.id+'"]'); if(a)a.classList.add('on');}})},
+ {rootMargin:'-10% 0px -80% 0px'});
+document.querySelectorAll('h1[id],h2[id]').forEach(h=>obs.observe(h));
+
+// Skript einbetten, kopieren, herunterladen
+const src=document.getElementById('py-source').textContent;
+document.getElementById('pycode').textContent=src;
+document.getElementById('cp').onclick=()=>{navigator.clipboard.writeText(src);
+ document.getElementById('cp').textContent='Kopiert';setTimeout(()=>document.getElementById('cp').textContent='Skript kopieren',1600)};
+document.getElementById('dl').onclick=()=>{const b=new Blob([src],{type:'text/x-python;charset=utf-8'});
+ const u=URL.createObjectURL(b);const a=document.createElement('a');
+ a.href=u;a.download='simulation_wp_fernwaerme_v2-7.py';a.click();URL.revokeObjectURL(u)};
+
+// Didaktik-Schalter: Erklärkästen und Begriffsanker ausblenden
+const dtoggle=document.getElementById('didaktik-toggle');
+function applyDidaktik(){document.body.classList.toggle('hide-didaktik', !dtoggle.checked);}
+dtoggle.addEventListener('change', applyDidaktik);
+applyDidaktik();
+
+// Begriffsanker (Erklärkästen) und Anhang-Verweise: Popover mit Sprungziel
+document.querySelectorAll('a.jj').forEach(a=>{
+ const targetId=a.getAttribute('href').slice(1);
+ const box=document.getElementById(targetId);
+ if(!box) return;
+ let text;
+ if(a.classList.contains('anh')){
+  // Anhang-Verweis: Ziel ist eine Überschrift, Vorschau ist deren erster Absatz im folgenden .blk
+  let sib=box.nextElementSibling;
+  while(sib && !(sib.classList && sib.classList.contains('blk'))) sib=sib.nextElementSibling;
+  const p=sib && sib.querySelector('p');
+  text=p ? p.textContent : box.textContent;
+ } else {
+  text=box.querySelector('p').textContent;
+ }
+ const pop=document.createElement('span');
+ pop.className='jj-pop';
+ pop.textContent=text;
+ a.appendChild(pop);
+});
+
+// Ampel-Filter für die Tabelle "Herkunft der Modellannahmen"
+const legendBtns=document.querySelectorAll('.legend .li, .legend .liall');
+const annahmenRows=document.querySelectorAll('#annahmen-table tbody tr');
+legendBtns.forEach(btn=>{
+ btn.addEventListener('click', ()=>{
+  legendBtns.forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const filter=btn.getAttribute('data-filter');
+  annahmenRows.forEach(row=>{
+   if(filter==='all'){ row.classList.remove('filtered-out'); return; }
+   const chips=(row.getAttribute('data-chips')||'').split(' ');
+   if(chips.includes(filter)){ row.classList.remove('filtered-out'); }
+   else { row.classList.add('filtered-out'); }
+  });
+ });
+});
+</script>
+</body></html>
