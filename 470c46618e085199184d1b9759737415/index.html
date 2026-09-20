@@ -78,6 +78,10 @@ em.src-italic{font-style:italic}
 .mast{margin-left:48px;max-width:var(--measure);padding-bottom:1.4rem;border-bottom:3px double var(--rule);margin-bottom:2.4rem}
 .mast .kicker{font-family:var(--font-ui);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--setzung)}
 .mast h1{margin:.5rem 0 .6rem;font-size:2.35rem;margin-left:0}
+.slidebox{font-family:var(--font-ui);font-size:13px;line-height:1.6;color:var(--ink-soft);
+ margin:1.2rem 0 0;padding:.7rem .9rem;background:var(--paper-alt);border-left:3px solid var(--belegt)}
+.slidebox strong{color:var(--ink)}
+.slidebox a{color:var(--belegt);text-decoration:none;border-bottom:1px solid var(--belegt)}
 .mast .meta{font-family:var(--font-ui);font-size:13px;color:var(--ink-soft);line-height:1.6}
 figure{margin:1.8em 0 2em 48px;max-width:100%}
 figcaption{font-family:var(--font-ui);font-size:12px;color:var(--ink-soft);margin-top:.6rem;line-height:1.5}
@@ -91,7 +95,8 @@ details>summary{font-family:var(--font-ui);font-size:13.5px;cursor:pointer;paddi
  background:var(--paper-alt);border:1px solid var(--rule);border-radius:2px}
 pre{font-family:var(--font-mono);font-size:11.5px;line-height:1.55;overflow-x:auto;background:#FBFAF6;
  border:1px solid var(--rule);border-top:0;padding:1rem;margin:0;white-space:pre;font-variant-numeric:normal}
-.btns{display:flex;gap:.6rem;margin:.8rem 0 0}
+.btns{display:flex;gap:.6rem;margin:.8rem 0 0;flex-wrap:wrap;align-items:center}
+.btns .btn{display:inline-block;text-decoration:none}
 button{font-family:var(--font-ui);font-size:12.5px;padding:.5rem .95rem;background:var(--ink);color:var(--paper);
  border:0;border-radius:2px;cursor:pointer}
 button:hover{background:var(--belegt)}
@@ -278,6 +283,7 @@ tr.filtered-out{display:none}
 <a class="t2" href="#q-teil-i">Teil I</a>
 <a class="t2" href="#q-teil-ii">Teil II (mit Kennzeichnung der Interessenlage)</a>
 <a class="t2" href="#herkunft">Herkunft der Modellannahmen</a>
+<a class="t1" href="#folien">Die Vortragsfolien</a>
 <a class="t1" href="#skript">Das Simulationsskript</a>
 </nav>
 <main>
@@ -288,6 +294,7 @@ tr.filtered-out{display:none}
 Florian Schulte, Gießen<br>
 Für die BAG Energie (Bündnis 90/Die Grünen); zugleich als Fachbeitrag zur anstehenden AVBFernwärmeV-Novelle, zur Praxis der kommunalen Wärmeplanung und für die energiepolitische Fachöffentlichkeit.<br>
 Alle Modellrechnungen sind als solche gekennzeichnet, im beiliegenden Python-Skript <code>simulation_wp_fernwaerme_v2-11.py</code> (MIT) reproduzierbar und ersetzen keine projektspezifische Machbarkeitsstudie. Neu in V2.11.1: die Zeile ohne Grüngaspflicht und die Spalte „davon Arbeitspreis“ in Abschnitt 4.2. Neu in V2.11: fünf Gebäudetypen und zwei Netzstatus (Netzausbau und vorhandenes Netz) in Abschnitt 4.4 und 5, das volle Raster in Anhang A.11. Neu in V2.8.2: die dezentrale Gasheizung als dritte Option in Abschnitt 4.2 und als zweiter Vergleichsmaßstab in Abschnitt 5, hergeleitet in Anhang A.10.</div>
+<div class="slidebox"><strong>Vortragsfolien.</strong> Die Folien zum Vortrag vom 20. September 2026 stehen als PDF, PowerPoint und JavaScript-Quelltext am Ende des Papiers bereit: <a href="#folien">zu den Folien</a>.</div>
 </div>
 
 <h2 id="kurzfassung">Kurzfassung<a class="anch" href="#kurzfassung">§</a></h2>
@@ -1285,6 +1292,18 @@ Systemlänge, fünf bis sechs Geschosse, Dreiraumwohnung 60,19 m², Beheizung
 <hr>
 <div class="blk"><p><em>Florian Schulte, Gießen — September 2026 (Erstfassung Mai 2026). Dieses Papier gibt die persönliche Einschätzung des Autors wieder und erhebt keinen Anspruch auf Vollständigkeit. Rückfragen, Korrekturen und Gegenrechnungen ausdrücklich willkommen; Simulationsskript unter MIT-Lizenz beigefügt.</em></p></div>
 <div class="blk"><p><em><strong>Lizenz.</strong> Text und Abbildungen dieses Papiers stehen unter <a href="https://creativecommons.org/licenses/by/4.0/deed.de">CC BY 4.0</a> — Weitergabe und Bearbeitung sind erlaubt, auch kommerziell, sofern der Autor genannt wird. Das beiliegende Simulationsskript steht abweichend davon unter der MIT-Lizenz; der Lizenztext steht im Kopf des Skripts.</em></p></div>
+
+<h1 id="folien" class="part">Die Vortragsfolien<a class="anch" href="#folien">§</a></h1>
+<div class="codewrap">
+<p style="max-width:var(--measure)">Der Vortrag vom 20. September 2026 fasst die Befunde dieses Papiers zusammen. Die Folien liegen in drei Formaten vor; der JavaScript-Quelltext erzeugt die Diagramme aus denselben Zahlen wie das Simulationsskript.</p>
+<div class="btns">
+<a class="btn" href="folien_wp_fernwaerme_V16.pdf" download>Folien als PDF</a>
+<a class="btn" href="folien_wp_fernwaerme_V16.pptx" download>Folien als PowerPoint</a>
+<a class="btn" href="folien_wp_fernwaerme_V16.js" download>Skript als .js herunterladen</a>
+<button id="cpjs">Skript kopieren</button>
+</div>
+<p id="jshint" style="max-width:var(--measure);font-family:var(--font-ui);font-size:12.5px;color:var(--ink-soft)"></p>
+</div>
 
 <h1 id="skript" class="part">Das Simulationsskript<a class="anch" href="#skript">§</a></h1>
 <div class="codewrap">
@@ -2736,6 +2755,17 @@ document.getElementById('cp').onclick=()=>{navigator.clipboard.writeText(src);
 document.getElementById('dl').onclick=()=>{const b=new Blob([src],{type:'text/x-python;charset=utf-8'});
  const u=URL.createObjectURL(b);const a=document.createElement('a');
  a.href=u;a.download='simulation_wp_fernwaerme_v2-11.py';a.click();URL.revokeObjectURL(u)};
+
+// Foliensicherung: Quelltext der Web-Fassung kopieren
+const cpjs=document.getElementById('cpjs');
+if(cpjs){cpjs.onclick=async()=>{
+ const hint=document.getElementById('jshint');
+ try{const r=await fetch('folien_wp_fernwaerme_V16.js');
+  if(!r.ok)throw new Error(r.status);
+  await navigator.clipboard.writeText(await r.text());
+  cpjs.textContent='Kopiert';setTimeout(()=>cpjs.textContent='Skript kopieren',1600);}
+ catch(e){hint.textContent='Kopieren ist hier nicht möglich (nur auf der veröffentlichten Seite, nicht in der lokalen Datei). Bitte den Download-Knopf verwenden.';}
+};}
 
 // Didaktik-Schalter: Erklärkästen und Begriffsanker ausblenden
 const dtoggle=document.getElementById('didaktik-toggle');
